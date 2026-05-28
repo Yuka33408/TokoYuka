@@ -44,6 +44,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     });
 
+    // Inject Mobile Menu
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        const mobileBtn = document.createElement('button');
+        mobileBtn.className = 'mobile-menu-btn';
+        mobileBtn.innerHTML = '<i class="ph ph-list"></i>';
+        
+        const navActions = navbar.querySelector('.nav-actions');
+        if (navActions) {
+            navActions.appendChild(mobileBtn);
+        } else {
+            navbar.appendChild(mobileBtn);
+        }
+
+        const mobileDropdown = document.createElement('div');
+        mobileDropdown.className = 'mobile-dropdown';
+        
+        const navLinks = navbar.querySelector('.nav-links');
+        if (navLinks) {
+            mobileDropdown.appendChild(navLinks.cloneNode(true));
+        }
+
+        const navBtns = navbar.querySelectorAll('.nav-actions .nav-btn');
+        navBtns.forEach(btn => {
+            const btnClone = btn.cloneNode(true);
+            btnClone.style.width = '100%';
+            btnClone.style.justifyContent = 'center';
+            mobileDropdown.appendChild(btnClone);
+        });
+
+        navbar.appendChild(mobileDropdown);
+
+        mobileBtn.addEventListener('click', () => {
+            navbar.classList.toggle('mobile-active');
+            const icon = mobileBtn.querySelector('i');
+            if (navbar.classList.contains('mobile-active')) {
+                icon.className = 'ph ph-x';
+                mobileDropdown.style.display = 'flex';
+                setTimeout(() => mobileDropdown.classList.add('show'), 10);
+            } else {
+                icon.className = 'ph ph-list';
+                mobileDropdown.classList.remove('show');
+                setTimeout(() => mobileDropdown.style.display = 'none', 300);
+            }
+        });
+    }
+
     // Handle smooth exit transitions
     const links = document.querySelectorAll('a[href]:not([href^="#"])');
     const buttons = document.querySelectorAll('button[onclick*="window.location"]');
