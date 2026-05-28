@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YukaStore | Kontak Kami</title>
+    <meta name="description" content="Hubungi YukaStore untuk pertanyaan seputar produk atau layanan percetakan.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons for beautiful modern icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">YukaStore.</div>
+        <ul class="nav-links">
+            <li><a href="web.html">Beranda</a></li>
+            <li><a href="katalog.html">Katalog</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                <i class="ph ph-moon"></i>
+            </button>
+            <button class="nav-btn" onclick="window.location.href='web.html'">
+                <i class="ph ph-arrow-left"></i> Kembali
+            </button>
+        </div>
+    </nav>
+
+    <main style="padding-top: 80px;">
+        <!-- Kontak Section -->
+        <section id="kontak" class="contact-section">
+            <div class="section-container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2 class="section-title">Hubungi <span class="text-gradient">Kami</span></h2>
+                        <p class="section-desc">Punya pertanyaan seputar produk kami, pesanan, atau layanan khusus
+                            percetakan? Jangan ragu untuk menghubungi tim YukaStore.</p>
+
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="ph ph-map-pin"></i>
+                                <div>
+                                    <h4>Lokasi</h4>
+                                    <p>Jl. Lariangi ,Kel. Mandati II, Kec. Wangi-Wangi Selatan, Kab. Wakatobi, Sulawesi
+                                        Tenggara</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="ph ph-envelope-simple"></i>
+                                <div>
+                                    <h4>Email Dukungan</h4>
+                                    <p>tokoyuka67@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="ph ph-phone"></i>
+                                <div>
+                                    <h4>Telepon / WhatsApp</h4>
+                                    <p>+62 822 9699 4582</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-card">
+                        <form id="contact-form"
+                            onsubmit="event.preventDefault(); alert('Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.'); this.reset();">
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Nama
+                                    Lengkap</label>
+                                <input type="text" placeholder="Masukkan nama Anda" required
+                                    style="width: 100%; padding: 1rem; border-radius: 12px; border: var(--glass-border); background: var(--bg-surface); color: var(--text-primary); font-family: inherit;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Alamat
+                                    Email</label>
+                                <input type="email" placeholder="email@anda.com" required
+                                    style="width: 100%; padding: 1rem; border-radius: 12px; border: var(--glass-border); background: var(--bg-surface); color: var(--text-primary); font-family: inherit;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 2rem;">
+                                <label
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Pesan</label>
+                                <textarea rows="4" placeholder="Tuliskan pesan atau pertanyaan Anda..." required
+                                    style="width: 100%; padding: 1rem; border-radius: 12px; border: var(--glass-border); background: var(--bg-surface); color: var(--text-primary); font-family: inherit; resize: vertical;"></textarea>
+                            </div>
+                            <button type="submit" class="auth-submit-btn"
+                                style="width: 100%; display: flex; justify-content: center; gap: 0.5rem;">Kirim Pesan <i
+                                    class="ph ph-paper-plane-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>YukaStore.</h3>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis dan percetakan modern.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <a href="#">Pusat Bantuan</a>
+                <a href="#">Lacak Pesanan</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 YukaStore. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="transition.js"></script>
+</body>
+
+</html>

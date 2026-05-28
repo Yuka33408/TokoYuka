@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YukaStore | Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Checkout</div>
+        <ul class="nav-links">
+            <li><a href="#" id="cancel-payment-btn">Kembali ke Toko</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                <i class="ph ph-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="checkout-section">
+            <div class="checkout-form-container">
+                <div class="checkout-form-card">
+                    <h2>Detail <span class="text-gradient">Pengiriman</span></h2>
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label>No. Telepon / WhatsApp</label>
+                            <input type="tel" placeholder="08xxxxxxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat Lengkap</label>
+                            <textarea rows="3" placeholder="Jalan, RT/RW, Kecamatan, Kota..." required></textarea>
+                        </div>
+
+                        <h2 style="margin-top: 2.5rem;">Metode <span class="text-gradient">Pembayaran</span></h2>
+                        <div class="payment-methods">
+                            <div class="payment-method active" data-method="transfer">
+                                <i class="ph ph-bank"></i>
+                                <span>Transfer Bank</span>
+                            </div>
+                            <div class="payment-method" data-method="ewallet">
+                                <i class="ph ph-wallet"></i>
+                                <span>E-Wallet</span>
+                            </div>
+                            <div class="payment-method" data-method="cod">
+                                <i class="ph ph-truck"></i>
+                                <span>Bayar di Tempat</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h2>Ringkasan <span class="text-gradient">Pesanan</span></h2>
+                <div class="order-items" id="summary-items">
+                    <!-- Items rendered via JS -->
+                </div>
+                <div class="order-totals">
+                    <div class="order-total-row">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">Rp 0</span>
+                    </div>
+                    <div class="order-total-row">
+                        <span>Ongkos Kirim</span>
+                        <span>Rp 15.000</span>
+                    </div>
+                    <div class="order-total-row final">
+                        <span>Total Bayar</span>
+                        <span id="summary-final">Rp 0</span>
+                    </div>
+                </div>
+                <button type="submit" form="checkout-form" class="auth-submit-btn"
+                    style="width: 100%; margin-top: 1rem;" id="pay-btn">Bayar Sekarang</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal Overlay -->
+    <div class="auth-overlay" id="success-overlay">
+        <div class="auth-modal" style="text-align: center; max-width: 450px;">
+            <i class="ph ph-check-circle" style="font-size: 6rem; color: #10b981; margin-bottom: 1rem;"></i>
+            <h2 style="font-size: 2.5rem;">Pembayaran <span class="text-gradient">Berhasil!</span></h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1.1rem;">Terima kasih, pesanan Anda
+                sedang kami proses dan akan segera dikirim ke alamat tujuan.</p>
+            <button class="auth-submit-btn" onclick="window.location.href='web.html'" style="width: 100%;">Kembali ke
+                Beranda</button>
+        </div>
+    </div>
+
+    <!-- Cancel Confirmation Modal -->
+    <div class="auth-overlay" id="cancel-overlay">
+        <div class="auth-modal" style="text-align: center; max-width: 400px;">
+            <i class="ph ph-warning-circle" style="font-size: 5rem; color: #f59e0b; margin-bottom: 1rem;"></i>
+            <h2 style="font-size: 2rem;">Batal <span class="text-gradient"
+                    style="background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Membayar?</span>
+            </h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">Apakah Anda yakin ingin kembali ke toko?
+                Proses pembayaran Anda saat ini akan dibatalkan.</p>
+            <div style="display: flex; gap: 1rem;">
+                <button class="auth-submit-btn" id="resume-payment-btn"
+                    style="flex: 1; background: transparent; color: var(--text-primary) !important; border: 2px solid var(--text-secondary); box-shadow: none;">Lanjut
+                    Bayar</button>
+                <button class="auth-submit-btn" id="confirm-cancel-btn"
+                    style="flex: 1; background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%); color: white !important;">Ya,
+                    Batalkan</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const formatRupiah = (number) => {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(number);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartData = localStorage.getItem('yuka_cart');
+            const summaryItems = document.getElementById('summary-items');
+            const summarySubtotal = document.getElementById('summary-subtotal');
+            const summaryFinal = document.getElementById('summary-final');
+
+            let subtotal = 0;
+            const ongkir = 15000;
+
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                if (cart.length === 0) {
+                    summaryItems.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Pesanan kosong.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        subtotal += itemTotal;
+
+                        summaryItems.innerHTML += `
+                            <div class="order-item">
+                                <div class="order-item-info">
+                                    <span>${item.name}</span>
+                                    <small>${item.quantity} x ${formatRupiah(item.price)}</small>
+                                </div>
+                                <div class="order-item-price">${formatRupiah(itemTotal)}</div>
+                            </div>
+                        `;
+                    });
+                }
+            } else {
+                summaryItems.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Pesanan kosong.</p>';
+            }
+
+            summarySubtotal.textContent = formatRupiah(subtotal);
+            if (subtotal > 0) {
+                summaryFinal.textContent = formatRupiah(subtotal + ongkir);
+            } else {
+                summaryFinal.textContent = formatRupiah(0);
+            }
+
+            // Payment method selector
+            const methods = document.querySelectorAll('.payment-method');
+            methods.forEach(method => {
+                method.addEventListener('click', () => {
+                    methods.forEach(m => m.classList.remove('active'));
+                    method.classList.add('active');
+                });
+            });
+
+            // Form Submit
+            const form = document.getElementById('checkout-form');
+            const payBtn = document.getElementById('pay-btn');
+            const successOverlay = document.getElementById('success-overlay');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (subtotal === 0) {
+                    alert('Pesanan Anda kosong!');
+                    return;
+                }
+
+                const originalText = payBtn.innerHTML;
+                payBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memproses Pembayaran...';
+                payBtn.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    localStorage.removeItem('yuka_cart'); // Kosongkan keranjang di localstorage
+                    successOverlay.classList.add('active'); // Munculkan pop-up sukses
+                }, 2000);
+            });
+            // Cancel Payment Interaction
+            const cancelBtn = document.getElementById('cancel-payment-btn');
+            const cancelOverlay = document.getElementById('cancel-overlay');
+            const resumeBtn = document.getElementById('resume-payment-btn');
+            const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    cancelOverlay.classList.add('active');
+                });
+            }
+
+            if (resumeBtn) {
+                resumeBtn.addEventListener('click', () => {
+                    cancelOverlay.classList.remove('active');
+                });
+            }
+
+            if (confirmCancelBtn) {
+                confirmCancelBtn.addEventListener('click', () => {
+                    // Start transition overlay if available
+                    const transitionOverlay = document.querySelector('.page-transition-overlay');
+                    if (transitionOverlay) {
+                        transitionOverlay.classList.add('active');
+                        setTimeout(() => {
+                            window.location.href = 'store.html';
+                        }, 400);
+                    } else {
+                        window.location.href = 'store.html';
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="transition.js"></script>
+</body>
+
+</html>
