@@ -125,3 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Tangani tombol back browser (BFCache) agar overlay transisi hilang
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        const overlay = document.querySelector('.page-transition-overlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+    }
+});
