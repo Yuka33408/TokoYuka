@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 
 <body>
@@ -44,19 +44,70 @@
                             <textarea rows="3" placeholder="Jalan, RT/RW, Kecamatan, Kota..." required></textarea>
                         </div>
 
-                        <h2 style="margin-top: 2.5rem;">Metode <span class="text-gradient">Pembayaran</span></h2>
-                        <div class="payment-methods">
-                            <div class="payment-method active" data-method="transfer">
-                                <i class="ph ph-bank"></i>
-                                <span>Transfer Bank</span>
+                        <h2 style="margin-top: 2.5rem; margin-bottom: 1.5rem;">Metode <span class="text-gradient">Pembayaran</span></h2>
+                        
+                        <div class="payment-category" style="margin-bottom: 1.5rem;">
+                            <h3 style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><i class="ph ph-qr-code"></i> Pembayaran Instan</h3>
+                            <div class="payment-methods" style="grid-template-columns: 1fr; margin-top: 0;">
+                                <div class="payment-method active" data-method="qris" style="justify-content: flex-start; gap: 1rem;">
+                                    <i class="ph ph-qr-code" style="color: #ed215b; font-size: 2.5rem;"></i>
+                                    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem;">
+                                        <span style="font-weight: 800; font-size: 1.1rem;">QRIS</span>
+                                        <span style="font-size: 0.85rem; color: var(--text-secondary); text-align: left;">Scan via GoPay, OVO, DANA, BCA Mobile, dll.</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="payment-method" data-method="ewallet">
-                                <i class="ph ph-wallet"></i>
-                                <span>E-Wallet</span>
+                        </div>
+
+                        <div class="payment-category" style="margin-bottom: 1.5rem;">
+                            <h3 style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><i class="ph ph-wallet"></i> E-Wallet</h3>
+                            <div class="payment-methods" style="margin-top: 0;">
+                                <div class="payment-method" data-method="gopay">
+                                    <span style="font-weight: 800;">GoPay</span>
+                                </div>
+                                <div class="payment-method" data-method="ovo">
+                                    <span style="font-weight: 800;">OVO</span>
+                                </div>
+                                <div class="payment-method" data-method="dana">
+                                    <span style="font-weight: 800;">DANA</span>
+                                </div>
+                                <div class="payment-method" data-method="shopeepay">
+                                    <span style="font-weight: 800;">ShopeePay</span>
+                                </div>
                             </div>
-                            <div class="payment-method" data-method="cod">
-                                <i class="ph ph-truck"></i>
-                                <span>Bayar di Tempat</span>
+                        </div>
+
+                        <div class="payment-category" style="margin-bottom: 1.5rem;">
+                            <h3 style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><i class="ph ph-bank"></i> Virtual Account Bank</h3>
+                            <div class="payment-methods" style="margin-top: 0;">
+                                <div class="payment-method" data-method="bca">
+                                    <span style="font-weight: 800;">BCA VA</span>
+                                </div>
+                                <div class="payment-method" data-method="mandiri">
+                                    <span style="font-weight: 800;">Mandiri VA</span>
+                                </div>
+                                <div class="payment-method" data-method="bri">
+                                    <span style="font-weight: 800;">BRIVA</span>
+                                </div>
+                                <div class="payment-method" data-method="bni">
+                                    <span style="font-weight: 800;">BNI VA</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-category">
+                            <h3 style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;"><i class="ph ph-storefront"></i> Minimarket / Tunai</h3>
+                            <div class="payment-methods" style="margin-top: 0;">
+                                <div class="payment-method" data-method="indomaret">
+                                    <span style="font-weight: 800;">Indomaret</span>
+                                </div>
+                                <div class="payment-method" data-method="alfamart">
+                                    <span style="font-weight: 800;">Alfamart</span>
+                                </div>
+                                <div class="payment-method" data-method="cod">
+                                    <i class="ph ph-truck"></i>
+                                    <span style="font-weight: 800;">COD</span>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -234,7 +285,7 @@
             }
         });
     </script>
-    <script src="transition.js"></script>
+    <script src="transition.js?v=2"></script>
 </body>
 
 </html>
