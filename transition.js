@@ -130,6 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    window.goBack = function(e) {
+        if (e) e.preventDefault();
+        overlay.classList.add('active');
+        
+        setTimeout(() => {
+            if (window.history.length > 1 && document.referrer.includes(window.location.host)) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }, 400);
+    };
 });
 
 // Tangani tombol back browser (BFCache) secara lebih agresif untuk HP
