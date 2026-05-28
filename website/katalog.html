@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YukaStore | Katalog Produk</title>
+    <meta name="description" content="Jelajahi berbagai macam alat tulis dan perlengkapan percetakan di YukaStore.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons for beautiful modern icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Katalog</div>
+        <ul class="nav-links">
+            <li><a href="web.html">Beranda</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                <i class="ph ph-moon"></i>
+            </button>
+            <button class="nav-btn" onclick="window.location.href='store.html'">
+                <i class="ph ph-shopping-cart"></i> Belanja Sekarang
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Katalog Banner -->
+        <section class="store-banner">
+            <div class="banner-content">
+                <h1>Katalog <span class="text-gradient">Lengkap</span></h1>
+                <p>Lihat semua produk alat tulis dan percetakan yang kami tawarkan. Inspirasi terbaik untuk kebutuhan
+                    Anda.</p>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section" id="katalog-grid">
+            <!-- Categories -->
+            <div class="category-filters">
+                <button class="filter-btn active">Semua Produk</button>
+                <button class="filter-btn">Alat Tulis</button>
+                <button class="filter-btn">Buku</button>
+                <button class="filter-btn">Percetakan</button>
+            </div>
+
+            <!-- Static dummy catalog items -->
+            <div class="products-grid">
+                <!-- Item 1 -->
+                <div class="product-card">
+                    <div class="product-image"><i class="ph ph-notebook"></i></div>
+                    <div class="product-info">
+                        <span class="product-category">BUKU</span>
+                        <h3 class="product-title">Buku Catatan Premium</h3>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 35.000</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="product-card">
+                    <div class="product-image"><i class="ph ph-pencil"></i></div>
+                    <div class="product-info">
+                        <span class="product-category">ALAT TULIS</span>
+                        <h3 class="product-title">Set Pensil Menggambar</h3>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 25.000</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="product-card">
+                    <div class="product-image"><i class="ph ph-pen"></i></div>
+                    <div class="product-info">
+                        <span class="product-category">ALAT TULIS</span>
+                        <h3 class="product-title">Pulpen Tinta Gel</h3>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 15.000</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="product-card">
+                    <div class="product-image"><i class="ph ph-printer"></i></div>
+                    <div class="product-info">
+                        <span class="product-category">PERCETAKAN</span>
+                        <h3 class="product-title">Kertas HVS A4 (1 Rim)</h3>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 50.000</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="product-card">
+                    <div class="product-image"><i class="ph ph-scissors"></i></div>
+                    <div class="product-info">
+                        <span class="product-category">ALAT KANTOR</span>
+                        <h3 class="product-title">Gunting Serbaguna</h3>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 12.000</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="product-card">
+                    <div class="product-image"><i class="ph ph-paint-brush"></i></div>
+                    <div class="product-info">
+                        <span class="product-category">SENI</span>
+                        <h3 class="product-title">Kuas Lukis Set</h3>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 45.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>YukaStore.</h3>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis dan percetakan modern.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <a href="#">FAQ</a>
+                <a href="#">Pengiriman</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 YukaStore. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.category-filters .filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            const searchInput = document.querySelector('.search-bar input');
+            const searchBtn = document.querySelector('.search-bar button');
+
+            let currentCategory = 'ALL';
+            let searchQuery = '';
+
+            const filterCards = () => {
+                let matchIndex = 0;
+                productCards.forEach(card => {
+                    const categoryElement = card.querySelector('.product-category');
+                    const titleElement = card.querySelector('.product-title');
+                    if (!categoryElement || !titleElement) return;
+
+                    const category = categoryElement.textContent.trim().toUpperCase();
+                    const title = titleElement.textContent.trim().toLowerCase();
+                    const query = searchQuery.toLowerCase();
+
+                    const matchesCategory = (currentCategory === 'ALL' || category.includes(currentCategory) || currentCategory.includes(category));
+                    const matchesSearch = (title.includes(query) || category.toLowerCase().includes(query));
+
+                    if (matchesCategory && matchesSearch) {
+                        card.style.display = '';
+                        // Restart animation with stagger
+                        card.style.animation = 'none';
+                        card.offsetHeight; // trigger reflow
+                        card.style.animation = null;
+                        card.style.animationDelay = `${matchIndex * 0.05}s`;
+                        matchIndex++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            };
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to the clicked button
+                    btn.classList.add('active');
+
+                    let filterValue = btn.textContent.trim().toUpperCase();
+                    if (filterValue === 'SEMUA PRODUK' || filterValue === 'SEMUA') {
+                        filterValue = 'ALL';
+                    }
+
+                    currentCategory = filterValue;
+                    filterCards();
+                });
+            });
+
+            if (searchInput && searchBtn) {
+                const handleSearch = () => {
+                    searchQuery = searchInput.value;
+                    filterCards();
+                    const gridSection = document.getElementById('katalog-grid');
+                    if (gridSection) {
+                        gridSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                };
+
+                searchBtn.addEventListener('click', handleSearch);
+                searchInput.addEventListener('keyup', (e) => {
+                    searchQuery = searchInput.value;
+                    filterCards(); // Real-time search
+                    if (e.key === 'Enter') {
+                        handleSearch();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="transition.js"></script>
+</body>
+
+</html>
