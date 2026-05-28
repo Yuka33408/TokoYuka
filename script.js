@@ -2,60 +2,62 @@
 const products = [
     {
         id: 1,
-        name: "Fotocopy",
+        name: "Jasa Fotocopy",
         category: "Percetakan",
         price: 500,
         unit: "lembar",
         icon: "ph-copy",
+        image: "https://snapy.co.id/gambar/artikel/merk-mesin-fotocopy-.jpg",
         description: "Harga terjangkau dan kualitas terbaik."
     },
     {
         id: 2,
-        name: "Kertas F4",
+        name: "Kertas SIDU HVS F4 70gsm",
         category: "Kertas",
         price: 1000,
         unit: "2 lembar",
         icon: "ph-paperclip",
-        image: "assets/images/paper_hvs_1779911504601.png",
+        image: "https://sentrafotokopi.com/wp-content/uploads/2023/12/images-2.jpeg",
         description: "Harga terjangkau dan kualitas terbaik."
     },
     {
         id: 3,
-        name: "Buku Tulis",
+        name: "SIDU Buku Tulis 38 Lembar",
         category: "Buku",
         price: 5000,
         unit: "buku",
         icon: "ph-book",
-        image: "assets/images/notebook_1779911519637.png",
+        image: "https://sidu.id/documents/287278/309575/SiDU+Small+Opened+Reg.png/0733411c-2c83-d77b-10a8-959617cff9aa?t=1708678659796",
         description: "Buku tulis bergaris kualitas premium."
     },
     {
         id: 4,
-        name: "Stapler",
+        name: "Stapler Kenko HD-10",
         category: "Alat Tulis",
         price: 15000,
         unit: "pcs",
         icon: "ph-push-pin",
-        image: "assets/images/stapler_1779911534249.png",
+        image: "https://shop.kenko.co.id/image/cache/catalog/product/Stapler/Stapler-HD-10-700x700.jpg",
         description: "Stapler kuat dan tahan lama."
     },
     {
         id: 5,
-        name: "Laminating",
+        name: "Jasa Laminating",
         category: "Laminating",
         price: 5000,
-        unit: "lbr",
+        unit: "lembar",
         icon: "ph-hand",
+        image: "https://jabar.parto.id/asset/foto_produk/C8gZppID45issEbC8ZS2s5GU7FPtmXTEmERckNeEUxOw_jpg_172240940322.jpg",
         description: "Harga terjangkau dan kualitas terbaik."
     },
     {
         id: 6,
-        name: "Spidol Snowman",
+        name: "Spidol Snowman Marker Hitam",
         category: "Alat Tulis",
-        price: 2000,
-        unit: "biji",
+        price: 3000,
+        unit: "pcs",
         icon: "ph-pen",
-        image: "assets/images/pen_premium_1779911487772.png",
+        image: "https://media.monotaro.id/mid01/big/Kebutuhan%20Kantor/Alat%20Tulis/Spidol/Snowman%20Spidol%20Kecil/Snowman%20Spidol%20Kecil%20Hitam%201pack(3pcs)/0mS028585022-2.jpg",
         description: "Harga terjangkau dan kualitas terbaik."
     }
 ];
@@ -102,8 +104,8 @@ const renderProducts = () => {
     // Filter by Search Query
     if (searchQuery.trim() !== '') {
         const query = searchQuery.toLowerCase();
-        filteredProducts = filteredProducts.filter(p => 
-            p.name.toLowerCase().includes(query) || 
+        filteredProducts = filteredProducts.filter(p =>
+            p.name.toLowerCase().includes(query) ||
             p.category.toLowerCase().includes(query) ||
             p.description.toLowerCase().includes(query)
         );
@@ -118,9 +120,9 @@ const renderProducts = () => {
         const productEl = document.createElement('div');
         productEl.classList.add('product-card');
         productEl.style.animationDelay = `${index * 0.05}s`;
-        
-        const mediaHtml = product.image 
-            ? `<img src="${product.image}?v=2" alt="${product.name}" style="display: block; width: 100%; height: 100%; object-fit: cover;">` 
+
+        const mediaHtml = product.image
+            ? `<img src="${product.image}?v=2" alt="${product.name}" style="display: block; width: 100%; height: 100%; object-fit: cover;">`
             : `<i class="ph ${product.icon}"></i>`;
 
         productEl.innerHTML = `
@@ -247,7 +249,7 @@ const removeFromCart = (productId) => {
 const toggleCart = () => {
     const isActive = cartSidebar.classList.toggle('active');
     cartOverlay.classList.toggle('active');
-    
+
     // Mencegah scroll pada body tanpa membuat halaman melompat ke atas (fix untuk HP)
     if (isActive) {
         const scrollY = window.scrollY;
@@ -281,13 +283,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Update class active
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
+
                 // Ambil filter value
                 let filterValue = btn.textContent.trim().toUpperCase();
                 if (filterValue === 'SEMUA' || filterValue === 'SEMUA PRODUK') {
                     filterValue = 'ALL';
                 }
-                
+
                 // Update state dan render ulang
                 currentFilter = filterValue;
                 renderProducts();
@@ -338,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Simpan data keranjang ke localStorage
             localStorage.setItem('yuka_cart', JSON.stringify(cart));
-            
+
             // Animasi tombol sebentar lalu pindah halaman
             const originalText = checkoutBtn.innerHTML;
             checkoutBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Menyiapkan...';
@@ -371,7 +373,7 @@ const showAuthPopup = () => {
         `;
         document.body.appendChild(popup);
     }
-    
+
     requestAnimationFrame(() => {
         setTimeout(() => {
             popup.classList.add('active');
