@@ -21,21 +21,23 @@ const products = [
     },
     {
         id: 3,
-        name: "Print",
-        category: "Percetakan",
-        price: 2000,
-        unit: "lembar",
-        icon: "ph-printer",
-        description: "Harga terjangkau dan kualitas terbaik."
+        name: "Buku Tulis",
+        category: "Buku",
+        price: 5000,
+        unit: "buku",
+        icon: "ph-book",
+        image: "assets/images/notebook_1779911519637.png",
+        description: "Buku tulis bergaris kualitas premium."
     },
     {
         id: 4,
-        name: "Scan",
-        category: "Percetakan",
-        price: 2000,
-        unit: "lembar",
-        icon: "ph-scan",
-        description: "Harga terjangkau dan kualitas terbaik."
+        name: "Stapler",
+        category: "Alat Tulis",
+        price: 15000,
+        unit: "pcs",
+        icon: "ph-push-pin",
+        image: "assets/images/stapler_1779911534249.png",
+        description: "Stapler kuat dan tahan lama."
     },
     {
         id: 5,
@@ -118,7 +120,7 @@ const renderProducts = () => {
         productEl.style.animationDelay = `${index * 0.05}s`;
         
         const mediaHtml = product.image 
-            ? `<img src="${product.image}" alt="${product.name}">` 
+            ? `<img src="${product.image}?v=2" alt="${product.name}" style="display: block; width: 100%; height: 100%; object-fit: cover;">` 
             : `<i class="ph ${product.icon}"></i>`;
 
         productEl.innerHTML = `
