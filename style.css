@@ -23,16 +23,18 @@
 }
 
 [data-theme="dark"] {
-    --bg-dark: #0f172a;
-    /* Deep Slate */
-    --bg-surface: rgba(30, 41, 59, 0.6);
-    --bg-surface-hover: rgba(30, 41, 59, 0.9);
-    --text-primary: #f8fafc;
+    --bg-dark: #000000;
+    /* Hitam pekat */
+    --bg-surface: rgba(10, 25, 47, 0.75);
+    /* Biru gelap transparan */
+    --bg-surface-hover: rgba(10, 25, 47, 0.95);
+    --text-primary: #ffffff;
     --text-secondary: #94a3b8;
-    --accent-gradient: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
-    /* Silver gradient */
-    --accent-color: #f1f5f9;
-    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --accent-gradient: linear-gradient(135deg, #0284c7 0%, #22d3ee 100%);
+    /* Biru gelap ke Cyan */
+    --accent-color: #22d3ee;
+    /* Cyan */
+    --glass-border: 1px solid rgba(34, 211, 238, 0.15);
 }
 
 [data-theme="dark"] .cta-button,
@@ -43,8 +45,8 @@
 [data-theme="dark"] .filter-btn.active,
 [data-theme="dark"] .search-bar button,
 [data-theme="dark"] .cart-badge {
-    color: #0f172a !important;
-    /* Dark text on white buttons for contrast */
+    color: #000000 !important;
+    /* Teks hitam agar kontras dengan background gradient Cyan */
 }
 
 [data-theme="dark"] .input-group input,
@@ -95,8 +97,8 @@
 
 [data-theme="dark"] body {
     background-image:
-        radial-gradient(circle at 15% 50%, rgba(30, 41, 59, 0.8) 0%, transparent 50%),
-        radial-gradient(circle at 85% 30%, rgba(15, 23, 42, 0.8) 0%, transparent 50%);
+        radial-gradient(circle at 15% 50%, rgba(10, 25, 47, 0.9) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(2, 132, 199, 0.15) 0%, transparent 50%);
 }
 
 /* Animations fixed */
@@ -2215,4 +2217,103 @@ footer {
         max-width: 100%;
         right: -100%;
     }
+}
+
+/* ==========================================================================
+   Shooting Stars Animation (Dark Mode)
+   ========================================================================== */
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    display: none;
+}
+
+[data-theme="dark"] .shooting-stars {
+    display: block;
+}
+
+.shooting-stars span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1), 0 0 0 6px rgba(34, 211, 238, 0.1), 0 0 15px rgba(255, 255, 255, 1);
+    animation: shooting 4s linear infinite;
+}
+
+.shooting-stars span::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, #fff, transparent);
+}
+
+@keyframes shooting {
+    0% {
+        transform: rotate(315deg) translateX(0);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    15% {
+        transform: rotate(315deg) translateX(-1500px);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(315deg) translateX(-1500px);
+        opacity: 0;
+    }
+}
+
+.shooting-stars span:nth-child(1) {
+    top: 0%;
+    right: 10%;
+    left: initial;
+    animation-delay: 0s;
+    animation-duration: 4s;
+}
+
+.shooting-stars span:nth-child(2) {
+    top: 0%;
+    right: 40%;
+    left: initial;
+    animation-delay: 2s;
+    animation-duration: 5s;
+}
+
+.shooting-stars span:nth-child(3) {
+    top: 20%;
+    right: -10%;
+    left: initial;
+    animation-delay: 1.5s;
+    animation-duration: 3.5s;
+}
+
+.shooting-stars span:nth-child(4) {
+    top: 40%;
+    right: -10%;
+    left: initial;
+    animation-delay: 3s;
+    animation-duration: 4.5s;
+}
+
+.shooting-stars span:nth-child(5) {
+    top: 0%;
+    right: 80%;
+    left: initial;
+    animation-delay: 0.5s;
+    animation-duration: 4s;
 }
