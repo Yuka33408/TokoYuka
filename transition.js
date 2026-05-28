@@ -101,6 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             window.location.href = targetUrl;
         }, 400); // Wait for CSS transition to finish
+
+        // Failsafe: Jika karena suatu alasan navigasi tertunda atau di-block browser, 
+        // hilangkan overlay setelah 2 detik agar tidak stuck.
+        setTimeout(() => {
+            overlay.classList.remove('active');
+        }, 2000);
     };
 
     links.forEach(link => {
@@ -126,12 +132,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Tangani tombol back browser (BFCache) agar overlay transisi hilang
+// Tangani tombol back browser (BFCache) secara lebih agresif untuk HP
 window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-        const overlay = document.querySelector('.page-transition-overlay');
-        if (overlay) {
-            overlay.classList.remove('active');
-        }
+    // Sengaja tidak memakai if(event.persisted) karena beberapa browser mobile 
+    // sering bermasalah dan tidak memicu flag ini dengan benar.
+    const overlay = document.querySelector('.page-transition-overlay');
+    if (overlay) {
+        // Hapus class active secara paksa saat halaman kembali dimunculkan
+        overlay.classList.remove('active');
+    }
+});
+
+window.addEventListener('pagehide', () => {
+    // Hapus overlay sesaat sebelum ditinggalkan agar jika di-cache, 
+    // halaman tidak dalam keadaan gelap.
+    const overlay = document.querySelector('.page-transition-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
     }
 });
