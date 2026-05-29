@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileBtn = document.createElement('button');
         mobileBtn.className = 'mobile-menu-btn';
         mobileBtn.innerHTML = '<i class="ph ph-list"></i>';
-        
+
         const navActions = navbar.querySelector('.nav-actions');
         if (navActions) {
             navActions.appendChild(mobileBtn);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const mobileDropdown = document.createElement('div');
         mobileDropdown.className = 'mobile-dropdown';
-        
+
         const navLinks = navbar.querySelector('.nav-links');
         if (navLinks) {
             mobileDropdown.appendChild(navLinks.cloneNode(true));
@@ -131,10 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    window.goBack = function(e) {
+    window.goBack = function (e) {
         if (e) e.preventDefault();
         overlay.classList.add('active');
-        
+
         setTimeout(() => {
             if (window.history.length > 1 && document.referrer.includes(window.location.host)) {
                 window.history.back();
