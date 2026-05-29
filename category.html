@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori Alat Tulis | YukaStore</title>
+    <meta name="description" content="Pilih berbagai kategori produk terbaik di YukaStore.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css?v=10">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="ph ph-device-mobile"></i> Download YukaApp</a>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Mitra Yuka</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">Promo</a>
+            <a href="#">Pusat Bantuan</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <div class="logo" style="cursor:pointer;" onclick="window.location.href='index.html'">YukaStore.</div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Cari di Alat Tulis...">
+                    <button class="search-btn" aria-label="Cari"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="#" class="icon-btn cart-btn" id="open-cart-btn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="cart-badge">2</span>
+                </a>
+                <a href="#" class="icon-btn"><i class="ph ph-bell"></i></a>
+                <div class="divider"></div>
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="nav-btn outline-btn" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="nav-btn primary-btn" onclick="window.location.href='register.html'">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="category-page-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Beranda</a> &gt; 
+            <a href="#">Kategori</a> &gt; 
+            <span>Alat Tulis</span>
+        </nav>
+
+        <div class="category-layout">
+            <!-- Left Sidebar: Filters -->
+            <aside class="category-sidebar">
+                <div class="filter-group">
+                    <h3 class="filter-title">Kategori Terkait</h3>
+                    <ul class="filter-list">
+                        <li><a href="#" class="active">Semua Alat Tulis</a></li>
+                        <li><a href="#">Buku & Kertas</a></li>
+                        <li><a href="#">Alat Tulis Kantor</a></li>
+                        <li><a href="#">Peralatan Melukis</a></li>
+                        <li><a href="#">Kotak Pensil</a></li>
+                    </ul>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Lokasi</h3>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span>Jakarta Pusat</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span>Jakarta Selatan</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span>Bandung</span>
+                    </label>
+                    <a href="#" class="filter-show-more">Lihat Lebih Banyak</a>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Harga</h3>
+                    <div class="price-range">
+                        <div class="price-input">
+                            <span class="currency">Rp</span>
+                            <input type="number" placeholder="Min">
+                        </div>
+                        <span class="price-separator">-</span>
+                        <div class="price-input">
+                            <span class="currency">Rp</span>
+                            <input type="number" placeholder="Maks">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Kondisi</h3>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" checked> <span>Baru</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span>Bekas</span>
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Penawaran</h3>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span>Gratis Ongkir</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span>Diskon</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span>Cashback</span>
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Rating</h3>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span><i class="ph-fill ph-star" style="color:#f59e0b"></i> 4 Ke Atas</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox"> <span><i class="ph-fill ph-star" style="color:#f59e0b"></i> 3 Ke Atas</span>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- Right Main Content -->
+            <div class="category-main-content">
+                <!-- Category Banner -->
+                <div class="category-banner">
+                    <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?q=80&w=1200&auto=format&fit=crop" alt="Banner Alat Tulis" class="banner-img">
+                    <div class="banner-overlay">
+                        <h2>Alat Tulis Terlengkap</h2>
+                        <p>Temukan segala kebutuhan tulismu dengan harga terbaik.</p>
+                    </div>
+                </div>
+
+                <!-- Sorting Section -->
+                <div class="sorting-bar">
+                    <span class="sorting-label">Urutkan:</span>
+                    <button class="sorting-tab active">Terkait</button>
+                    <button class="sorting-tab">Terbaru</button>
+                    <button class="sorting-tab">Terlaris</button>
+                    <button class="sorting-tab">Termurah</button>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="etalase-grid" style="margin-top: 1.5rem;">
+                    <!-- Card 1 -->
+                    <div class="etalase-card" onclick="window.location.href='product.html?id=buku-tulis'" style="cursor:pointer;">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop" alt="Buku Tulis HVS">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Buku Tulis HVS A5 Polos</h3>
+                            <div class="product-price">Rp 12.000</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Jakarta Pusat</div>
+                            <div class="product-meta">
+                                <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 500+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="etalase-card" onclick="window.location.href='product.html?id=pulpen-gel'" style="cursor:pointer;">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=300&h=300&fit=crop" alt="Pulpen Gel">
+                            <span class="cashback-badge">Cashback 5%</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Pulpen Gel Premium 0.5mm</h3>
+                            <div class="product-price">Rp 15.000</div>
+                            <div class="product-price-strike">Rp 20.000</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Bandung</div>
+                            <div class="product-meta">
+                                <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2rb+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="etalase-card" onclick="window.location.href='product.html?id=spidol-warna'" style="cursor:pointer;">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=300&h=300&fit=crop" alt="Spidol Warna">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Spidol Warna Set 12</h3>
+                            <div class="product-price">Rp 25.000</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Surabaya</div>
+                            <div class="product-meta">
+                                <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 150+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="etalase-card" onclick="window.location.href='product.html?id=pensil-warna'" style="cursor:pointer;">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop" alt="Pensil Warna">
+                            <span class="cashback-badge">Diskon 50%</span>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Pensil Warna Set 48 Warna</h3>
+                            <div class="product-price">Rp 45.000</div>
+                            <div class="product-price-strike">Rp 90.000</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Jakarta Selatan</div>
+                            <div class="product-meta">
+                                <span class="rating"><i class="ph-fill ph-star"></i> 5.0 | Terjual 80+</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Card 5 -->
+                     <div class="etalase-card" onclick="window.location.href='product.html?id=buku-agenda'" style="cursor:pointer;">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=300&h=300&fit=crop" alt="Agenda">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Buku Agenda Organizer Kulit</h3>
+                            <div class="product-price">Rp 85.000</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Jakarta Pusat</div>
+                            <div class="product-meta">
+                                <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 300+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <span class="page-dots">...</span>
+                    <button class="page-btn"><i class="ph ph-caret-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>YukaStore.</h3>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis, percetakan modern, dan elektronik.</p>
+            </div>
+            <div class="footer-links">
+                <h4>YukaStore</h4>
+                <a href="#">Tentang Kami</a>
+                <a href="#">Karir</a>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <a href="#">Pusat Bantuan</a>
+                <a href="#">Cara Pembelian</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 YukaStore. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=10"></script>
+    <script src="transition.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk | YukaStore</title>
+    <meta name="description" content="Beli produk terbaik di YukaStore.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="ph ph-device-mobile"></i> Download YukaApp</a>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Mitra Yuka</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">Promo</a>
+            <a href="#">Pusat Bantuan</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <div class="logo" style="cursor:pointer;" onclick="window.location.href='index.html'">YukaStore.</div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Cari buku tulis, printer, elektronik...">
+                    <button class="search-btn" aria-label="Cari"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="#" class="icon-btn cart-btn" id="open-cart-btn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="cart-badge">2</span>
+                </a>
+                <a href="#" class="icon-btn"><i class="ph ph-bell"></i></a>
+                <div class="divider"></div>
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="nav-btn outline-btn" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="nav-btn primary-btn" onclick="window.location.href='register.html'">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-page-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Beranda</a> &gt; 
+            <a href="#">Alat Tulis</a> &gt; 
+            <a href="#">Pensil Warna</a> &gt; 
+            <span>Pensil Warna Set 48 Warna Premium</span>
+        </nav>
+
+        <div class="product-detail-grid">
+            <!-- Left: Product Image Gallery -->
+            <div class="product-image-gallery">
+                <div class="main-image-container">
+                    <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=800&h=800&fit=crop" alt="Produk Utama" id="main-product-img">
+                </div>
+                <div class="thumbnail-list">
+                    <div class="thumbnail active"><img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=150&h=150&fit=crop" alt="Thumb 1"></div>
+                    <div class="thumbnail"><img src="https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=150&h=150&fit=crop" alt="Thumb 2"></div>
+                    <div class="thumbnail"><img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=150&h=150&fit=crop" alt="Thumb 3"></div>
+                </div>
+            </div>
+
+            <!-- Middle: Product Info -->
+            <div class="product-info-main">
+                <h1 class="pd-title">Pensil Warna Set 48 Warna Premium Kualitas Terbaik</h1>
+                <div class="pd-meta">
+                    <span class="pd-sold">Terjual 1,2 rb+</span>
+                    <span class="pd-rating"><i class="ph-fill ph-star"></i> 4.9 (500 ulasan)</span>
+                </div>
+                
+                <div class="pd-price-section">
+                    <h2 class="pd-price">Rp 45.000</h2>
+                    <div class="pd-discount-row">
+                        <span class="pd-strike">Rp 90.000</span>
+                        <span class="pd-badge">Diskon 50%</span>
+                    </div>
+                </div>
+
+                <div class="pd-tabs">
+                    <button class="pd-tab active">Detail</button>
+                    <button class="pd-tab">Spesifikasi</button>
+                    <button class="pd-tab">Info Penting</button>
+                </div>
+
+                <div class="pd-description">
+                    <p><strong>Kondisi:</strong> Baru</p>
+                    <p><strong>Min. Pemesanan:</strong> 1 Buah</p>
+                    <p><strong>Etalase:</strong> Alat Tulis & Lukis</p>
+                    <br>
+                    <p>Pensil Warna Set 48 Warna dengan kualitas premium. Cocok untuk seniman profesional maupun pemula. Warna cerah, mudah di-blend, dan tidak mudah patah.</p>
+                    <ul>
+                        <li>Isi 48 warna lengkap</li>
+                        <li>Pigmentasi tinggi</li>
+                        <li>Inti pensil kuat 3.3mm</li>
+                        <li>Aman digunakan (Non-toxic)</li>
+                    </ul>
+                    <p>Garansi resmi YukaStore 100% Original. Silakan langsung dipesan, barang selalu ready stock!</p>
+                </div>
+
+                <!-- Store Info Card -->
+                <div class="pd-store-card">
+                    <div class="store-profile">
+                        <div class="store-avatar"><i class="ph-fill ph-storefront"></i></div>
+                        <div class="store-info-text">
+                            <h3>YukaStore Official</h3>
+                            <p><span class="online-dot"></span> Online 5 menit lalu • Jakarta Pusat</p>
+                        </div>
+                    </div>
+                    <button class="outline-btn follow-btn">Follow</button>
+                </div>
+            </div>
+
+            <!-- Right: Action Box (Floating) -->
+            <div class="product-action-box">
+                <h3>Atur jumlah dan catatan</h3>
+                <div class="pd-qty-selector">
+                    <button class="qty-btn"><i class="ph ph-minus"></i></button>
+                    <input type="number" value="1" class="qty-input">
+                    <button class="qty-btn"><i class="ph ph-plus"></i></button>
+                    <span class="stock-info">Stok: <strong>99+</strong></span>
+                </div>
+                <div class="pd-notes">
+                    <a href="#"><i class="ph ph-pencil-simple"></i> Tambah Catatan</a>
+                </div>
+                <div class="pd-subtotal">
+                    <span>Subtotal</span>
+                    <strong>Rp 45.000</strong>
+                </div>
+                <div class="pd-action-buttons">
+                    <button class="primary-btn add-cart-btn" onclick="alert('Berhasil ditambah ke keranjang')">+ Keranjang</button>
+                    <button class="outline-btn buy-now-btn" onclick="window.location.href='checkout.html'">Beli Langsung</button>
+                </div>
+                <div class="pd-action-footer">
+                    <a href="#"><i class="ph ph-chat-teardrop"></i> Chat</a>
+                    <a href="#"><i class="ph ph-heart"></i> Wishlist</a>
+                    <a href="#"><i class="ph ph-share-network"></i> Share</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>YukaStore.</h3>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis, percetakan modern, dan elektronik.</p>
+            </div>
+            <div class="footer-links">
+                <h4>YukaStore</h4>
+                <a href="#">Tentang Kami</a>
+                <a href="#">Karir</a>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <a href="#">Pusat Bantuan</a>
+                <a href="#">Cara Pembelian</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 YukaStore. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=9"></script>
+    <script src="transition.js?v=3"></script>
+</body>
+</html>
