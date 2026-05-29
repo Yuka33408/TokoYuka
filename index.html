@@ -1,221 +1,369 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YukaStore | Pusat Belanja Online</title>
-    <meta name="description" content="Temukan alat tulis dan percetakan dengan kualitas yang terbaik!.">
+    <meta name="description" content="Temukan alat tulis, percetakan, dan elektronik dengan kualitas terbaik!.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons for beautiful modern icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=8">
 </head>
-
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">YukaStore.</div>
-        <ul class="nav-links">
-            <li><a href="tentang.html">Tentang Kami</a></li>
-            <li><a href="kontak.html">Kontak</a></li>
-        </ul>
-        <div class="nav-actions">
-            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
-                <i class="ph ph-moon"></i>
-            </button>
-            <button class="nav-btn" onclick="window.location.href='login.html'">
-                <i class="ph ph-user"></i> Masuk Akun
-            </button>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="ph ph-device-mobile"></i> Download YukaApp</a>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Mitra Yuka</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero" id="home">
-        <!-- Background Elements -->
-        <div class="floating-icons">
-            <i class="ph ph-pencil icon-1"></i>
-            <i class="ph ph-notebook icon-2"></i>
-            <i class="ph ph-printer icon-3"></i>
-            <i class="ph ph-paperclip icon-4"></i>
-            <i class="ph ph-ruler icon-5"></i>
-            <i class="ph ph-paint-brush icon-6"></i>
+        <div class="top-bar-right">
+            <a href="#">Promo</a>
+            <a href="#">Pusat Bantuan</a>
         </div>
+    </div>
 
-        <!-- Bintang Jatuh (Hanya mode gelap) -->
-        <div class="shooting-stars">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <div class="hero-content">
-            <h1>Platform Kebutuhan<br><span class="text-gradient">Alat Tulis & Cetak</span></h1>
-            <p>Destinasi belanja online terlengkap untuk segala kebutuhan alat tulis, perlengkapan kantor, dan layanan
-                percetakan premium Anda.
-            </p>
-            <button class="cta-button" onclick="window.location.href='store.html'">
-                Mulai Belanja <i class="ph ph-shopping-bag"></i>
-            </button>
-        </div>
-        <div class="hero-visual">
-            <div class="lightweight-visual">
-                <div class="glow-ring"></div>
-                <!-- Satellite Icons -->
-                <div class="satellite-icon sat-1"><i class="ph ph-truck"></i></div>
-                <div class="satellite-icon sat-2"><i class="ph ph-shield-check"></i></div>
-                <div class="satellite-icon sat-3"><i class="ph ph-tag"></i></div>
-                <div class="satellite-icon sat-4"><i class="ph ph-pencil"></i></div>
-
-                <div class="main-icon-container">
-                    <i class="ph ph-shopping-bag text-gradient"></i>
+    <!-- Main Header -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <div class="logo">YukaStore.</div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Cari buku tulis, printer, elektronik...">
+                    <button class="search-btn" aria-label="Cari"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+                <div class="search-tags">
+                    <a href="#">Buku Tulis Sidu</a>
+                    <a href="#">Tinta Epson</a>
+                    <a href="#">Flashdisk 64GB</a>
+                    <a href="#">Kertas HVS A4</a>
+                    <a href="#">Laptop Core i5</a>
                 </div>
             </div>
-        </div>
 
-        <!-- Floating Icons Right Side -->
-        <div class="satellite-icon sat-5"><i class="ph ph-sparkle"></i></div>
-        <div class="satellite-icon sat-6"><i class="ph ph-paper-plane-tilt"></i></div>
-        <div class="satellite-icon sat-7"><i class="ph ph-star"></i></div>
+            <div class="header-actions">
+                <a href="#" class="icon-btn cart-btn" id="open-cart-btn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="cart-badge">2</span>
+                </a>
+                <a href="#" class="icon-btn"><i class="ph ph-bell"></i></a>
+                <a href="#" class="icon-btn"><i class="ph ph-envelope-simple"></i></a>
+                <div class="divider"></div>
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="nav-btn outline-btn" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="nav-btn primary-btn" onclick="window.location.href='register.html'">Daftar</button>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <!-- Featured Categories -->
-        <section class="lobby-categories">
-            <div class="section-container">
-                <div class="section-header-center">
-                    <h2>Jelajahi <span class="text-gradient">Kategori</span></h2>
-                    <p>Pilih kategori yang sesuai dengan kebutuhan Anda hari ini.</p>
+    <main class="main-content">
+        <!-- Banner Section -->
+        <section class="banner-section">
+            <div class="banner-container">
+                <div class="main-carousel">
+                    <div class="carousel-track" id="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1000&auto=format&fit=crop" alt="Promo Alat Tulis" class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=1000&auto=format&fit=crop" alt="Promo Elektronik" class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1000&auto=format&fit=crop" alt="Buku Diskon" class="carousel-slide">
+                    </div>
+                    <button class="carousel-btn prev-btn" id="prev-btn" aria-label="Previous"><i class="ph ph-caret-left"></i></button>
+                    <button class="carousel-btn next-btn" id="next-btn" aria-label="Next"><i class="ph ph-caret-right"></i></button>
+                    <div class="carousel-indicators" id="carousel-indicators"></div>
                 </div>
-                <div class="category-grid">
-                    <a href="katalog.html" class="cat-card">
-                        <div class="cat-icon"><i class="ph ph-pencil-line"></i></div>
-                        <h3>Alat Tulis</h3>
-                        <p>Pulpen, pensil, spidol, dan alat lukis</p>
-                    </a>
-                    <a href="katalog.html" class="cat-card">
-                        <div class="cat-icon"><i class="ph ph-notebook"></i></div>
-                        <h3>Buku & Kertas</h3>
-                        <p>Buku catatan, HVS, binder, dan kertas khusus</p>
-                    </a>
-                    <a href="katalog.html" class="cat-card">
-                        <div class="cat-icon"><i class="ph ph-briefcase"></i></div>
-                        <h3>Kantor</h3>
-                        <p>Stapler, pembolong kertas, dan map file</p>
-                    </a>
-                    <a href="katalog.html" class="cat-card">
-                        <div class="cat-icon"><i class="ph ph-printer"></i></div>
-                        <h3>Percetakan</h3>
-                        <p>Cetak dokumen, foto, banner, dan stiker</p>
-                    </a>
+                <div class="side-banners">
+                    <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?q=80&w=400&auto=format&fit=crop" alt="Voucher Belanja" class="side-banner-img">
+                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=400&auto=format&fit=crop" alt="Flash Sale Komputer" class="side-banner-img">
                 </div>
             </div>
         </section>
 
-        <!-- Best Sellers -->
-        <section class="lobby-best-sellers">
-            <div class="section-container">
-                <div class="section-header-flex">
-                    <div>
-                        <h2>Produk <span class="text-gradient">Terlaris</span></h2>
-                        <p>Pilihan produk favorit pelanggan kami.</p>
-                    </div>
-                    <button class="nav-btn" onclick="window.location.href='store.html'">Lihat Semua <i
-                            class="ph ph-arrow-right"></i></button>
-                </div>
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="categories-grid">
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=100&h=100&fit=crop" alt="Alat Tulis"></div>
+                    <span>Alat Tulis</span>
+                </a>
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=100&h=100&fit=crop" alt="Buku"></div>
+                    <span>Buku & Kertas</span>
+                </a>
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=100&h=100&fit=crop" alt="Elektronik"></div>
+                    <span>Elektronik</span>
+                </a>
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=100&h=100&fit=crop" alt="Kesenian"></div>
+                    <span>Seni & Lukis</span>
+                </a>
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=100&h=100&fit=crop" alt="Kantor"></div>
+                    <span>Alat Kantor</span>
+                </a>
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=100&h=100&fit=crop" alt="Komputer"></div>
+                    <span>Komputer</span>
+                </a>
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1558450125-9f552f9547d6?w=100&h=100&fit=crop" alt="Percetakan"></div>
+                    <span>Percetakan</span>
+                </a>
+                <a href="category.html" class="category-item">
+                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=100&h=100&fit=crop" alt="Promo"></div>
+                    <span>Promo</span>
+                </a>
+            </div>
+        </section>
 
-                <!-- We reuse the store grid layout for simplicity -->
-                <div class="katalog-grid"
-                    style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); margin-top: 2rem;">
-                    <!-- Product 1 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://p16-images-sign-sg.tokopedia-static.net/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2021/4/27/506f89f2-42fc-4d15-bc8c-3b8837c97266.jpg~tplv-aphluv4xwc-white-pad-v1:1600:1600.jpeg?lk3s=0ccea506&x-expires=1780014399&x-signature=I8B3PVRDBdx69CqFW1Fa3GuLYmY%3D&x-signature-webp=Y3fq%2B3tFETndi8B%2BAE0jGRxnk%2Bs%3D" alt="Pulpen Gel Premium">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Alat Tulis</div>
-                            <h3 class="product-title">Pulpen JOYKO GP-265</h3>
-                            <div class="product-price">Rp 5.000</div>
-                            <button class="add-to-cart-btn" onclick="window.location.href='store.html'">Lihat di
-                                Toko</button>
+        <!-- Flash Sale -->
+        <section class="flash-sale">
+            <div class="flash-sale-header">
+                <div class="flash-sale-title">
+                    <i class="ph-fill ph-lightning"></i>
+                    <h2>Flash Sale</h2>
+                    <div class="countdown" id="countdown-timer">
+                        <span class="time-box" id="hours">00</span> :
+                        <span class="time-box" id="minutes">00</span> :
+                        <span class="time-box" id="seconds">00</span>
+                    </div>
+                </div>
+                <a href="category.html" class="see-all">Lihat Semua</a>
+            </div>
+            <div class="flash-sale-items">
+                <!-- Flash Item 1 -->
+                <div class="fs-card" onclick="window.location.href='product.html?id=pensil-warna'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="fs-image">
+                        <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop" alt="Pensil Warna">
+                        <span class="discount-badge">50%</span>
+                    </div>
+                    <div class="fs-info">
+                        <h3 class="product-title">Pensil Warna Set 48 Warna</h3>
+                        <div class="product-price">Rp 45.000</div>
+                        <div class="product-price-strike">Rp 90.000</div>
+                        <div class="flash-sale-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+                            <span class="progress-text">Terjual 80</span>
                         </div>
                     </div>
-                    <!-- Product 2 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://sidu.id/documents/287278/309575/IND+80+-+FRONT.png/86ace36d-bfc6-de35-3b50-5e51b39f8022?t=1727426529172"
-                                alt="Kertas HVS A4">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Kertas</div>
-                            <h3 class="product-title">Kertas SIDU HVS A4 80gsm (1 Rim)</h3>
-                            <div class="product-price">Rp 90.000</div>
-                            <button class="add-to-cart-btn" onclick="window.location.href='store.html'">Lihat di
-                                Toko</button>
+                </div>
+                <!-- Flash Item 2 -->
+                <div class="fs-card" onclick="window.location.href='product.html?id=tas-laptop'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="fs-image">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop" alt="Tas Laptop">
+                        <span class="discount-badge">35%</span>
+                    </div>
+                    <div class="fs-info">
+                        <h3 class="product-title">Tas Laptop Ransel Waterproof</h3>
+                        <div class="product-price">Rp 120.000</div>
+                        <div class="product-price-strike">Rp 185.000</div>
+                        <div class="flash-sale-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
+                            <span class="progress-text">Segera Habis</span>
                         </div>
                     </div>
-                    <!-- Product 3 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://indonesian.fancypackagingboxes.com/photo/pl171024657-eco_friendly_hardcover_notebook_printing_on_uncoated_wood_free_paper.jpg"
-                                alt="Buku Catatan Klasik">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">Buku</div>
-                            <h3 class="product-title">Horncraft Classic Book</h3>
-                            <div class="product-price">Rp 45.000</div>
-                            <button class="add-to-cart-btn" onclick="window.location.href='store.html'">Lihat di
-                                Toko</button>
+                </div>
+                 <!-- Flash Item 3 -->
+                 <div class="fs-card" onclick="window.location.href='product.html?id=buku-agenda'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="fs-image">
+                        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=300&h=300&fit=crop" alt="Buku Agenda">
+                        <span class="discount-badge">20%</span>
+                    </div>
+                    <div class="fs-info">
+                        <h3 class="product-title">Buku Agenda Kulit Eksklusif 2026</h3>
+                        <div class="product-price">Rp 65.000</div>
+                        <div class="product-price-strike">Rp 81.500</div>
+                        <div class="flash-sale-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 20%;"></div></div>
+                            <span class="progress-text">Terjual 15</span>
                         </div>
                     </div>
-                    <!-- Product 4 -->
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://utrading.com.my/wp-content/uploads/2023/08/MAX-12N-24-HEAVY-DUTY-STAPLER.png"
-                                alt="Stapler Heavy Duty">
+                </div>
+                 <!-- Flash Item 4 -->
+                 <div class="fs-card" onclick="window.location.href='product.html?id=tinta-printer'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="fs-image">
+                        <img src="https://images.unsplash.com/photo-1558450125-9f552f9547d6?w=300&h=300&fit=crop" alt="Tinta">
+                        <span class="discount-badge">15%</span>
+                    </div>
+                    <div class="fs-info">
+                        <h3 class="product-title">Tinta Printer Hitam 664</h3>
+                        <div class="product-price">Rp 72.250</div>
+                        <div class="product-price-strike">Rp 85.000</div>
+                        <div class="flash-sale-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
+                            <span class="progress-text">Terjual 45</span>
                         </div>
-                        <div class="product-info">
-                            <div class="product-category">Kantor</div>
-                            <h3 class="product-title">Stapler Heavy Duty</h3>
-                            <div class="product-price">Rp 85.000</div>
-                            <button class="add-to-cart-btn" onclick="window.location.href='store.html'">Lihat di
-                                Toko</button>
+                    </div>
+                </div>
+                 <!-- Flash Item 5 -->
+                 <div class="fs-card" onclick="window.location.href='product.html?id=pulpen-gel'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="fs-image">
+                        <img src="https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=300&h=300&fit=crop" alt="Pulpen Gel">
+                        <span class="discount-badge">10%</span>
+                    </div>
+                    <div class="fs-info">
+                        <h3 class="product-title">Pulpen Gel Joyko GP-265</h3>
+                        <div class="product-price">Rp 13.500</div>
+                        <div class="product-price-strike">Rp 15.000</div>
+                        <div class="flash-sale-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+                            <span class="progress-text">Terjual 60</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Value Proposition (Keunggulan) -->
-        <section class="lobby-value-prop"
-            style="background: linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.05)); padding-bottom: 2rem;">
-            <div class="section-container">
-                <div class="section-header-center">
-                    <h2>Mengapa Memilih <span class="text-gradient">YukaStore</span></h2>
-                    <p>Komitmen kami untuk memberikan layanan berbelanja online terbaik untuk Anda.</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="ph ph-truck"></i>
-                        <h4>Pengiriman Kilat</h4>
-                        <p>Pesanan diproses dan dikirim di hari yang sama untuk wilayah tertentu.</p>
+        <!-- Etalase Rekomendasi -->
+        <section class="recommendation-section">
+            <div class="section-header-sticky">
+                <h2 class="section-title">Rekomendasi Untukmu</h2>
+            </div>
+            <div class="etalase-grid">
+                <!-- Etalase items -->
+                <div class="etalase-card" onclick="window.location.href='product.html?id=buku-tulis'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop" alt="Buku Tulis HVS">
                     </div>
-                    <div class="feature-card">
-                        <i class="ph ph-shield-check"></i>
-                        <h4>100% Original</h4>
-                        <p>Jaminan keaslian dan kualitas terbaik pada setiap produk yang kami jual.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="ph ph-tag"></i>
-                        <h4>Harga Bersahabat</h4>
-                        <p>Dapatkan perlengkapan berkualitas dengan penawaran harga paling kompetitif.</p>
+                    <div class="product-info">
+                        <h3 class="product-title">Buku Tulis HVS Sinar Dunia 58 Lembar (Pack)</h3>
+                        <div class="product-price">Rp 35.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 10rb+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Jakarta Pusat</span>
+                        </div>
                     </div>
                 </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=laptop-i5'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300&h=300&fit=crop" alt="Laptop">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Laptop Ultrabook Pro 14" Core i7 16GB RAM</h3>
+                        <div class="product-price">Rp 14.500.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 150</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Tangerang</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=pulpen-gel'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=300&h=300&fit=crop" alt="Pulpen">
+                        <span class="cashback-badge">Cashback 5%</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Pulpen Gel Joyko GP-265 0.5mm Hitam (Lusin)</h3>
+                        <div class="product-price">Rp 15.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 5.0 | Terjual 5rb+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Jakarta Barat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=tinta-printer'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558450125-9f552f9547d6?w=300&h=300&fit=crop" alt="Tinta Printer">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Tinta Printer Original Seri 664 Black</h3>
+                        <div class="product-price">Rp 85.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2rb+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Surabaya</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=kuas-lukis'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop" alt="Kuas Lukis">
+                        <span class="cashback-badge">Cashback 10%</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kuas Lukis Cat Air Watercolor Set 6 Pcs</h3>
+                        <div class="product-price">Rp 25.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 500+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Bandung</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=stapler'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=300&h=300&fit=crop" alt="Stapler">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Stapler Heavy Duty Max Kapasitas 100 Lembar</h3>
+                        <div class="product-price">Rp 150.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 150+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Jakarta Utara</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=keyboard-rgb'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop" alt="Keyboard">
+                        <span class="cashback-badge">Gratis Ongkir</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Keyboard Mechanical Switch Blue RGB</h3>
+                        <div class="product-price">Rp 350.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 1rb+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Bekasi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=gunting'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop" alt="Gunting">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Gunting Kertas Serbaguna Tajam Stainless</h3>
+                        <div class="product-price">Rp 12.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 3rb+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Depok</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=earphone'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300&h=300&fit=crop" alt="Earphone">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">True Wireless Earbuds Bluetooth 5.3</h3>
+                        <div class="product-price">Rp 185.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2rb+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Jakarta Pusat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="etalase-card" onclick="window.location.href='product.html?id=buku-novel'" style="cursor:pointer;" title="Lihat Produk">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop" alt="Buku Novel">
+                        <span class="cashback-badge">Bestseller</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Buku Novel Fiksi Terlaris Edisi Spesial</h3>
+                        <div class="product-price">Rp 95.000</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> 5.0 | Terjual 8rb+</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> Yogyakarta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="load-more-container">
+                <button class="load-more-btn outline-btn" id="load-more-btn" onclick="this.innerHTML='<i class=\'ph ph-spinner ph-spin\'></i> Memuat...'; setTimeout(() => this.innerHTML='Muat Lebih Banyak', 1000)">Muat Lebih Banyak</button>
             </div>
         </section>
     </main>
@@ -225,12 +373,24 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <h3>YukaStore.</h3>
-                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis dan percetakan modern.</p>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis, percetakan modern, dan elektronik.</p>
+            </div>
+            <div class="footer-links">
+                <h4>YukaStore</h4>
+                <a href="#">Tentang Kami</a>
+                <a href="#">Karir</a>
+                <a href="#">Blog</a>
             </div>
             <div class="footer-links">
                 <h4>Bantuan</h4>
                 <a href="#">Pusat Bantuan</a>
+                <a href="#">Cara Pembelian</a>
                 <a href="#">Lacak Pesanan</a>
+            </div>
+            <div class="footer-links">
+                <h4>Ikuti Kami</h4>
+                <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+                <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -238,140 +398,57 @@
         </div>
     </footer>
 
-    <!-- Auth Modal -->
-    <div class="auth-overlay" id="auth-overlay">
-        <div class="auth-modal" id="auth-modal">
-            <button class="close-auth-btn" id="close-auth-btn">
-                <i class="ph ph-x"></i>
-            </button>
-            <div class="auth-header">
-                <h2 id="auth-title">Masuk <span class="text-gradient">Akun</span></h2>
-                <p id="auth-subtitle">Selamat datang kembali di YukaStore</p>
-            </div>
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="ph-fill ph-house"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="category.html" class="nav-item">
+            <i class="ph ph-magnifying-glass"></i>
+            <span>Cari</span>
+        </a>
+        <a href="#" onclick="alert('Halaman Keranjang sedang dikembangkan.'); return false;" class="nav-item">
+            <i class="ph ph-shopping-cart"></i>
+            <span>Keranjang</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <i class="ph ph-user"></i>
+            <span>Profil</span>
+        </a>
+    </nav>
 
-            <!-- Login Form -->
-            <form class="auth-form" id="login-form">
-                <div class="input-group">
-                    <i class="ph ph-envelope"></i>
-                    <input type="email" placeholder="Email Anda" required>
+    <!-- Product Detail Modal -->
+    <div class="product-modal-overlay" id="product-modal-overlay">
+        <div class="product-modal">
+            <button class="close-modal-btn" id="close-modal-btn"><i class="ph ph-x"></i></button>
+            <div class="product-modal-content">
+                <div class="product-modal-image">
+                    <img id="modal-product-img" src="" alt="Product">
                 </div>
-                <div class="input-group">
-                    <i class="ph ph-lock"></i>
-                    <input type="password" placeholder="Kata Sandi" required>
+                <div class="product-modal-details">
+                    <h2 class="modal-title" id="modal-product-title">Nama Produk</h2>
+                    <div class="modal-meta">
+                        <span class="rating"><i class="ph-fill ph-star"></i> <span id="modal-product-rating">4.9</span></span>
+                        <span class="sold"><span id="modal-product-sold">Terjual 100</span></span>
+                    </div>
+                    <div class="modal-price" id="modal-product-price">Rp 0</div>
+                    <div class="modal-price-strike" id="modal-product-strike" style="display: none; text-decoration: line-through; color: var(--text-secondary); font-size: 0.9rem;">Rp 0</div>
+                    <div class="modal-description">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Deskripsi Produk</h3>
+                        <p id="modal-product-desc" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;">Detail produk ini sangat bagus dan direkomendasikan untuk memenuhi kebutuhan Anda. Garansi resmi 1 tahun. Barang selalu ready stock, silakan langsung diorder.</p>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="outline-btn" style="flex: 1; border-radius: 8px; padding: 0.8rem; cursor: pointer;"><i class="ph ph-chat-teardrop"></i> Chat</button>
+                        <button class="primary-btn" style="flex: 2; border-radius: 8px; padding: 0.8rem; cursor: pointer;" onclick="alert('Berhasil ditambahkan ke keranjang!'); document.getElementById('close-modal-btn').click();"><i class="ph ph-shopping-cart"></i> + Keranjang</button>
+                    </div>
                 </div>
-                <div class="auth-options">
-                    <label><input type="checkbox"> Ingat saya</label>
-                    <a href="#" class="forgot-password">Lupa sandi?</a>
-                </div>
-                <button type="submit" class="auth-submit-btn">Masuk</button>
-            </form>
-
-            <!-- Register Form -->
-            <form class="auth-form" id="register-form" style="display: none;">
-                <div class="input-group">
-                    <i class="ph ph-user"></i>
-                    <input type="text" placeholder="Nama Lengkap" required>
-                </div>
-                <div class="input-group">
-                    <i class="ph ph-envelope"></i>
-                    <input type="email" placeholder="Email Anda" required>
-                </div>
-                <div class="input-group">
-                    <i class="ph ph-lock"></i>
-                    <input type="password" placeholder="Kata Sandi Baru" required>
-                </div>
-                <button type="submit" class="auth-submit-btn">Daftar Akun</button>
-            </form>
-
-            <div class="auth-footer" id="auth-footer-container">
-                <p>Belum punya akun? <a href="#" id="toggle-auth">Daftar sekarang</a></p>
             </div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const openBtn = document.getElementById('open-login-btn');
-            const closeBtn = document.getElementById('close-auth-btn');
-            const overlay = document.getElementById('auth-overlay');
-
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const authTitle = document.getElementById('auth-title');
-            const authSubtitle = document.getElementById('auth-subtitle');
-            const authFooterContainer = document.getElementById('auth-footer-container');
-
-            let isLogin = true;
-
-            const openModal = () => {
-                overlay.classList.add('active');
-            };
-
-            const closeModal = () => {
-                overlay.classList.remove('active');
-                // Reset form state slightly after close transition
-                setTimeout(() => {
-                    if (!isLogin) toggleAuth();
-                    loginForm.reset();
-                    registerForm.reset();
-                }, 400);
-            };
-
-            const toggleAuth = (e) => {
-                if (e) e.preventDefault();
-                isLogin = !isLogin;
-
-                if (isLogin) {
-                    loginForm.style.display = 'flex';
-                    registerForm.style.display = 'none';
-                    authTitle.innerHTML = 'Masuk <span class="text-gradient">Akun</span>';
-                    authSubtitle.textContent = 'Selamat datang kembali di YukaStore';
-                    authFooterContainer.innerHTML = '<p>Belum punya akun? <a href="#" id="toggle-auth">Daftar sekarang</a></p>';
-                } else {
-                    loginForm.style.display = 'none';
-                    registerForm.style.display = 'flex';
-                    authTitle.innerHTML = 'Daftar <span class="text-gradient">Baru</span>';
-                    authSubtitle.textContent = 'Bergabunglah bersama kami hari ini';
-                    authFooterContainer.innerHTML = '<p>Sudah punya akun? <a href="#" id="toggle-auth">Masuk di sini</a></p>';
-                }
-
-                // Re-bind listener to the new toggle link
-                document.getElementById('toggle-auth').addEventListener('click', toggleAuth);
-            };
-
-            if (openBtn) openBtn.addEventListener('click', openModal);
-            if (closeBtn) closeBtn.addEventListener('click', closeModal);
-            if (overlay) {
-                overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) closeModal();
-                });
-            }
-
-            // Initial bind for the toggle link
-            document.getElementById('toggle-auth').addEventListener('click', toggleAuth);
-
-            // Simulation handlers
-            const simulateSubmit = (form, successMsg) => {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const submitBtn = form.querySelector('.auth-submit-btn');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memproses...';
-
-                    setTimeout(() => {
-                        alert(successMsg);
-                        submitBtn.innerHTML = originalText;
-                        form.reset();
-                        closeModal();
-                    }, 1000);
-                });
-            };
-
-            if (loginForm) simulateSubmit(loginForm, 'Berhasil masuk! Selamat datang di YukaStore.');
-            if (registerForm) simulateSubmit(registerForm, 'Pendaftaran berhasil! Akun Anda telah siap digunakan.');
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="script.js?v=8"></script>
     <script src="transition.js?v=3"></script>
 </body>
-
 </html>
