@@ -277,15 +277,15 @@ const updateCart = () => {
                 <div class="cart-item-price">${formatRupiah(item.price)} / ${item.unit}</div>
                 <div class="cart-item-actions">
                     <div class="qty-control">
-                        <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">
+                        <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">
                             <i class="ph ph-minus"></i>
                         </button>
                         <span>${item.quantity}</span>
-                        <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">
+                        <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">
                             <i class="ph ph-plus"></i>
                         </button>
                     </div>
-                    <button class="remove-btn" onclick="removeFromCart(${item.id})">
+                    <button class="remove-btn" onclick="removeFromCart('${item.id}')">
                         <i class="ph ph-trash"></i>
                     </button>
                 </div>
@@ -298,7 +298,7 @@ const updateCart = () => {
 
 // Update Kuantitas
 const updateQuantity = (productId, change) => {
-    const itemIndex = cart.findIndex(item => item.id === productId);
+    const itemIndex = cart.findIndex(item => item.id == productId);
 
     if (itemIndex > -1) {
         cart[itemIndex].quantity += change;
@@ -313,7 +313,7 @@ const updateQuantity = (productId, change) => {
 
 // Hapus dari Keranjang
 const removeFromCart = (productId) => {
-    cart = cart.filter(item => item.id !== productId);
+    cart = cart.filter(item => item.id != productId);
     updateCart();
 };
 
@@ -704,7 +704,7 @@ if (qtyBtns.length === 2 && qtyInput) {
     
     const updateSubtotal = () => {
         if(subtotalEl) {
-            const price = 45000; // Harga statis untuk demo product.html
+            const price = window.currentProductPrice || 45000;
             subtotalEl.textContent = formatRupiah(price * parseInt(qtyInput.value));
         }
     };
@@ -789,7 +789,7 @@ const productsDatabase = {
         sold: 'Terjual 80+',
         img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=800&h=800&fit=crop',
         category: 'Alat Tulis',
-        location: 'Jakarta Selatan',
+        location: 'Wangi-Wangi',
         desc: 'Pensil Warna Set 48 Warna dengan kualitas premium. Cocok untuk seniman profesional maupun pemula. Warna cerah, mudah di-blend, dan tidak mudah patah.'
     },
     'tas-laptop': {
@@ -801,7 +801,7 @@ const productsDatabase = {
         sold: 'Terjual 300+',
         img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&h=800&fit=crop',
         category: 'Elektronik',
-        location: 'Jakarta Pusat',
+        location: 'Wangi-Wangi',
         desc: 'Tas laptop anti air dengan banyak kompartemen. Cocok untuk pekerja kantoran maupun mahasiswa.'
     },
     'buku-agenda': {
@@ -813,7 +813,7 @@ const productsDatabase = {
         sold: 'Terjual 250+',
         img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=800&fit=crop',
         category: 'Buku & Kertas',
-        location: 'Jakarta Pusat',
+        location: 'Wangi-Wangi',
         desc: 'Buku agenda dengan sampul kulit sintetis. Dilengkapi kalender, pembatas pita, dan kertas berkualitas tinggi (100gsm).'
     },
     'tinta-printer': {
@@ -825,7 +825,7 @@ const productsDatabase = {
         sold: 'Terjual 150+',
         img: 'https://images.unsplash.com/photo-1558450125-9f552f9547d6?w=800&h=800&fit=crop',
         category: 'Elektronik',
-        location: 'Surabaya',
+        location: 'Wangi-Wangi',
         desc: 'Tinta botol berkualitas tinggi, hasil cetak tajam, anti luntur. Kompatibel dengan mayoritas printer inkjet.'
     },
     'pulpen-gel': {
@@ -837,7 +837,7 @@ const productsDatabase = {
         sold: 'Terjual 2rb+',
         img: 'https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=800&h=800&fit=crop',
         category: 'Alat Tulis',
-        location: 'Bandung',
+        location: 'Wangi-Wangi',
         desc: 'Tinta lebih lancar, cepat kering, dan sangat nyaman digunakan untuk menulis dokumen penting atau catatan harian.'
     },
     'buku-tulis': {
@@ -849,7 +849,7 @@ const productsDatabase = {
         sold: 'Terjual 500+',
         img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&h=800&fit=crop',
         category: 'Buku & Kertas',
-        location: 'Jakarta Pusat',
+        location: 'Wangi-Wangi',
         desc: 'Buku catatan bersampul kraft elegan. Berisi 100 lembar kertas HVS polos yang tidak tembus tinta.'
     },
     'laptop-i5': {
@@ -861,7 +861,7 @@ const productsDatabase = {
         sold: 'Terjual 50+',
         img: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&h=800&fit=crop',
         category: 'Elektronik',
-        location: 'Jakarta Barat',
+        location: 'Wangi-Wangi',
         desc: 'Laptop tangguh dengan prosesor terbaru, ideal untuk kebutuhan sekolah, kuliah, desain grafis ringan, hingga kantoran.'
     },
     'kuas-lukis': {
@@ -873,7 +873,7 @@ const productsDatabase = {
         sold: 'Terjual 120+',
         img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=800&h=800&fit=crop',
         category: 'Seni & Lukis',
-        location: 'Bandung',
+        location: 'Wangi-Wangi',
         desc: 'Set 12 kuas berbagai ukuran berbahan nilon sintetik halus. Mudah dibersihkan dan tidak rontok.'
     },
     'stapler': {
@@ -885,7 +885,7 @@ const productsDatabase = {
         sold: 'Terjual 1rb+',
         img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=800&fit=crop',
         category: 'Alat Kantor',
-        location: 'Jakarta Timur',
+        location: 'Wangi-Wangi',
         desc: 'Stapler awet bahan besi kokoh anti macet. Sangat pas untuk penggunaan kantor dan sekolah sehari-hari.'
     },
     'keyboard-rgb': {
@@ -897,7 +897,7 @@ const productsDatabase = {
         sold: 'Terjual 800+',
         img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&h=800&fit=crop',
         category: 'Elektronik',
-        location: 'Tangerang',
+        location: 'Wangi-Wangi',
         desc: 'Keyboard gaming mechanical yang *clicky*, responsif, dengan lampu latar RGB 16 juta warna.'
     },
     'gunting': {
@@ -909,7 +909,7 @@ const productsDatabase = {
         sold: 'Terjual 450+',
         img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=800&fit=crop',
         category: 'Alat Kantor',
-        location: 'Bekasi',
+        location: 'Wangi-Wangi',
         desc: 'Gunting dengan pegangan ergonomis berlapis karet. Bilah stainless steel anti karat.'
     },
     'earphone': {
@@ -921,7 +921,7 @@ const productsDatabase = {
         sold: 'Terjual 3rb+',
         img: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&h=800&fit=crop',
         category: 'Elektronik',
-        location: 'Jakarta Pusat',
+        location: 'Wangi-Wangi',
         desc: 'Earbud nirkabel suara nge-bass. Baterai tahan hingga 20 jam pemutaran.'
     },
     'buku-novel': {
@@ -933,7 +933,7 @@ const productsDatabase = {
         sold: 'Terjual 5rb+',
         img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&h=800&fit=crop',
         category: 'Buku & Kertas',
-        location: 'Yogyakarta',
+        location: 'Wangi-Wangi',
         desc: 'Buku bacaan fiksi dengan jalan cerita menarik yang wajib dibaca tahun ini.'
     },
     'spidol-warna': {
@@ -945,7 +945,7 @@ const productsDatabase = {
         sold: 'Terjual 150+',
         img: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=800&h=800&fit=crop',
         category: 'Alat Tulis',
-        location: 'Surabaya',
+        location: 'Wangi-Wangi',
         desc: 'Set 12 spidol warna berkualitas dengan warna yang cerah. Tinta cepat kering dan tidak mudah luntur.'
     }
 };
@@ -1028,11 +1028,63 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         storeLoc.innerHTML = `<span class="online-dot"></span> Online 5 menit lalu • ${product.location}`;
     }
     
+    // Setup the price for the subtotal calculator
+    window.currentProductPrice = parseInt(product.price.replace(/[^\d]/g, '')) || 0;
+
     // Update Subtotal on side panel
     const subtotalEl = document.querySelector('.pd-subtotal strong');
-    if(subtotalEl) subtotalEl.innerText = product.price;
+    if(subtotalEl) {
+        let qty = document.querySelector('.qty-input') ? parseInt(document.querySelector('.qty-input').value) : 1;
+        subtotalEl.innerText = formatRupiah(window.currentProductPrice * qty);
+    }
     
     // Update thumbnail just for visual consistency in demo
     const thumbnails = document.querySelectorAll('.thumbnail img');
     if(thumbnails.length > 0) thumbnails[0].src = product.img;
+
+    // Update "Spesifikasi" Tab
+    const specEl = document.getElementById('tab-spec');
+    if (specEl) {
+        specEl.innerHTML = `
+            <ul style="list-style-type: none; padding: 0; color: var(--text-secondary);">
+                <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;"><span>Kategori</span> <strong style="color: var(--text-primary);">${product.category}</strong></li>
+                <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;"><span>Lokasi Pengiriman</span> <strong style="color: var(--text-primary);">${product.location}</strong></li>
+                <li style="padding: 0.8rem 0; display: flex; justify-content: space-between;"><span>Rating</span> <strong style="color: var(--text-primary);">${product.rating} / 5.0</strong></li>
+            </ul>
+        `;
+    }
+
+    // Update "Info Penting" Tab
+    const infoEl = document.getElementById('tab-info');
+    if (infoEl) {
+        infoEl.innerHTML = `
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);"><i class="ph ph-shield-check" style="color: var(--accent-color); margin-right: 5px;"></i> Kebijakan Pengembalian</h4>
+                <p style="color: var(--text-secondary); line-height: 1.5;">Barang yang sudah dibeli dapat ditukar jika terdapat cacat pabrik dalam waktu 7 hari setelah barang diterima. Wajib menyertakan video unboxing penuh tanpa jeda.</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);"><i class="ph ph-truck" style="color: var(--accent-color); margin-right: 5px;"></i> Jadwal Pengiriman</h4>
+                <p style="color: var(--text-secondary); line-height: 1.5;">Pesanan terkonfirmasi sebelum jam 15:00 dari <strong>${product.location}</strong> akan dikirim pada hari yang sama. Pengiriman tidak beroperasi pada Hari Minggu dan Tanggal Merah.</p>
+            </div>
+        `;
+    }
+
+    // Update "Add to Cart" button in product page
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    if (addToCartBtn) {
+        addToCartBtn.onclick = function() {
+            let qty = document.querySelector('.qty-input') ? parseInt(document.querySelector('.qty-input').value) : 1;
+            addCustomToCart(
+                productId, 
+                product.title, 
+                product.category, 
+                window.currentProductPrice, 
+                'pcs', 
+                'ph-package', 
+                product.img, 
+                qty
+            );
+        };
+    }
 }
+
