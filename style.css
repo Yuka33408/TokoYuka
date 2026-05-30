@@ -2567,7 +2567,7 @@ footer {
 .banner-container {
     display: flex;
     gap: 1rem;
-    height: 300px;
+    height: 380px;
 }
 .main-carousel {
     flex: 2;
@@ -2583,7 +2583,8 @@ footer {
 .carousel-slide {
     min-width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: var(--bg-surface);
 }
 .carousel-btn {
     position: absolute;
@@ -2639,7 +2640,8 @@ footer {
 .side-banner-img {
     width: 100%;
     height: calc(50% - 0.5rem);
-    object-fit: cover;
+    object-fit: contain;
+    background-color: var(--bg-surface);
     border-radius: 12px;
 }
 
@@ -2939,9 +2941,9 @@ footer {
     .header-actions .outline-btn, 
     .header-actions .primary-btn { display: none; }
     .banner-container { flex-direction: column; height: auto; }
-    .main-carousel { height: 200px; }
+    .main-carousel { height: 360px; }
     .side-banners { flex-direction: row; }
-    .side-banner-img { height: 100px; width: 50%; }
+    .side-banner-img { height: 120px; width: 50%; }
 }
 
 @media (max-width: 600px) {
@@ -3629,8 +3631,8 @@ footer {
     /* Banners */
     .banner-container { flex-direction: column; }
     .side-banners { flex-direction: row; width: 100%; }
-    .side-banner-img { width: 50%; height: 100px; }
-    .main-carousel { width: 100%; height: 200px; }
+    .side-banner-img { width: 50%; height: 120px; }
+    .main-carousel { width: 100%; height: 320px; }
 }
 
 /* Hide Bottom Nav on Desktop */
