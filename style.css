@@ -3561,10 +3561,12 @@ footer {
         align-items: center;
         justify-content: space-between;
     }
-    .pd-action-header, .pd-subtotal, .pd-action-footer { display: none; }
-    .qty-control { margin: 0; transform: scale(0.9); }
-    .pd-actions { display: flex; flex-direction: row; width: 100%; gap: 10px; margin-top:0; }
-    .add-to-cart-btn, .checkout-btn { padding: 0.6rem; font-size: 0.85rem; }
+    .pd-action-header, .pd-subtotal, .pd-action-footer, .pd-notes { display: none; }
+    .pd-qty-selector { margin: 0; transform: scale(0.9); }
+    .pd-action-buttons { display: flex; flex-direction: row; width: 100%; gap: 10px; margin-top:0; }
+    .add-to-cart-btn, .checkout-btn { padding: 0.6rem; font-size: 0.85rem; flex: 1; text-align: center; justify-content: center; }
+    
+    .pd-tabs { gap: 1rem; overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
     
     .product-detail-grid { padding-bottom: 120px; } /* Give room for sticky box */
     
