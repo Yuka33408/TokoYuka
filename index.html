@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=25">
+    <link rel="stylesheet" href="style.css?v=30">
 </head>
 <body>
     <!-- Top Bar -->
@@ -418,9 +418,17 @@
                         <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Deskripsi Produk</h3>
                         <p id="modal-product-desc" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;">Detail produk ini sangat bagus dan direkomendasikan untuk memenuhi kebutuhan Anda. Garansi resmi 1 tahun. Barang selalu ready stock, silakan langsung diorder.</p>
                     </div>
+                    <div class="pd-qty-selector" style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                        <span style="font-weight: 500;">Jumlah:</span>
+                        <div style="display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
+                            <button id="modal-qty-minus" style="padding: 0.5rem 0.8rem; background: var(--bg-surface-hover); border: none; cursor: pointer;"><i class="ph ph-minus"></i></button>
+                            <input type="number" value="1" id="modal-qty-input" style="width: 50px; text-align: center; border: none; outline: none; font-weight: 600;" readonly>
+                            <button id="modal-qty-plus" style="padding: 0.5rem 0.8rem; background: var(--bg-surface-hover); border: none; cursor: pointer;"><i class="ph ph-plus"></i></button>
+                        </div>
+                    </div>
                     <div class="modal-actions">
                         <button class="outline-btn" style="flex: 1; border-radius: 8px; padding: 0.8rem; cursor: pointer;"><i class="ph ph-chat-teardrop"></i> Chat</button>
-                        <button class="primary-btn" style="flex: 2; border-radius: 8px; padding: 0.8rem; cursor: pointer;" onclick="alert('Berhasil ditambahkan ke keranjang!'); document.getElementById('close-modal-btn').click();"><i class="ph ph-shopping-cart"></i> + Keranjang</button>
+                        <button class="primary-btn" id="modal-add-to-cart-btn" style="flex: 2; border-radius: 8px; padding: 0.8rem; cursor: pointer;" onclick="modalAddToCart()"><i class="ph ph-shopping-cart"></i> + Keranjang</button>
                     </div>
                 </div>
             </div>
@@ -448,7 +456,12 @@
         </a>
     </nav>
 
-    <script src="script.js?v=8"></script>
-    <script src="transition.js?v=2"></script>
+    <script src="script.js?v=31"></script>
+    <script src="transition.js?v=28"></script>
 </body>
 </html>
+
+
+
+
+
