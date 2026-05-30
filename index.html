@@ -1,737 +1,327 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TokoYuka | Pusat Belanja Online</title>
-    <meta name="description" content="Temukan alat tulis, percetakan, dan elektronik dengan kualitas terbaik!.">
-    <!-- Google Fonts -->
+    <title>TokoYuka | Checkout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css?v=33">
 </head>
+
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <a href="#"><i class="ph ph-device-mobile"></i> Download YukaApp</a>
-            <a href="tentang.html">Tentang Kami</a>
-            <a href="#">Mitra Yuka</a>
+    <nav class="navbar">
+        <div class="logo" style="display: flex; align-items: center;"><i class="ph ph-arrow-left" style="cursor: pointer; margin-right: 10px; font-size: 1.5rem;" onclick="document.getElementById('cancel-payment-btn').click()"></i> Checkout</div>
+        <ul class="nav-links">
+            <li><a href="#" id="cancel-payment-btn">Kembali ke Toko</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                <i class="ph ph-moon"></i>
+            </button>
         </div>
-        <div class="top-bar-right">
-            <a href="#">Promo</a>
-            <a href="kontak.html">Pusat Bantuan</a>
-        </div>
-    </div>
+    </nav>
 
-    <!-- Main Header -->
-    <header class="main-header" id="main-header">
-        <div class="header-container">
-            <div class="logo">TokoYuka.</div>
-            
-            <div class="search-container">
-                <div class="search-box">
-                    <input type="text" placeholder="Cari buku tulis, printer, elektronik...">
-                    <button class="search-btn" aria-label="Cari"><i class="ph ph-magnifying-glass"></i></button>
-                </div>
-                <div class="search-tags">
-                    <a href="#">Buku Tulis Sidu</a>
-                    <a href="#">Tinta Epson</a>
-                    <a href="#">Flashdisk 64GB</a>
-                    <a href="#">Kertas HVS A4</a>
-                    <a href="#">Laptop Core i5</a>
+    <main>
+        <section class="checkout-section">
+            <div class="checkout-form-container">
+                <div class="checkout-form-card">
+                    <h2>Detail <span class="text-gradient">Pengiriman</span></h2>
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label><i class="ph ph-user"></i> Nama Lengkap</label>
+                            <input type="text" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="ph ph-phone"></i> No. Telepon / WhatsApp</label>
+                            <input type="tel" placeholder="08xxxxxxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="ph ph-map-pin"></i> Alamat Lengkap</label>
+                            <textarea rows="3" placeholder="Jalan, RT/RW, Kecamatan, Kota..." required></textarea>
+                        </div>
+
+                        <h2 style="margin-top: 2.5rem; margin-bottom: 1.5rem;">Metode <span
+                                class="text-gradient">Pembayaran</span></h2>
+
+                        <div class="payment-category" style="margin-bottom: 1.5rem;">
+                            <h3
+                                style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="ph ph-qr-code"></i> Pembayaran Instan
+                            </h3>
+                            <div class="payment-methods" style="grid-template-columns: 1fr; margin-top: 0;">
+                                <div class="payment-method active" data-method="qris"
+                                    style="justify-content: flex-start; gap: 1rem;">
+                                    <i class="ph ph-qr-code" style="color: #ed215b; font-size: 2.5rem;"></i>
+                                    <div
+                                        style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem;">
+                                        <span style="font-weight: 800; font-size: 1.1rem;">QRIS</span>
+                                        <span
+                                            style="font-size: 0.85rem; color: var(--text-secondary); text-align: left;">Scan
+                                            via GoPay, OVO, DANA, BCA Mobile, dll.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-category" style="margin-bottom: 1.5rem;">
+                            <h3
+                                style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="ph ph-wallet"></i> E-Wallet
+                            </h3>
+                            <div class="payment-methods" style="margin-top: 0;">
+                                <div class="payment-method" data-method="gopay">
+                                    <span style="font-weight: 800;">GoPay</span>
+                                </div>
+                                <div class="payment-method" data-method="ovo">
+                                    <span style="font-weight: 800;">OVO</span>
+                                </div>
+                                <div class="payment-method" data-method="dana">
+                                    <span style="font-weight: 800;">DANA</span>
+                                </div>
+                                <div class="payment-method" data-method="shopeepay">
+                                    <span style="font-weight: 800;">ShopeePay</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-category" style="margin-bottom: 1.5rem;">
+                            <h3
+                                style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="ph ph-bank"></i> Virtual Account Bank
+                            </h3>
+                            <div class="payment-methods" style="margin-top: 0;">
+                                <div class="payment-method" data-method="bca">
+                                    <span style="font-weight: 800;">BCA VA</span>
+                                </div>
+                                <div class="payment-method" data-method="mandiri">
+                                    <span style="font-weight: 800;">Mandiri VA</span>
+                                </div>
+                                <div class="payment-method" data-method="bri">
+                                    <span style="font-weight: 800;">BRIVA</span>
+                                </div>
+                                <div class="payment-method" data-method="bni">
+                                    <span style="font-weight: 800;">BNI VA</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-category">
+                            <h3
+                                style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="ph ph-storefront"></i> Minimarket / Tunai
+                            </h3>
+                            <div class="payment-methods" style="margin-top: 0;">
+                                <div class="payment-method" data-method="indomaret">
+                                    <span style="font-weight: 800;">Indomaret</span>
+                                </div>
+                                <div class="payment-method" data-method="alfamart">
+                                    <span style="font-weight: 800;">Alfamart</span>
+                                </div>
+                                <div class="payment-method" data-method="cod">
+                                    <i class="ph ph-truck"></i>
+                                    <span style="font-weight: 800;">COD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div class="header-actions">
-                <a href="cart.html" class="icon-btn cart-btn">
-                    <i class="ph ph-shopping-cart"></i>
-                    <span class="cart-badge" style="display: none;">0</span>
-                </a>
-                <a href="notifications.html" class="icon-btn"><i class="ph ph-bell"></i></a>
-                <a href="notifications.html" class="icon-btn"><i class="ph ph-envelope-simple"></i></a>
-                <div class="divider"></div>
-                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
-                    <i class="ph ph-moon"></i>
-                </button>
-                <button class="nav-btn outline-btn" onclick="window.location.href='login.html'">Masuk</button>
-                <button class="nav-btn primary-btn" onclick="window.location.href='register.html'">Daftar</button>
-            </div>
-        </div>
-    </header>
-
-    <main class="main-content">
-        <!-- Banner Section -->
-        <section class="banner-section">
-            <div class="banner-container">
-                <div class="main-carousel">
-                    <div class="carousel-track" id="carousel-track">
-                        <img src="https://api.vitech.asia/storage/produk/7677efae-a6be-461c-8e1f-5e16309194ce.jpg" alt="Promo Alat Tulis" class="carousel-slide">
-                        <img src="https://e-print.co.id/wp-content/uploads/2017/09/Glossy-Photo-Paper-A4-120gsm-c.jpg" alt="Promo Elektronik" class="carousel-slide">
-                        <img src="https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg" alt="Buku Diskon" class="carousel-slide">
+            <div class="order-summary">
+                <h2>Ringkasan <span class="text-gradient">Pesanan</span></h2>
+                <div class="order-items" id="summary-items">
+                    <!-- Items rendered via JS -->
+                </div>
+                <div class="order-totals">
+                    <div class="order-total-row">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">Rp 0</span>
                     </div>
-                    <button class="carousel-btn prev-btn" id="prev-btn" aria-label="Previous"><i class="ph ph-caret-left"></i></button>
-                    <button class="carousel-btn next-btn" id="next-btn" aria-label="Next"><i class="ph ph-caret-right"></i></button>
-                    <div class="carousel-indicators" id="carousel-indicators"></div>
-                </div>
-                <div class="side-banners">
-                    <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?q=80&w=400&auto=format&fit=crop" alt="Voucher Belanja" class="side-banner-img">
-                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=400&auto=format&fit=crop" alt="Flash Sale Komputer" class="side-banner-img">
-                </div>
-            </div>
-        </section>
-
-        <!-- Categories Section -->
-        <section class="categories-section">
-            <div class="categories-grid">
-                <a href="category.html?cat=Alat%20Tulis" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=100&h=100&fit=crop" alt="Alat Tulis"></div>
-                    <span>Alat Tulis</span>
-                </a>
-                <a href="category.html?cat=Buku%20%26%20Kertas" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=100&h=100&fit=crop" alt="Buku"></div>
-                    <span>Buku & Kertas</span>
-                </a>
-                <a href="category.html?cat=Elektronik" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=100&h=100&fit=crop" alt="Elektronik"></div>
-                    <span>Elektronik</span>
-                </a>
-                <a href="category.html?cat=Seni%20%26%20Lukis" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxvxTH4PKFIib5QpDdFIvjiqkQilTAAGGxfg&s" alt="Kesenian"></div>
-                    <span>Seni & Lukis</span>
-                </a>
-                <a href="category.html?cat=Alat%20Kantor" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=100&h=100&fit=crop" alt="Kantor"></div>
-                    <span>Alat Kantor</span>
-                </a>
-                <a href="category.html?cat=Komputer" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=100&h=100&fit=crop" alt="Komputer"></div>
-                    <span>Komputer</span>
-                </a>
-                <a href="category.html?cat=Percetakan" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://famousprinting.id/wp-content/uploads/2023/01/kdJMGoFQjggFYd9XGON7yoiLGjCfc2jbTBgSpuefZB1ZMTBuv7br5_CXFsbXsilhfJWH6bhaXPUd-N4azdoA8dVJJVgsMxvUBWjS6CRoy6eEjo_xemVQ8jUKZPyo2xq-YYPfWyIP-500x333.jpg" alt="Percetakan"></div>
-                    <span>Percetakan</span>
-                </a>
-                <a href="category.html?cat=Promo" class="category-item">
-                    <div class="category-icon-wrapper"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=100&h=100&fit=crop" alt="Promo"></div>
-                    <span>Promo</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Flash Sale -->
-        <section class="flash-sale">
-            <div class="flash-sale-header">
-                <div class="flash-sale-title">
-                    <i class="ph-fill ph-lightning"></i>
-                    <h2>Flash Sale</h2>
-                    <div class="countdown" id="countdown-timer">
-                        <span class="time-box" id="hours">00</span> :
-                        <span class="time-box" id="minutes">00</span> :
-                        <span class="time-box" id="seconds">00</span>
+                    <div class="order-total-row">
+                        <span>Ongkos Kirim</span>
+                        <span>Rp 15.000</span>
+                    </div>
+                    <div class="order-total-row final">
+                        <span>Total Bayar</span>
+                        <span id="summary-final">Rp 0</span>
                     </div>
                 </div>
-                <a href="category.html" class="see-all">Lihat Semua</a>
-            </div>
-            <div class="flash-sale-items">
-                <!-- Flash Item 1 -->
-                <div class="fs-card" onclick="window.location.href='product.html?id=pensil-warna'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="fs-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEJs5tSZ5YLwH0Vt5OaO0oeeqAZ87ddgNxdg&s" alt="Pensil Warna">
-                        <span class="discount-badge">50%</span>
-                    </div>
-                    <div class="fs-info">
-                        <h3 class="product-title">Faber-Castell Classic Set 48 Warna</h3>
-                        <div class="product-price">Rp 125.000</div>
-                        <div class="product-price-strike">Rp 150.000</div>
-                        <div class="flash-sale-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
-                            <span class="progress-text">Terjual 80</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Flash Item 2 -->
-                <div class="fs-card" onclick="window.location.href='product.html?id=tas-laptop'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="fs-image">
-                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop" alt="Tas Laptop">
-                        <span class="discount-badge">35%</span>
-                    </div>
-                    <div class="fs-info">
-                        <h3 class="product-title">Tas Laptop Ransel Waterproof</h3>
-                        <div class="product-price">Rp 120.000</div>
-                        <div class="product-price-strike">Rp 185.000</div>
-                        <div class="flash-sale-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
-                            <span class="progress-text">Segera Habis</span>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Flash Item 3 -->
-                 <div class="fs-card" onclick="window.location.href='product.html?id=buku-agenda'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="fs-image">
-                        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=300&h=300&fit=crop" alt="Buku Agenda">
-                        <span class="discount-badge">20%</span>
-                    </div>
-                    <div class="fs-info">
-                        <h3 class="product-title">Buku Agenda Kulit Eksklusif 2026</h3>
-                        <div class="product-price">Rp 65.000</div>
-                        <div class="product-price-strike">Rp 81.500</div>
-                        <div class="flash-sale-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 20%;"></div></div>
-                            <span class="progress-text">Terjual 15</span>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Flash Item 4 -->
-                 <div class="fs-card" onclick="window.location.href='product.html?id=tinta-printer'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="fs-image">
-                        <img src="https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg" alt="Tinta">
-                        <span class="discount-badge">15%</span>
-                    </div>
-                    <div class="fs-info">
-                        <h3 class="product-title">Tinta Printer EPSON 664 Hitam</h3>
-                        <div class="product-price">Rp 100.000</div>
-                        <div class="product-price-strike">Rp 125.000</div>
-                        <div class="flash-sale-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
-                            <span class="progress-text">Terjual 45</span>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Flash Item 5 -->
-                 <div class="fs-card" onclick="window.location.href='product.html?id=pulpen-gel'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="fs-image">
-                        <img src="https://andalanatk.com/upload/produk/6901b814eefa81.87516637_986852_produk.webp" alt="Pulpen Gel">
-                        <span class="discount-badge">10%</span>
-                    </div>
-                    <div class="fs-info">
-                        <h3 class="product-title">Pulpen Gel Joyko GP-265</h3>
-                        <div class="product-price">Rp 13.500</div>
-                        <div class="product-price-strike">Rp 15.000</div>
-                        <div class="flash-sale-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
-                            <span class="progress-text">Terjual 60</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Etalase Rekomendasi -->
-        <section class="recommendation-section">
-            <div class="section-header-sticky">
-                <h2 class="section-title">Rekomendasi Untukmu</h2>
-            </div>
-            <div class="etalase-grid">
-                <!-- Etalase items -->
-                <div class="etalase-card" onclick="window.location.href='product.html?id=buku-tulis'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-55436011/br-m036969-07062_-pack-buku-tulis-sidu-sinar-dunia-58-lembar-murah_full01.jpg" alt="Buku Tulis HVS">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Buku Tulis HVS SiDu 58 Lembar (Pack)</h3>
-                        <div class="product-price">Rp 35.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 10rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=laptop-i5'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg" alt="Laptop">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">MacBook Air M4  </h3>
-                        <div class="product-price">Rp 16.999.999</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 121</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=pulpen-gel'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://andalanatk.com/upload/produk/6901b814eefa81.87516637_986852_produk.webp" alt="Pulpen">
-                        <span class="cashback-badge">Cashback 5%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Pulpen Gel Joyko GP-265 0.5mm Hitam (Lusin)</h3>
-                        <div class="product-price">Rp 15.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 5.0 | Terjual 5rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=tinta-printer'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg" alt="Tinta Printer">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Tinta Printer Original Seri 664 Black</h3>
-                        <div class="product-price">Rp 100.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=kuas-lukis'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.tokopedia.net/img/cache/700/aphluv/1997/1/1/b967c0e56d2247fbad1fc041522694f9~.jpeg.webp" alt="Kuas Lukis">
-                        <span class="cashback-badge">Cashback 10%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Kuas Lukis Cat Air Watercolor Set 6 Pcs</h3>
-                        <div class="product-price">Rp 25.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 500+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=stapler'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://shop.kenko.co.id/image/cache/catalog/product/Stapler/Heavy-Duty-Stapler-HD-12L24-700x700.jpg" alt="Stapler">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Stapler Heavy Duty HD-12L/24</h3>
-                        <div class="product-price">Rp 471.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 150+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=keyboard-rgb'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop" alt="Keyboard">
-                        <span class="cashback-badge">Gratis Ongkir</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Keyboard Mechanical Switch Blue RGB</h3>
-                        <div class="product-price">Rp 350.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 1rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=gunting'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop" alt="Gunting">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Gunting Kertas Serbaguna Tajam Stainless</h3>
-                        <div class="product-price">Rp 12.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 3rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Depok</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=earphone'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300&h=300&fit=crop" alt="Earphone">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">True Wireless Earbuds Bluetooth 5.3</h3>
-                        <div class="product-price">Rp 185.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=buku-novel'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop" alt="Buku Novel">
-                        <span class="cashback-badge">Bestseller</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Buku Novel Fiksi Terlaris Edisi Spesial</h3>
-                        <div class="product-price">Rp 95.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 5.0 | Terjual 8rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=mouse-logitech'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop" alt="Mouse">
-                        <span class="discount-badge">20%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Mouse Wireless Logitech M170</h3>
-                        <div class="product-price">Rp 120.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 2rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=kertas-manila'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop" alt="Kertas">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Kertas Karton Manila Warna Warni (Isi 10)</h3>
-                        <div class="product-price">Rp 15.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 500+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=spidol-board'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=300&h=300&fit=crop" alt="Spidol">
-                        <span class="discount-badge">11%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Spidol Board Marker Hitam (Pack isi 12)</h3>
-                        <div class="product-price">Rp 75.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 800+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=tinta-canon'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg" alt="Tinta">
-                        <span class="cashback-badge">Bestseller</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Tinta Printer Canon GI-790 Original</h3>
-                        <div class="product-price">Rp 115.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 1.2rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=binder-b5'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop" alt="Binder">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Buku Binder B5 Pastel Edition</h3>
-                        <div class="product-price">Rp 45.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 900+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=penghapus-joyko'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop" alt="Penghapus">
-                        <span class="cashback-badge">Gratis Ongkir</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Penghapus Joyko Putih (Box isi 40)</h3>
-                        <div class="product-price">Rp 32.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=pensil-2b'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop" alt="Pensil">
-                        <span class="discount-badge">12%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Pensil 2B Faber Castell Ujian (Pack isi 12)</h3>
-                        <div class="product-price">Rp 48.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 5.0 | Terjual 5rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=penggaris-besi'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop" alt="Penggaris">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Penggaris Besi Stainless 30cm</h3>
-                        <div class="product-price">Rp 12.500</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 1rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=lem-stick'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop" alt="Lem">
-                        <span class="cashback-badge">Cashback 5%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Lem Kertas Glue Stick Kenko</h3>
-                        <div class="product-price">Rp 8.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 750+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=sticky-notes'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop" alt="Sticky Notes">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Sticky Notes Post-it 3x3 inch</h3>
-                        <div class="product-price">Rp 15.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 600+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=kalkulator'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop" alt="Kalkulator">
-                        <span class="discount-badge">15%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Kalkulator Citizen 12 Digit</h3>
-                        <div class="product-price">Rp 85.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 1.5rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=flashdisk'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop" alt="Flashdisk">
-                        <span class="cashback-badge">Gratis Ongkir</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Flashdisk Sandisk Cruzer Blade 32GB</h3>
-                        <div class="product-price">Rp 65.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 4rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=kertas-foto'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://e-print.co.id/wp-content/uploads/2017/09/Glossy-Photo-Paper-A4-120gsm-c.jpg" alt="Kertas Foto">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">E-Print Glossy Photo Paper A4 120gsm</h3>
-                        <div class="product-price">Rp 55.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 132+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=isolasi'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop" alt="Isolasi">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Isolasi Bening Nachi Tape (Pack isi 6)</h3>
-                        <div class="product-price">Rp 30.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 900+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=lakban-hitam'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop" alt="Lakban">
-                        <span class="cashback-badge">Bestseller</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Lakban Hitam Daimaru</h3>
-                        <div class="product-price">Rp 14.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2.5rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=map-snailhecter'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop" alt="Map">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Map Plastik Snailhecter (1 Lusin)</h3>
-                        <div class="product-price">Rp 45.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 300+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=name-tag'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop" alt="Name Tag">
-                        <span class="cashback-badge">Cashback 5%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Name Tag Panitia + Tali Lanyard</h3>
-                        <div class="product-price">Rp 5.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 800+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=papan-ujian'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop" alt="Papan Ujian">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Papan Ujian / Clipboard Kayu MDF</h3>
-                        <div class="product-price">Rp 12.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 1.2rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=tipex'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop" alt="Tipe X">
-                        <span class="discount-badge">10%</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Tipe-X Kertas Roll (Correction Tape)</h3>
-                        <div class="product-price">Rp 10.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2.1rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="etalase-card" onclick="window.location.href='product.html?id=kertas-origami'" style="cursor:pointer;" title="Lihat Produk">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop" alt="Origami">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Kertas Origami Warna Cerah 15x15cm</h3>
-                        <div class="product-price">Rp 8.000</div>
-                        <div class="product-meta">
-                            <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 1rb+</span>
-                            <span class="location"><i class="ph ph-map-pin"></i> Wangi-Wangi</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="load-more-container">
-                <button class="load-more-btn outline-btn" id="load-more-btn" onclick="this.innerHTML='<i class=\'ph ph-spinner ph-spin\'></i> Memuat...'; setTimeout(() => this.innerHTML='Muat Lebih Banyak', 1000)">Muat Lebih Banyak</button>
+                <button type="submit" form="checkout-form" class="auth-submit-btn"
+                    style="width: 100%; margin-top: 1rem;" id="pay-btn">Bayar Sekarang</button>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>TokoYuka.</h3>
-                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis, percetakan modern, dan elektronik.</p>
-            </div>
-            <div class="footer-links">
-                <a href="tentang.html">Tentang Kami</a>
-                <a href="#">Karir</a>
-                <a href="#">Blog</a>
-            </div>
-            <div class="footer-links">
-                <h4>Bantuan</h4>
-                <a href="kontak.html">Pusat Bantuan</a>
-                <a href="#">Cara Pembelian</a>
-                <a href="#">Lacak Pesanan</a>
-            </div>
-            <div class="footer-links">
-                <h4>Ikuti Kami</h4>
-                <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
-                <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
-            </div>
+    <!-- Mobile Checkout Sticky Bar -->
+    <div class="mobile-checkout-action" id="mobile-checkout-action">
+        <div style="display: flex; flex-direction: column;">
+            <span style="font-size: 0.9rem; color: var(--text-secondary);">Total Tagihan</span>
+            <strong id="mca-final-price" style="font-size: 1.2rem; color: var(--text-primary); font-weight: 800;">Rp 0</strong>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 TokoYuka. Hak Cipta Dilindungi.</p>
+        <button type="submit" form="checkout-form" class="primary-btn" id="mobile-pay-btn" style="padding: 0.8rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 700;">
+            Bayar
+        </button>
+    </div>
+
+    <!-- Success Modal Overlay -->
+    <div class="auth-overlay" id="success-overlay">
+        <div class="auth-modal" style="text-align: center; max-width: 450px;">
+            <i class="ph ph-check-circle" style="font-size: 6rem; color: #10b981; margin-bottom: 1rem;"></i>
+            <h2 style="font-size: 2.5rem;">Pembayaran <span class="text-gradient">Berhasil!</span></h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1.1rem;">Terima kasih, pesanan Anda
+                sedang kami proses dan akan segera dikirim ke alamat tujuan.</p>
+            <button class="auth-submit-btn" onclick="window.location.href='index.html'" style="width: 100%;">Kembali ke
+                Beranda</button>
         </div>
-    </footer>
+    </div>
 
-
-    <!-- Product Detail Modal -->
-    <div class="product-modal-overlay" id="product-modal-overlay">
-        <div class="product-modal">
-            <button class="close-modal-btn" id="close-modal-btn"><i class="ph ph-x"></i></button>
-            <div class="product-modal-content">
-                <div class="product-modal-image">
-                    <img id="modal-product-img" src="" alt="Product">
-                </div>
-                <div class="product-modal-details">
-                    <h2 class="modal-title" id="modal-product-title">Nama Produk</h2>
-                    <div class="modal-meta">
-                        <span class="rating"><i class="ph-fill ph-star"></i> <span id="modal-product-rating">4.9</span></span>
-                        <span class="sold"><span id="modal-product-sold">Terjual 100</span></span>
-                    </div>
-                    <div class="modal-price" id="modal-product-price">Rp 0</div>
-                    <div class="modal-price-strike" id="modal-product-strike" style="display: none; text-decoration: line-through; color: var(--text-secondary); font-size: 0.9rem;">Rp 0</div>
-                    <div class="modal-description">
-                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Deskripsi Produk</h3>
-                        <p id="modal-product-desc" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;">Detail produk ini sangat bagus dan direkomendasikan untuk memenuhi kebutuhan Anda. Garansi resmi 1 tahun. Barang selalu ready stock, silakan langsung diorder.</p>
-                    </div>
-                    <div class="pd-qty-selector" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
-                        <span style="font-weight: 500;">Jumlah:</span>
-                        <div style="display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;">
-                            <button id="modal-qty-minus" style="padding: 0.5rem 0.8rem; background: var(--bg-surface-hover); border: none; cursor: pointer;"><i class="ph ph-minus"></i></button>
-                            <input type="number" value="1" id="modal-qty-input" style="width: 50px; text-align: center; border: none; outline: none; font-weight: 600;" readonly>
-                            <button id="modal-qty-plus" style="padding: 0.5rem 0.8rem; background: var(--bg-surface-hover); border: none; cursor: pointer;"><i class="ph ph-plus"></i></button>
-                        </div>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 1.1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
-                        <span style="color: var(--text-secondary);">Subtotal</span>
-                        <strong id="modal-subtotal" style="color: var(--text-primary);">Rp 0</strong>
-                    </div>
-                    <div class="modal-actions">
-                        <button class="outline-btn" style="flex: 1; border-radius: 8px; padding: 0.8rem; cursor: pointer;"><i class="ph ph-chat-teardrop"></i> Chat</button>
-                        <button class="primary-btn" id="modal-add-to-cart-btn" style="flex: 2; border-radius: 8px; padding: 0.8rem; cursor: pointer;" onclick="modalAddToCart()"><i class="ph ph-shopping-cart"></i> + Keranjang</button>
-                    </div>
-                </div>
+    <!-- Cancel Confirmation Modal -->
+    <div class="auth-overlay" id="cancel-overlay">
+        <div class="auth-modal" style="text-align: center; max-width: 400px;">
+            <i class="ph ph-warning-circle" style="font-size: 5rem; color: #f59e0b; margin-bottom: 1rem;"></i>
+            <h2 style="font-size: 2rem;">Batal <span class="text-gradient"
+                    style="background: linear-gradient(135deg, #f59e0b, #d97706); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Membayar?</span>
+            </h2>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">Apakah Anda yakin ingin kembali ke toko?
+                Proses pembayaran Anda saat ini akan dibatalkan.</p>
+            <div style="display: flex; gap: 1rem;">
+                <button class="auth-submit-btn" id="resume-payment-btn"
+                    style="flex: 1; background: transparent; color: var(--text-primary) !important; border: 2px solid var(--text-secondary); box-shadow: none;">Lanjut
+                    Bayar</button>
+                <button class="auth-submit-btn" id="confirm-cancel-btn"
+                    style="flex: 1; background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%); color: white !important;">Ya,
+                    Batalkan</button>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <!-- Bottom Navigation for Mobile -->
-    <nav class="bottom-nav">
-        <a href="index.html" class="bottom-nav-item active">
-            <i class="ph-fill ph-house"></i>
-            <span>Beranda</span>
-        </a>
-        <a href="category.html" class="bottom-nav-item">
-            <i class="ph ph-magnifying-glass"></i>
-            <span>Kategori</span>
-        </a>
-        <a href="cart.html" class="bottom-nav-item">
-            <div style="position: relative;"><i class="ph ph-shopping-cart"></i><span class="cart-badge" style="display: none;">0</span></div><span>Keranjang</span>
-        </a>
-        <a href="login.html" class="bottom-nav-item">
-            <i class="ph ph-user"></i>
-            <span>Profil</span>
-        </a>
-    </nav>
+    <script>
+        const formatRupiah = (number) => {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(number);
+        };
 
-    <script src="script.js?v=40"></script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartData = localStorage.getItem('yuka_cart');
+            const summaryItems = document.getElementById('summary-items');
+            const summarySubtotal = document.getElementById('summary-subtotal');
+            const summaryFinal = document.getElementById('summary-final');
+
+            let subtotal = 0;
+            const ongkir = 15000;
+
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                if (cart.length === 0) {
+                    summaryItems.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Pesanan kosong.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        subtotal += itemTotal;
+
+                        summaryItems.innerHTML += `
+                            <div class="order-item">
+                                <div class="order-item-info">
+                                    <span>${item.name}</span>
+                                    <small>${item.quantity} x ${formatRupiah(item.price)}</small>
+                                </div>
+                                <div class="order-item-price">${formatRupiah(itemTotal)}</div>
+                            </div>
+                        `;
+                    });
+                }
+            } else {
+                summaryItems.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">Pesanan kosong.</p>';
+            }
+
+            const mcaFinal = document.getElementById('mca-final-price');
+
+            summarySubtotal.textContent = formatRupiah(subtotal);
+            if (subtotal > 0) {
+                summaryFinal.textContent = formatRupiah(subtotal + ongkir);
+                if (mcaFinal) mcaFinal.textContent = formatRupiah(subtotal + ongkir);
+            } else {
+                summaryFinal.textContent = formatRupiah(0);
+                if (mcaFinal) mcaFinal.textContent = formatRupiah(0);
+            }
+
+            // Payment method selector
+            const methods = document.querySelectorAll('.payment-method');
+            methods.forEach(method => {
+                method.addEventListener('click', () => {
+                    methods.forEach(m => m.classList.remove('active'));
+                    method.classList.add('active');
+                });
+            });
+
+            // Form Submit
+            const form = document.getElementById('checkout-form');
+            const payBtn = document.getElementById('pay-btn');
+            const mobilePayBtn = document.getElementById('mobile-pay-btn');
+            const successOverlay = document.getElementById('success-overlay');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (subtotal === 0) {
+                    alert('Pesanan Anda kosong!');
+                    return;
+                }
+
+                payBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memproses Pembayaran...';
+                payBtn.style.pointerEvents = 'none';
+                if (mobilePayBtn) {
+                    mobilePayBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memproses...';
+                    mobilePayBtn.style.pointerEvents = 'none';
+                }
+
+                setTimeout(() => {
+                    localStorage.removeItem('yuka_cart'); // Kosongkan keranjang di localstorage
+                    successOverlay.classList.add('active'); // Munculkan pop-up sukses
+                }, 2000);
+            });
+            // Cancel Payment Interaction
+            const cancelBtn = document.getElementById('cancel-payment-btn');
+            const cancelOverlay = document.getElementById('cancel-overlay');
+            const resumeBtn = document.getElementById('resume-payment-btn');
+            const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    cancelOverlay.classList.add('active');
+                });
+            }
+
+            if (resumeBtn) {
+                resumeBtn.addEventListener('click', () => {
+                    cancelOverlay.classList.remove('active');
+                });
+            }
+
+            if (confirmCancelBtn) {
+                confirmCancelBtn.addEventListener('click', () => {
+                    // Start transition overlay if available
+                    const transitionOverlay = document.querySelector('.page-transition-overlay');
+                    if (transitionOverlay) {
+                        transitionOverlay.classList.add('active');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 400);
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                });
+            }
+        });
+    </script>
     <script src="transition.js?v=28"></script>
 </body>
+
 </html>
