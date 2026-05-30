@@ -3185,8 +3185,9 @@ footer {
     top: 100px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
-[data-theme="dark"] .product-action-box {
-    background: #1e293b; /* Opaque background to prevent text overlapping */
+[data-theme="dark"] .product-action-box,
+[data-theme="dark"] .bottom-nav {
+    background: #2b1a12; /* Solid dark brown background to prevent text overlapping */
 }
 .product-action-box h3 {
     font-size: 1rem;
