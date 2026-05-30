@@ -88,6 +88,7 @@ let searchQuery = '';
 
 // Render Produk ke Grid
 const renderProducts = () => {
+    if (!productsContainer) return;
     productsContainer.innerHTML = '';
 
     let filteredProducts = products;
