@@ -626,6 +626,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 800); // transisi cepat ke halaman pembayaran
         });
     }
+
+    // Logic for "Muat Lebih Banyak" button on index.html
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const path = window.location.pathname;
+    if (path.includes('index.html') || path.endsWith('/') || path.endsWith('website') || path === '') {
+        const etalaseCards = document.querySelectorAll('.recommendation-section .etalase-card');
+        if (etalaseCards.length > 0 && loadMoreBtn) {
+            let currentItems = 10;
+            
+            // Hide items beyond currentItems
+            etalaseCards.forEach((card, index) => {
+                if (index >= currentItems) {
+                    card.style.display = 'none';
+                }
+            });
+            
+            loadMoreBtn.addEventListener('click', () => {
+                loadMoreBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memuat...';
+                
+                setTimeout(() => {
+                    let nextItems = currentItems + 10;
+                    
+                    etalaseCards.forEach((card, index) => {
+                        if (index >= currentItems && index < nextItems) {
+                            card.style.display = 'block';
+                            card.style.animation = 'popIn 0.5s forwards';
+                        }
+                    });
+                    
+                    currentItems = nextItems;
+                    
+                    if (currentItems >= etalaseCards.length) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.innerHTML = 'Muat Lebih Banyak';
+                    }
+                }, 800); // Simulasi loading
+            });
+        }
+    }
 });
 
 // Fungsi Custom Popup untuk Login
