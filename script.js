@@ -547,28 +547,40 @@ const modalStrike = document.getElementById('modal-product-strike');
 const modalRating = document.getElementById('modal-product-rating');
 const modalSold = document.getElementById('modal-product-sold');
 
+let currentModalBasePrice = 0;
+
 // Modal Quantity
 const modalQtyMinus = document.getElementById('modal-qty-minus');
 const modalQtyPlus = document.getElementById('modal-qty-plus');
 const modalQtyInput = document.getElementById('modal-qty-input');
+const modalSubtotal = document.getElementById('modal-subtotal');
+
+const updateModalSubtotal = () => {
+    if (modalSubtotal && currentModalBasePrice > 0) {
+        let qty = parseInt(modalQtyInput.value) || 1;
+        modalSubtotal.innerText = formatRupiah(currentModalBasePrice * qty);
+    }
+};
 
 if (modalQtyMinus && modalQtyPlus && modalQtyInput) {
     modalQtyMinus.addEventListener('click', () => {
         let val = parseInt(modalQtyInput.value);
-        if (val > 1) modalQtyInput.value = val - 1;
+        if (val > 1) {
+            modalQtyInput.value = val - 1;
+            updateModalSubtotal();
+        }
     });
     modalQtyPlus.addEventListener('click', () => {
         let val = parseInt(modalQtyInput.value);
         modalQtyInput.value = val + 1;
+        updateModalSubtotal();
     });
 }
 
 window.modalAddToCart = function() {
-    if (!modalTitle || !modalPrice) return;
+    if (!modalTitle || currentModalBasePrice === 0) return;
     
-    // Parse price to integer (e.g., "Rp 95.000" -> 95000)
-    let priceStr = modalPrice.innerText.replace(/[^\d]/g, '');
-    let priceInt = parseInt(priceStr) || 0;
+    let priceInt = currentModalBasePrice;
     
     let qty = modalQtyInput ? parseInt(modalQtyInput.value) : 1;
     let title = modalTitle.innerText;
@@ -584,13 +596,20 @@ window.modalAddToCart = function() {
 };
 
 window.openProductModal = function(cardElement) {
-    // Reset modal qty to 1
-    if (modalQtyInput) modalQtyInput.value = 1;
-    
     // Extract info from clicked card
     const title = cardElement.querySelector('.product-title').innerText;
-    const price = cardElement.querySelector('.product-price').innerText;
+    const priceText = cardElement.querySelector('.product-price').innerText;
     const imgSrc = cardElement.querySelector('img').src;
+    
+    // Set base price
+    let priceStr = priceText.replace(/[^\d]/g, '');
+    currentModalBasePrice = parseInt(priceStr) || 0;
+    
+    // Reset modal qty and subtotal
+    if (modalQtyInput) {
+        modalQtyInput.value = 1;
+        updateModalSubtotal();
+    }
     
     // Some cards have rating and sold, some have progress-text (flash sale)
     const ratingEl = cardElement.querySelector('.rating');
@@ -598,7 +617,7 @@ window.openProductModal = function(cardElement) {
     const strikeEl = cardElement.querySelector('.product-price-strike');
 
     if(modalTitle) modalTitle.innerText = title;
-    if(modalPrice) modalPrice.innerText = price;
+    if(modalPrice) modalPrice.innerText = priceText;
     if(modalImg) modalImg.src = imgSrc;
 
     if (strikeEl && modalStrike) {
