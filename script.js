@@ -443,6 +443,87 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 
+    // Render Category Page dynamically
+    if (window.location.pathname.includes('category.html') || window.location.href.includes('category.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        let categoryParam = urlParams.get('cat');
+        
+        const breadcrumbSpan = document.querySelector('.breadcrumb span');
+        const bannerH2 = document.querySelector('.banner-overlay h2');
+        const bannerP = document.querySelector('.banner-overlay p');
+        const sidebarLinks = document.querySelectorAll('.filter-list a');
+        
+        if (categoryParam) {
+            if (breadcrumbSpan) breadcrumbSpan.innerText = categoryParam;
+            if (bannerH2) bannerH2.innerText = categoryParam + " Terlengkap";
+            if (bannerP) bannerP.innerText = `Temukan segala kebutuhan ${categoryParam.toLowerCase()}mu dengan harga terbaik.`;
+        } else {
+            categoryParam = 'Semua Kategori';
+            if (breadcrumbSpan) breadcrumbSpan.innerText = categoryParam;
+            if (bannerH2) bannerH2.innerText = "Semua Produk";
+            if (bannerP) bannerP.innerText = `Pilih berbagai kategori produk terbaik di TokoYuka.`;
+        }
+
+        // Update active sidebar link
+        sidebarLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.innerText.toLowerCase().includes(categoryParam.toLowerCase())) {
+                link.classList.add('active');
+            }
+        });
+
+        const grid = document.querySelector('.category-main-content .etalase-grid');
+        if (grid) {
+            grid.innerHTML = '';
+            let foundAny = false;
+            
+            for (const key in productsDatabase) {
+                const prod = productsDatabase[key];
+                if (categoryParam === 'Semua Kategori' || prod.category.toLowerCase().includes(categoryParam.toLowerCase()) || categoryParam.toLowerCase().includes(prod.category.toLowerCase())) {
+                    foundAny = true;
+                    const card = document.createElement('div');
+                    card.className = 'etalase-card';
+                    card.style.cursor = 'pointer';
+                    card.title = 'Lihat Produk';
+                    card.onclick = () => window.location.href = `product.html?id=${key}`;
+                    
+                    let badgeHtml = '';
+                    if (prod.discount) {
+                        badgeHtml = `<span class="discount-badge">${prod.discount}</span>`;
+                    } else {
+                        let numPrice = parseInt(prod.price.replace(/[^0-9]/g, ''));
+                        if (!isNaN(numPrice) && numPrice > 50000) {
+                            badgeHtml = `<span class="cashback-badge">Gratis Ongkir</span>`;
+                        } else if (!isNaN(numPrice) && numPrice < 15000) {
+                            badgeHtml = `<span class="cashback-badge">Terlaris</span>`;
+                        }
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="product-image">
+                            <img src="${prod.img}" alt="${prod.title}">
+                            ${badgeHtml}
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${prod.title}</h3>
+                            <div class="product-price">${prod.price}</div>
+                            ${prod.strike ? `<div class="product-price-strike">${prod.strike}</div>` : ''}
+                            <div class="product-meta">
+                                <span class="rating"><i class="ph-fill ph-star"></i> ${prod.rating} | ${prod.sold}</span>
+                                <span class="location"><i class="ph ph-map-pin"></i> ${prod.location}</span>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+            }
+            
+            if (!foundAny) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-secondary);"><i class="ph ph-package" style="font-size:3rem; color:var(--text-secondary); margin-bottom:1rem;"></i><br>Belum ada produk di kategori <b>${categoryParam}</b>.</div>`;
+            }
+        }
+    }
+
     // Inisialisasi Checkout
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
