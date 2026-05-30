@@ -209,6 +209,31 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Cek status login
+            if (localStorage.getItem('yuka_logged_in') !== 'true') {
+                let popup = document.createElement('div');
+                popup.className = 'custom-popup-overlay';
+                popup.innerHTML = `
+                    <div class="custom-popup-card">
+                        <div class="popup-icon"><i class="ph ph-warning-circle"></i></div>
+                        <h3>Akses Ditolak</h3>
+                        <p>Anda harus masuk (login) atau mendaftar akun terlebih dahulu untuk mengakses halaman checkout.</p>
+                        <div class="popup-actions" style="justify-content: center;">
+                            <button class="popup-btn-primary" onclick="window.location.href='login.html'">Ke Halaman Login</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(popup);
+                
+                const mainContent = document.querySelector('main');
+                if (mainContent) mainContent.style.display = 'none';
+                
+                requestAnimationFrame(() => {
+                    setTimeout(() => popup.classList.add('active'), 10);
+                });
+                return; // Hentikan eksekusi script selanjutnya
+            }
+
             const cartData = localStorage.getItem('yuka_cart');
             const summaryItems = document.getElementById('summary-items');
             const summarySubtotal = document.getElementById('summary-subtotal');
