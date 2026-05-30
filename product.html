@@ -166,7 +166,7 @@
                 </div>
                 <div class="pd-action-buttons">
                     <button class="primary-btn add-to-cart-btn" onclick="addCustomToCart(99, 'Pensil Warna Set 48 Warna Premium', 'Alat Tulis', 45000, 'set', 'ph-pencil', 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=800&h=800&fit=crop', parseInt(document.querySelector('.qty-input').value))">+ Keranjang</button>
-                    <button class="checkout-btn buy-now-btn" onclick="if(localStorage.getItem('yuka_logged_in')==='true'){window.location.href='checkout.html'}else{alert('Silakan masuk (login) terlebih dahulu untuk memesan barang.'); window.location.href='login.html'}">Beli Langsung</button>
+                    <button class="checkout-btn buy-now-btn" onclick="if(localStorage.getItem('yuka_logged_in')==='true'){window.location.href='checkout.html'}else{showAuthPopup()}">Beli Langsung</button>
                 </div>
                 <div class="pd-action-footer">
                     <a href="#"><i class="ph ph-chat-teardrop"></i> Chat</a>
