@@ -539,31 +539,7 @@ if (productModalOverlay) {
     });
 }
 
-// ==========================================
-// Global Interactions (Theme Toggle)
-// ==========================================
-const themeToggleBtn = document.getElementById('theme-toggle-btn');
-
-// Apply theme on load
-if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    if(themeToggleBtn) themeToggleBtn.innerHTML = '<i class="ph ph-sun"></i>';
-}
-
-if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-            themeToggleBtn.innerHTML = '<i class="ph ph-moon"></i>';
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeToggleBtn.innerHTML = '<i class="ph ph-sun"></i>';
-        }
-    });
-}
+// Theme toggle is handled by transition.js
 
 // ==========================================
 // Product Page Interactions
