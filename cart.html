@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja | TokoYuka</title>
+    <meta name="description" content="Periksa dan kelola keranjang belanja Anda di TokoYuka.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css?v=26">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="ph ph-device-mobile"></i> Download YukaApp</a>
+            <a href="tentang.html">Tentang Kami</a>
+            <a href="#">Mitra Yuka</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">Promo</a>
+            <a href="#">Pusat Bantuan</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <div class="logo" style="cursor:pointer;" onclick="window.location.href='index.html'">TokoYuka.</div>
+            
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Cari buku tulis, printer, elektronik...">
+                    <button class="search-btn" aria-label="Cari"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <i class="ph-fill ph-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </a>
+                <a href="#" class="icon-btn"><i class="ph ph-bell"></i></a>
+                <div class="divider"></div>
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="nav-btn outline-btn" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="nav-btn primary-btn" onclick="window.location.href='register.html'">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="category-page-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Beranda</a> &gt; 
+            <span>Keranjang Belanja</span>
+        </nav>
+
+        <h1 style="margin-bottom: 2rem; font-size: 2rem;">Keranjang Belanja</h1>
+
+        <div class="category-layout" style="grid-template-columns: 1fr 350px;">
+            <!-- Left: Cart Items -->
+            <div class="cart-items-wrapper">
+                <div id="cart-items-container" class="cart-items" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Items will be injected by JS -->
+                </div>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <aside class="cart-summary">
+                <div class="product-action-box" style="position: sticky; top: 120px; display: flex; flex-direction: column; align-items: stretch;">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Ringkasan Belanja</h3>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--text-secondary);">
+                        <span>Total Harga</span>
+                        <strong class="cart-total-price" style="color: var(--text-primary); font-size: 1.1rem;">Rp 0</strong>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; color: var(--text-secondary);">
+                        <span>Diskon</span>
+                        <strong style="color: var(--accent-color);">Rp 0</strong>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 600; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                        <span>Total Tagihan</span>
+                        <strong class="cart-total-price">Rp 0</strong>
+                    </div>
+
+                    <button class="primary-btn checkout-btn" id="checkout-btn" style="width: 100%; padding: 1rem; font-size: 1.1rem; border-radius: 8px;">
+                        Beli Sekarang
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>TokoYuka.</h3>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis, percetakan modern, dan elektronik.</p>
+            </div>
+            <div class="footer-links">
+                <h4>TokoYuka</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="#">Karir</a>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <a href="kontak.html">Pusat Bantuan</a>
+                <a href="#">Cara Pembelian</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TokoYuka. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation for Mobile -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <i class="ph ph-house"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="category.html" class="bottom-nav-item">
+            <i class="ph ph-magnifying-glass"></i>
+            <span>Kategori</span>
+        </a>
+        <a href="cart.html" class="bottom-nav-item active">
+            <i class="ph-fill ph-shopping-cart"></i>
+            <span>Keranjang</span>
+        </a>
+        <a href="login.html" class="bottom-nav-item">
+            <i class="ph ph-user"></i>
+            <span>Profil</span>
+        </a>
+    </nav>
+
+    <script src="script.js?v=26"></script>
+    <script src="transition.js?v=3"></script>
+</body>
+</html>
