@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=25">
+    <link rel="stylesheet" href="style.css?v=27">
 </head>
 <body>
     <!-- Top Bar -->
@@ -142,7 +142,7 @@
                     <strong>Rp 45.000</strong>
                 </div>
                 <div class="pd-action-buttons">
-                    <button class="primary-btn add-to-cart-btn" onclick="alert('Berhasil ditambah ke keranjang')">+ Keranjang</button>
+                    <button class="primary-btn add-to-cart-btn" onclick="addCustomToCart(99, 'Pensil Warna Set 48 Warna Premium', 'Alat Tulis', 45000, 'set', 'ph-pencil', 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=800&h=800&fit=crop', parseInt(document.querySelector('.qty-input').value))">+ Keranjang</button>
                     <button class="outline-btn checkout-btn" onclick="window.location.href='checkout.html'">Beli Langsung</button>
                 </div>
                 <div class="pd-action-footer">
@@ -197,8 +197,11 @@
         </a>
     </nav>
 
-    <script src="script.js?v=9"></script>
-    <script src="transition.js?v=3"></script>
+    <script src="script.js?v=29"></script>
+    <script src="transition.js?v=28"></script>
 </body>
 </html>
+
+
+
 
