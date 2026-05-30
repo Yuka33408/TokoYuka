@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=27">
+    <link rel="stylesheet" href="style.css?v=32">
 </head>
 <body>
     <!-- Top Bar -->
@@ -40,7 +40,7 @@
             <div class="header-actions">
                 <a href="cart.html" class="icon-btn cart-btn">
                     <i class="ph ph-shopping-cart"></i>
-                    <span class="cart-badge">2</span>
+                    <span class="cart-badge" style="display: none;">0</span>
                 </a>
                 <a href="#" class="icon-btn"><i class="ph ph-bell"></i></a>
                 <div class="divider"></div>
@@ -92,24 +92,47 @@
                 </div>
 
                 <div class="pd-tabs">
-                    <button class="pd-tab active">Detail</button>
-                    <button class="pd-tab">Spesifikasi</button>
-                    <button class="pd-tab">Info Penting</button>
+                    <button class="pd-tab active" data-target="tab-detail">Detail</button>
+                    <button class="pd-tab" data-target="tab-spec">Spesifikasi</button>
+                    <button class="pd-tab" data-target="tab-info">Info Penting</button>
                 </div>
 
-                <div class="pd-description">
-                    <p><strong>Kondisi:</strong> Baru</p>
-                    <p><strong>Min. Pemesanan:</strong> 1 Buah</p>
-                    <p><strong>Etalase:</strong> Alat Tulis & Lukis</p>
-                    <br>
-                    <p>Pensil Warna Set 48 Warna dengan kualitas premium. Cocok untuk seniman profesional maupun pemula. Warna cerah, mudah di-blend, dan tidak mudah patah.</p>
-                    <ul>
-                        <li>Isi 48 warna lengkap</li>
-                        <li>Pigmentasi tinggi</li>
-                        <li>Inti pensil kuat 3.3mm</li>
-                        <li>Aman digunakan (Non-toxic)</li>
-                    </ul>
-                    <p>Garansi resmi TokoYuka 100% Original. Silakan langsung dipesan, barang selalu ready stock!</p>
+                <div class="pd-tab-contents" style="min-height: 250px;">
+                    <div class="pd-description active" id="tab-detail">
+                        <p><strong>Kondisi:</strong> Baru</p>
+                        <p><strong>Min. Pemesanan:</strong> 1 Buah</p>
+                        <p><strong>Etalase:</strong> Alat Tulis & Lukis</p>
+                        <br>
+                        <p>Pensil Warna Set 48 Warna dengan kualitas premium. Cocok untuk seniman profesional maupun pemula. Warna cerah, mudah di-blend, dan tidak mudah patah.</p>
+                        <ul>
+                            <li>Isi 48 warna lengkap</li>
+                            <li>Pigmentasi tinggi</li>
+                            <li>Inti pensil kuat 3.3mm</li>
+                            <li>Aman digunakan (Non-toxic)</li>
+                        </ul>
+                        <p>Garansi resmi TokoYuka 100% Original. Silakan langsung dipesan, barang selalu ready stock!</p>
+                    </div>
+
+                    <div class="pd-description" id="tab-spec" style="display: none;">
+                        <ul style="list-style-type: none; padding: 0; color: var(--text-secondary);">
+                            <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;"><span>Merek</span> <strong style="color: var(--text-primary);">Faber-Castell</strong></li>
+                            <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;"><span>Tipe</span> <strong style="color: var(--text-primary);">Classic Colour Pencils</strong></li>
+                            <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;"><span>Jumlah Warna</span> <strong style="color: var(--text-primary);">48 Warna</strong></li>
+                            <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;"><span>Ukuran Inti</span> <strong style="color: var(--text-primary);">3.3 mm</strong></li>
+                            <li style="padding: 0.8rem 0; display: flex; justify-content: space-between;"><span>Bahan Dasar</span> <strong style="color: var(--text-primary);">Kayu Bersertifikat FSC</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="pd-description" id="tab-info" style="display: none;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);"><i class="ph ph-shield-check" style="color: var(--accent-color); margin-right: 5px;"></i> Kebijakan Pengembalian</h4>
+                            <p style="color: var(--text-secondary); line-height: 1.5;">Barang yang sudah dibeli dapat ditukar jika terdapat cacat pabrik dalam waktu 7 hari setelah barang diterima. Wajib menyertakan video unboxing penuh tanpa jeda.</p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);"><i class="ph ph-truck" style="color: var(--accent-color); margin-right: 5px;"></i> Jadwal Pengiriman</h4>
+                            <p style="color: var(--text-secondary); line-height: 1.5;">Pesanan terkonfirmasi sebelum jam 15:00 akan dikirim pada hari yang sama. Pengiriman tidak beroperasi pada Hari Minggu dan Tanggal Merah.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Store Info Card -->
@@ -188,8 +211,7 @@
             <span>Kategori</span>
         </a>
         <a href="cart.html" class="bottom-nav-item">
-            <i class="ph ph-shopping-cart"></i>
-            <span>Keranjang</span>
+            <div style="position: relative;"><i class="ph ph-shopping-cart"></i><span class="cart-badge" style="display: none;">0</span></div><span>Keranjang</span>
         </a>
         <a href="login.html" class="bottom-nav-item">
             <i class="ph ph-user"></i>
@@ -197,10 +219,16 @@
         </a>
     </nav>
 
-    <script src="script.js?v=29"></script>
+    <script src="script.js?v=34"></script>
     <script src="transition.js?v=28"></script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
