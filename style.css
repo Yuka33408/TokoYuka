@@ -2771,6 +2771,7 @@ footer {
     font-weight: bold;
     font-size: 0.85rem;
     border-bottom-left-radius: 8px;
+    z-index: 2;
 }
 .fs-info {
     padding: 0.8rem;
@@ -2837,14 +2838,15 @@ footer {
 }
 .cashback-badge {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     background: #10b981;
     color: white;
     font-size: 0.7rem;
     padding: 0.2rem 0.5rem;
     font-weight: 600;
-    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index: 2;
 }
 .etalase-card .product-image {
     height: 180px;
