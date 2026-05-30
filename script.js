@@ -190,7 +190,12 @@ const updateCart = () => {
     // Update Badge (Bisa ada lebih dari satu di halaman jika pakai navbar desktop + mobile)
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     cartBadges.forEach(badge => {
-        badge.textContent = totalItems;
+        if (totalItems > 0) {
+            badge.style.display = 'flex';
+            badge.textContent = totalItems;
+        } else {
+            badge.style.display = 'none';
+        }
     });
 
     // Update Total Harga (Hanya jika ada elemennya, misalnya di cart.html)
