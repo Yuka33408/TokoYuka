@@ -1849,6 +1849,10 @@ footer {
     background: rgba(255, 255, 255, 0.6);
 }
 
+.mobile-checkout-action {
+    display: none;
+}
+
 .payment-method.active {
     border-color: var(--accent-color);
     background: rgba(14, 165, 233, 0.1);
@@ -2143,6 +2147,30 @@ footer {
 
     .checkout-section {
         grid-template-columns: 1fr;
+        padding: 60px 1rem 6rem;
+    }
+    .checkout-form-card, .order-summary {
+        padding: 1.25rem;
+    }
+    .mobile-checkout-action {
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-surface);
+        padding: 15px 20px;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        z-index: 999;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        border-top: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+    }
+    .order-summary #pay-btn {
+        display: none; /* Hide the duplicate desktop submit button */
     }
 
     .contact-grid,
