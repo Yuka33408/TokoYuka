@@ -663,6 +663,19 @@ if (pdTabs.length > 0) {
         tab.addEventListener('click', () => {
             pdTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
+            
+            const target = tab.getAttribute('data-target');
+            if(target) {
+                document.querySelectorAll('.pd-tab-contents .pd-description').forEach(content => {
+                    if(content.id === target) {
+                        content.style.display = 'block';
+                        content.classList.add('active');
+                    } else {
+                        content.style.display = 'none';
+                        content.classList.remove('active');
+                    }
+                });
+            }
         });
     });
 }
