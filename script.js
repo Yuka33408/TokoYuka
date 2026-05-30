@@ -344,29 +344,103 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inisialisasi Fitur Pencarian
-    const searchInput = document.querySelector('.search-bar input');
-    const searchBtn = document.querySelector('.search-bar button');
+    // Inisialisasi Fitur Pencarian Global
+    const searchInputs = document.querySelectorAll('.search-box input, .search-bar input');
+    const searchBtns = document.querySelectorAll('.search-box .search-btn, .search-bar .search-btn');
 
-    if (searchInput && searchBtn) {
-        const handleSearch = () => {
-            searchQuery = searchInput.value;
-            renderProducts();
-            // Scroll ke bagian produk
-            const koleksiSection = document.getElementById('koleksi');
-            if (koleksiSection) {
-                koleksiSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const executeSearch = (query, isRealtime = false) => {
+        const path = window.location.pathname;
+        const isCatalogPage = path.includes('index.html') || path.includes('category.html') || path.endsWith('/') || path.endsWith('website');
+        
+        if (!isCatalogPage) {
+            if (!isRealtime && query) {
+                window.location.href = `index.html?search=${encodeURIComponent(query)}`;
             }
-        };
+            return;
+        }
 
-        searchBtn.addEventListener('click', handleSearch);
-        searchInput.addEventListener('keyup', (e) => {
-            searchQuery = searchInput.value;
-            renderProducts(); // Real-time search
-            if (e.key === 'Enter') {
-                handleSearch();
+        // Kalau di halaman katalog, filter kartunya
+        const cards = document.querySelectorAll('.etalase-card, .fs-card');
+        let found = false;
+        
+        if (!query) {
+            cards.forEach(card => {
+                if(card.classList.contains('etalase-card')) card.style.display = 'flex';
+                if(card.classList.contains('fs-card')) card.style.display = 'block';
+            });
+            const noResultMsg = document.getElementById('no-result-msg');
+            if (noResultMsg) noResultMsg.style.display = 'none';
+            return;
+        }
+
+        cards.forEach(card => {
+            const titleEl = card.querySelector('.product-title');
+            if (titleEl) {
+                const title = titleEl.innerText.toLowerCase();
+                if (title.includes(query.toLowerCase())) {
+                    if(card.classList.contains('etalase-card')) card.style.display = 'flex';
+                    if(card.classList.contains('fs-card')) card.style.display = 'block';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
             }
         });
+
+        let noResultMsg = document.getElementById('no-result-msg');
+        if (!found) {
+            if (!noResultMsg) {
+                noResultMsg = document.createElement('div');
+                noResultMsg.id = 'no-result-msg';
+                noResultMsg.style.gridColumn = '1 / -1';
+                noResultMsg.style.textAlign = 'center';
+                noResultMsg.style.padding = '3rem 1rem';
+                noResultMsg.style.color = 'var(--text-secondary)';
+                noResultMsg.style.fontSize = '1.1rem';
+                
+                const grid = document.querySelector('.etalase-grid') || document.querySelector('.category-main-content');
+                if (grid) grid.appendChild(noResultMsg);
+            }
+            noResultMsg.innerHTML = `<i class="ph ph-warning-circle" style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent-color);"></i><br>Pencarian untuk "<b>${query}</b>" tidak ditemukan.`;
+            noResultMsg.style.display = 'block';
+        } else if (noResultMsg) {
+            noResultMsg.style.display = 'none';
+        }
+
+        if (!isRealtime) {
+            const targetSection = document.querySelector('.recommendation-section') || document.querySelector('.category-main-content');
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    };
+
+    searchBtns.forEach((btn, index) => {
+        const input = searchInputs[index];
+        if (input && btn) {
+            btn.addEventListener('click', () => {
+                executeSearch(input.value.trim(), false);
+            });
+            input.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    executeSearch(input.value.trim(), false);
+                } else {
+                    executeSearch(input.value.trim(), true);
+                }
+            });
+        }
+    });
+
+    const urlParamsSearch = new URLSearchParams(window.location.search);
+    const searchParam = urlParamsSearch.get('search');
+    const pathParams = window.location.pathname;
+    const isCatalog = pathParams.includes('index.html') || pathParams.includes('category.html') || pathParams.endsWith('/') || pathParams.endsWith('website');
+    
+    if (searchParam && isCatalog) {
+        searchInputs.forEach(input => input.value = searchParam);
+        setTimeout(() => {
+            executeSearch(searchParam, false);
+        }, 100);
     }
 
     // Inisialisasi Checkout
