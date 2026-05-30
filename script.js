@@ -494,7 +494,46 @@ const modalStrike = document.getElementById('modal-product-strike');
 const modalRating = document.getElementById('modal-product-rating');
 const modalSold = document.getElementById('modal-product-sold');
 
+// Modal Quantity
+const modalQtyMinus = document.getElementById('modal-qty-minus');
+const modalQtyPlus = document.getElementById('modal-qty-plus');
+const modalQtyInput = document.getElementById('modal-qty-input');
+
+if (modalQtyMinus && modalQtyPlus && modalQtyInput) {
+    modalQtyMinus.addEventListener('click', () => {
+        let val = parseInt(modalQtyInput.value);
+        if (val > 1) modalQtyInput.value = val - 1;
+    });
+    modalQtyPlus.addEventListener('click', () => {
+        let val = parseInt(modalQtyInput.value);
+        modalQtyInput.value = val + 1;
+    });
+}
+
+window.modalAddToCart = function() {
+    if (!modalTitle || !modalPrice) return;
+    
+    // Parse price to integer (e.g., "Rp 95.000" -> 95000)
+    let priceStr = modalPrice.innerText.replace(/[^\d]/g, '');
+    let priceInt = parseInt(priceStr) || 0;
+    
+    let qty = modalQtyInput ? parseInt(modalQtyInput.value) : 1;
+    let title = modalTitle.innerText;
+    let imgSrc = modalImg ? modalImg.src : '';
+    
+    // Generate a pseudo-ID based on title length or hash so it stacks properly if added again
+    let pseudoId = title.length + priceInt; 
+    
+    // Call the global addCustomToCart
+    window.addCustomToCart(pseudoId, title, 'Produk', priceInt, 'pcs', 'ph-package', imgSrc, qty);
+    
+    if (closeModalBtn) closeModalBtn.click();
+};
+
 window.openProductModal = function(cardElement) {
+    // Reset modal qty to 1
+    if (modalQtyInput) modalQtyInput.value = 1;
+    
     // Extract info from clicked card
     const title = cardElement.querySelector('.product-title').innerText;
     const price = cardElement.querySelector('.product-price').innerText;
