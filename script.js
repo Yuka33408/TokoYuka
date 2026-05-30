@@ -1025,7 +1025,7 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
     }
 
     if(storeLoc) {
-        storeLoc.innerHTML = `<span class="online-dot"></span> Online 5 menit lalu â€¢ ${product.location}`;
+        storeLoc.innerHTML = `<span class="online-dot"></span> Online 5 menit lalu &bull; ${product.location}`;
     }
     
     // Setup the price for the subtotal calculator
