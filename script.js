@@ -473,28 +473,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const grid = document.querySelector('.category-main-content .etalase-grid');
+        const sortingTabs = document.querySelectorAll('.sorting-tab');
+
         if (grid) {
-            grid.innerHTML = '';
-            let foundAny = false;
-            
-            for (const key in productsDatabase) {
-                const prod = productsDatabase[key];
-                if (categoryParam === 'Semua Kategori' || prod.category.toLowerCase().includes(categoryParam.toLowerCase()) || categoryParam.toLowerCase().includes(prod.category.toLowerCase())) {
-                    foundAny = true;
+            const parsePrice = (priceStr) => {
+                return parseInt(priceStr.replace(/[^0-9]/g, '')) || 0;
+            };
+            const parseSold = (soldStr) => {
+                if (!soldStr) return 0;
+                let num = parseFloat(soldStr.replace(/[^0-9.]/g, '')) || 0;
+                if (soldStr.toLowerCase().includes('rb')) num *= 1000;
+                if (soldStr.toLowerCase().includes('jt')) num *= 1000000;
+                return num;
+            };
+
+            const renderGrid = (sortBy = 'Terkait') => {
+                grid.innerHTML = '';
+                
+                let matchedProducts = [];
+                for (const key in productsDatabase) {
+                    const prod = productsDatabase[key];
+                    if (categoryParam === 'Semua Kategori' || prod.category.toLowerCase().includes(categoryParam.toLowerCase()) || categoryParam.toLowerCase().includes(prod.category.toLowerCase())) {
+                        matchedProducts.push({ key, ...prod });
+                    }
+                }
+                
+                if (sortBy === 'Terbaru') {
+                    matchedProducts.reverse();
+                } else if (sortBy === 'Terlaris') {
+                    matchedProducts.sort((a, b) => parseSold(b.sold) - parseSold(a.sold));
+                } else if (sortBy === 'Termurah') {
+                    matchedProducts.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+                }
+
+                if (matchedProducts.length === 0) {
+                    grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-secondary);"><i class="ph ph-package" style="font-size:3rem; color:var(--text-secondary); margin-bottom:1rem;"></i><br>Belum ada produk di kategori <b>${categoryParam}</b>.</div>`;
+                    return;
+                }
+                
+                matchedProducts.forEach(prod => {
                     const card = document.createElement('div');
                     card.className = 'etalase-card';
                     card.style.cursor = 'pointer';
                     card.title = 'Lihat Produk';
-                    card.onclick = () => window.location.href = `product.html?id=${key}`;
+                    card.onclick = () => window.location.href = `product.html?id=${prod.key}`;
                     
                     let badgeHtml = '';
                     if (prod.discount) {
                         badgeHtml = `<span class="discount-badge">${prod.discount}</span>`;
                     } else {
-                        let numPrice = parseInt(prod.price.replace(/[^0-9]/g, ''));
-                        if (!isNaN(numPrice) && numPrice > 50000) {
+                        let numPrice = parsePrice(prod.price);
+                        if (numPrice > 50000) {
                             badgeHtml = `<span class="cashback-badge">Gratis Ongkir</span>`;
-                        } else if (!isNaN(numPrice) && numPrice < 15000) {
+                        } else if (numPrice < 15000) {
                             badgeHtml = `<span class="cashback-badge">Terlaris</span>`;
                         }
                     }
@@ -515,11 +546,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `;
                     grid.appendChild(card);
-                }
-            }
-            
-            if (!foundAny) {
-                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-secondary);"><i class="ph ph-package" style="font-size:3rem; color:var(--text-secondary); margin-bottom:1rem;"></i><br>Belum ada produk di kategori <b>${categoryParam}</b>.</div>`;
+                });
+            };
+
+            // Initial render
+            renderGrid('Terkait');
+
+            if (sortingTabs.length > 0) {
+                sortingTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        sortingTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        renderGrid(tab.innerText.trim());
+                    });
+                });
             }
         }
     }
