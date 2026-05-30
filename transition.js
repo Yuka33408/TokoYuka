@@ -1,5 +1,5 @@
 // Theme Initialization (Run immediately to prevent flash of unstyled theme)
-const savedTheme = localStorage.getItem('yuka_theme') || 'light';
+const savedTheme = localStorage.getItem('theme') || 'light';
 if (savedTheme === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
 }
@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
                 document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('yuka_theme', 'light');
+                localStorage.setItem('theme', 'light');
                 themeIcon.className = 'ph ph-moon';
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('yuka_theme', 'dark');
+                localStorage.setItem('theme', 'dark');
                 themeIcon.className = 'ph ph-sun';
             }
         });
