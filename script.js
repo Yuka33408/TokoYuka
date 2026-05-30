@@ -194,7 +194,7 @@ window.showToast = (message) => {
         toast.style.bottom = '80px';
         toast.style.left = '50%';
         toast.style.transform = 'translateX(-50%)';
-        toast.style.background = 'var(--primary-color)';
+        toast.style.background = 'var(--accent-gradient)';
         toast.style.color = 'white';
         toast.style.padding = '0.8rem 1.5rem';
         toast.style.borderRadius = '50px';
