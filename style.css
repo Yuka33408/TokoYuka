@@ -3185,6 +3185,9 @@ footer {
     top: 100px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
+[data-theme="dark"] .product-action-box {
+    background: #1e293b; /* Opaque background to prevent text overlapping */
+}
 .product-action-box h3 {
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -3473,6 +3476,8 @@ footer {
     .category-layout { grid-template-columns: minmax(0, 1fr); }
     .category-sidebar { display: none; }
     .sorting-bar { overflow-x: auto; white-space: nowrap; }
+    
+    .section-header-sticky { position: static; padding: 0; margin-bottom: 1rem; background: transparent; }
 
     /* Hide top bar and non-essential header items */
     .top-bar { display: none; }
