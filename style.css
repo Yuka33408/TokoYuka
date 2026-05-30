@@ -3548,6 +3548,7 @@ footer {
         display: flex;
         flex-direction: row;
         position: fixed;
+        top: auto;
         bottom: 70px; /* Above bottom nav */
         left: 0;
         right: 0;
