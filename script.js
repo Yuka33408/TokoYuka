@@ -164,6 +164,24 @@ const addToCart = (productId) => {
     updateCart();
 };
 
+// Tambah Produk Custom ke Keranjang (untuk halaman statis)
+window.addCustomToCart = (id, name, category, price, unit, icon, image, qty = 1) => {
+    const existingItem = cart.find(item => item.id === id);
+    if (existingItem) {
+        existingItem.quantity += qty;
+    } else {
+        cart.push({ id, name, category, price, unit, icon, image, quantity: qty });
+    }
+    
+    cartBadges.forEach(badge => {
+        badge.classList.add('pop');
+        setTimeout(() => badge.classList.remove('pop'), 300);
+    });
+    
+    updateCart();
+    alert(name + ' berhasil ditambahkan ke keranjang!');
+};
+
 // Update Keranjang (UI & Data)
 const updateCart = () => {
     // Simpan ke localStorage setiap ada perubahan
@@ -567,18 +585,30 @@ if (mainImg && thumbnails.length > 0) {
 // 2. Quantity Selector
 const qtyBtns = document.querySelectorAll('.qty-btn');
 const qtyInput = document.querySelector('.qty-input');
+const subtotalEl = document.querySelector('.pd-subtotal strong');
 if (qtyBtns.length === 2 && qtyInput) {
     const minusBtn = qtyBtns[0];
     const plusBtn = qtyBtns[1];
     
+    const updateSubtotal = () => {
+        if(subtotalEl) {
+            const price = 45000; // Harga statis untuk demo product.html
+            subtotalEl.textContent = formatRupiah(price * parseInt(qtyInput.value));
+        }
+    };
+
     minusBtn.addEventListener('click', () => {
         let val = parseInt(qtyInput.value);
-        if (val > 1) qtyInput.value = val - 1;
+        if (val > 1) {
+            qtyInput.value = val - 1;
+            updateSubtotal();
+        }
     });
     
     plusBtn.addEventListener('click', () => {
         let val = parseInt(qtyInput.value);
         qtyInput.value = val + 1;
+        updateSubtotal();
     });
 }
 
