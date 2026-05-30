@@ -3470,7 +3470,7 @@ footer {
    ========================================================================== */
 @media (max-width: 768px) {
     /* Category specific fixes */
-    .category-layout { grid-template-columns: 1fr; }
+    .category-layout { grid-template-columns: minmax(0, 1fr); }
     .category-sidebar { display: none; }
     .sorting-bar { overflow-x: auto; white-space: nowrap; }
 
@@ -3537,7 +3537,7 @@ footer {
 
     /* Grid 2 Columns for Etalase */
     .etalase-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
     }
     .product-title { font-size: 0.85rem; }
@@ -3569,7 +3569,7 @@ footer {
     
     .pd-tabs { gap: 1rem; overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
     
-    .product-detail-grid { padding-bottom: 120px; } /* Give room for sticky box */
+    .product-detail-grid { grid-template-columns: minmax(0, 1fr); padding-bottom: 120px; } /* Give room for sticky box */
     
     /* Banners */
     .banner-container { flex-direction: column; }
