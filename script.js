@@ -162,6 +162,7 @@ const addToCart = (productId) => {
     });
 
     updateCart();
+    showToast('Berhasil ditambahkan ke keranjang!');
 };
 
 // Tambah Produk Custom ke Keranjang (untuk halaman statis)
@@ -179,8 +180,55 @@ window.addCustomToCart = (id, name, category, price, unit, icon, image, qty = 1)
     });
     
     updateCart();
-    alert(name + ' berhasil ditambahkan ke keranjang!');
+    showToast('Berhasil ditambahkan ke keranjang!');
 };
+
+// Toast Notification System
+window.showToast = (message) => {
+    let toast = document.getElementById('yuka-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'yuka-toast';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '80px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = 'var(--primary-color)';
+        toast.style.color = 'white';
+        toast.style.padding = '0.8rem 1.5rem';
+        toast.style.borderRadius = '50px';
+        toast.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = '500';
+        toast.style.fontSize = '0.9rem';
+        toast.style.transition = 'all 0.3s ease';
+        toast.style.opacity = '0';
+        toast.style.pointerEvents = 'none';
+        toast.style.display = 'flex';
+        toast.style.alignItems = 'center';
+        toast.style.gap = '8px';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<i class="ph-fill ph-check-circle" style="font-size: 1.2rem; color: #4ade80;"></i> ${message}`;
+    
+    setTimeout(() => {
+        toast.style.opacity = '1';
+        toast.style.bottom = '100px';
+    }, 10);
+    
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.bottom = '80px';
+    }, 3000);
+};
+
+// Sinkronisasi antar Tab
+window.addEventListener('storage', (e) => {
+    if(e.key === 'yuka_cart') {
+        cart = JSON.parse(e.newValue || '[]');
+        updateCart();
+    }
+});
 
 // Update Keranjang (UI & Data)
 const updateCart = () => {
@@ -221,7 +269,7 @@ const updateCart = () => {
 
         itemEl.innerHTML = `
             <div class="cart-item-img">
-                <i class="ph ${item.icon}"></i>
+                ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">` : `<i class="ph ${item.icon}"></i>`}
             </div>
             <div class="cart-item-details">
                 <div class="cart-item-title">${item.name}</div>
