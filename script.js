@@ -487,7 +487,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return num;
             };
 
-            const renderGrid = (sortBy = 'Terkait') => {
+            let currentSort = 'Terkait';
+            let currentPage = 1;
+            const itemsPerPage = 8; // Menampilkan 8 produk per halaman
+
+            const renderGrid = (sortBy = 'Terkait', page = 1) => {
+                currentSort = sortBy;
+                currentPage = page;
                 grid.innerHTML = '';
                 
                 let matchedProducts = [];
@@ -508,10 +514,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (matchedProducts.length === 0) {
                     grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-secondary);"><i class="ph ph-package" style="font-size:3rem; color:var(--text-secondary); margin-bottom:1rem;"></i><br>Belum ada produk di kategori <b>${categoryParam}</b>.</div>`;
+                    const paginationContainer = document.querySelector('.pagination');
+                    if (paginationContainer) paginationContainer.innerHTML = '';
                     return;
                 }
                 
-                matchedProducts.forEach(prod => {
+                // Pagination slice
+                const totalPages = Math.ceil(matchedProducts.length / itemsPerPage);
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const paginatedProducts = matchedProducts.slice(startIndex, startIndex + itemsPerPage);
+                
+                paginatedProducts.forEach(prod => {
                     const card = document.createElement('div');
                     card.className = 'etalase-card';
                     card.style.cursor = 'pointer';
@@ -547,17 +560,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     grid.appendChild(card);
                 });
+
+                // Render Pagination Buttons
+                const paginationContainer = document.querySelector('.pagination');
+                if (paginationContainer) {
+                    paginationContainer.innerHTML = '';
+                    if (totalPages > 1) {
+                        for (let i = 1; i <= totalPages; i++) {
+                            const btn = document.createElement('button');
+                            btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                            btn.innerText = i;
+                            btn.onclick = () => {
+                                renderGrid(currentSort, i);
+                                // Scroll ke atas produk saat pindah halaman
+                                const categoryMain = document.querySelector('.category-main-content');
+                                if (categoryMain) categoryMain.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            };
+                            paginationContainer.appendChild(btn);
+                        }
+                    }
+                }
             };
 
             // Initial render
-            renderGrid('Terkait');
+            renderGrid('Terkait', 1);
 
             if (sortingTabs.length > 0) {
                 sortingTabs.forEach(tab => {
                     tab.addEventListener('click', () => {
                         sortingTabs.forEach(t => t.classList.remove('active'));
                         tab.classList.add('active');
-                        renderGrid(tab.innerText.trim());
+                        renderGrid(tab.innerText.trim(), 1); // Reset to page 1 on sort
                     });
                 });
             }
