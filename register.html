@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YukaStore | Daftar Akun</title>
+    <title>TokoYuka | Daftar Akun</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .auth-container {
             min-height: 100vh;
@@ -101,7 +101,7 @@
         <div class="auth-card">
             <div class="auth-header">
                 <h2>Buat Akun Baru</h2>
-                <p>Daftar sekarang untuk mulai berbelanja di YukaStore.</p>
+                <p>Daftar sekarang untuk mulai berbelanja di TokoYuka.</p>
             </div>
             <form id="register-form">
                 <div class="form-group">
@@ -125,12 +125,12 @@
             </form>
             <div class="auth-footer">
                 <p style="margin-bottom: 1rem;">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
-                <a href="index.html" style="display: block;"><i class="ph ph-arrow-left"></i> Kembali ke Beranda</a>
+                <a href="#" onclick="window.goBack(event)" style="display: block;"><i class="ph ph-arrow-left"></i> Kembali ke Beranda</a>
             </div>
         </div>
     </div>
 
-    <script src="transition.js"></script>
+    <script src="transition.js?v=3"></script>
     <script>
         document.getElementById('register-form').addEventListener('submit', function (e) {
             e.preventDefault();
