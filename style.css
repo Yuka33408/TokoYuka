@@ -2460,6 +2460,9 @@ footer {
     font-size: 1.2rem;
     transition: var(--transition-fast);
 }
+.search-btn i {
+    color: white;
+}
 .search-btn:hover {
     background: var(--accent-color);
     color: white;
