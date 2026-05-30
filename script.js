@@ -194,8 +194,8 @@ window.showToast = (message) => {
         toast.style.bottom = '80px';
         toast.style.left = '50%';
         toast.style.transform = 'translateX(-50%)';
-        toast.style.background = 'var(--accent-gradient)';
-        toast.style.color = 'white';
+        toast.style.backgroundColor = 'var(--text-primary)';
+        toast.style.color = 'var(--bg-surface)';
         toast.style.padding = '0.8rem 1.5rem';
         toast.style.borderRadius = '50px';
         toast.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
@@ -1087,4 +1087,3 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         };
     }
 }
-
