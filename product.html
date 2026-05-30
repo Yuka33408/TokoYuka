@@ -59,7 +59,7 @@
             <a href="index.html">Beranda</a> &gt; 
             <a href="#">Alat Tulis</a> &gt; 
             <a href="#">Pensil Warna</a> &gt; 
-            <span>Pensil Warna Set 48 Warna Premium</span>
+            <span>Faber-Castell Classic Set 48 Warna</span>
         </nav>
 
         <div class="product-detail-grid">
@@ -77,16 +77,16 @@
 
             <!-- Middle: Product Info -->
             <div class="product-info-main">
-                <h1 class="pd-title">Pensil Warna Set 48 Warna Premium Kualitas Terbaik</h1>
+                <h1 class="pd-title">Faber-Castell Classic Set 48 Warna</h1>
                 <div class="pd-meta">
                     <span class="pd-sold">Terjual 1,2 rb+</span>
                     <span class="pd-rating"><i class="ph-fill ph-star"></i> 4.9 (500 ulasan)</span>
                 </div>
                 
                 <div class="pd-price-section">
-                    <h2 class="pd-price">Rp 45.000</h2>
+                    <h2 class="pd-price">Rp 125.000</h2>
                     <div class="pd-discount-row">
-                        <span class="pd-strike">Rp 90.000</span>
+                        <span class="pd-strike">Rp 150.000</span>
                         <span class="pd-badge">Diskon 50%</span>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                         <div class="store-avatar"><i class="ph-fill ph-storefront"></i></div>
                         <div class="store-info-text">
                             <h3>TokoYuka Official</h3>
-                            <p><span class="online-dot"></span> Online 5 menit lalu • Wangi-Wangi</p>
+                            <p><span class="online-dot"></span> Online 5 menit lalu â€¢ Wangi-Wangi</p>
                         </div>
                     </div>
                     <button class="outline-btn follow-btn">Follow</button>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="pd-action-buttons">
                     <button class="primary-btn add-to-cart-btn" onclick="addCustomToCart(99, 'Pensil Warna Set 48 Warna Premium', 'Alat Tulis', 45000, 'set', 'ph-pencil', 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=800&h=800&fit=crop', parseInt(document.querySelector('.qty-input').value))">+ Keranjang</button>
-                    <button class="checkout-btn buy-now-btn" onclick="window.location.href='checkout.html'">Beli Langsung</button>
+                    <button class="checkout-btn buy-now-btn" onclick="if(localStorage.getItem('yuka_logged_in')==='true'){window.location.href='checkout.html'}else{alert('Silakan masuk (login) terlebih dahulu untuk memesan barang.'); window.location.href='login.html'}">Beli Langsung</button>
                 </div>
                 <div class="pd-action-footer">
                     <a href="#"><i class="ph ph-chat-teardrop"></i> Chat</a>
@@ -219,7 +219,7 @@
         </a>
     </nav>
 
-    <script src="script.js?v=38"></script>
+    <script src="script.js?v=39"></script>
     <script src="transition.js?v=28"></script>
 </body>
 </html>
