@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=33">
 </head>
 
 <body>
@@ -43,9 +43,9 @@
             <div class="header-actions">
                 <a href="cart.html" class="icon-btn cart-btn">
                     <i class="ph ph-shopping-cart"></i>
-                    <span class="cart-badge">2</span>
+                    <span class="cart-badge" style="display: none;">0</span>
                 </a>
-                <a href="#" class="icon-btn"><i class="ph ph-bell"></i></a>
+                <a href="notifications.html" class="icon-btn"><i class="ph ph-bell"></i></a>
                 <div class="divider"></div>
                 <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
                     <i class="ph ph-moon"></i>
@@ -81,13 +81,13 @@
                 <div class="filter-group">
                     <h3 class="filter-title">Lokasi</h3>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> <span>Jakarta Pusat</span>
+                        <input type="checkbox"> <span>Wangi-Wangi</span>
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> <span>Jakarta Selatan</span>
+                        <input type="checkbox"> <span>Wangi-Wangi</span>
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> <span>Bandung</span>
+                        <input type="checkbox"> <span>Wangi-Wangi</span>
                     </label>
                     <a href="#" class="filter-show-more">Lihat Lebih Banyak</a>
                 </div>
@@ -176,7 +176,7 @@
                         <div class="product-info">
                             <h3 class="product-title">Buku Tulis HVS A5 Polos</h3>
                             <div class="product-price">Rp 12.000</div>
-                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Jakarta Pusat</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Wangi-Wangi</div>
                             <div class="product-meta">
                                 <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 500+</span>
                             </div>
@@ -194,7 +194,7 @@
                             <h3 class="product-title">Pulpen Gel Premium 0.5mm</h3>
                             <div class="product-price">Rp 15.000</div>
                             <div class="product-price-strike">Rp 20.000</div>
-                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Bandung</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Wangi-Wangi</div>
                             <div class="product-meta">
                                 <span class="rating"><i class="ph-fill ph-star"></i> 4.9 | Terjual 2rb+</span>
                             </div>
@@ -210,7 +210,7 @@
                         <div class="product-info">
                             <h3 class="product-title">Spidol Warna Set 12</h3>
                             <div class="product-price">Rp 25.000</div>
-                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Surabaya</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Wangi-Wangi</div>
                             <div class="product-meta">
                                 <span class="rating"><i class="ph-fill ph-star"></i> 4.7 | Terjual 150+</span>
                             </div>
@@ -228,7 +228,7 @@
                             <h3 class="product-title">Faber-Castell Classic Set 48 Warna</h3>
                             <div class="product-price">Rp 45.000</div>
                             <div class="product-price-strike">Rp 90.000</div>
-                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Jakarta Selatan</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Wangi-Wangi</div>
                             <div class="product-meta">
                                 <span class="rating"><i class="ph-fill ph-star"></i> 5.0 | Terjual 80+</span>
                             </div>
@@ -244,7 +244,7 @@
                         <div class="product-info">
                             <h3 class="product-title">Buku Agenda Organizer Kulit</h3>
                             <div class="product-price">Rp 85.000</div>
-                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Jakarta Pusat</div>
+                            <div class="product-location"><i class="ph-fill ph-map-pin"></i> Wangi-Wangi</div>
                             <div class="product-meta">
                                 <span class="rating"><i class="ph-fill ph-star"></i> 4.8 | Terjual 300+</span>
                             </div>
@@ -272,6 +272,7 @@
                 <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis, percetakan modern, dan elektronik.</p>
             </div>
             <div class="footer-links">
+                <h4>TokoYuka</h4>
                 <a href="#">Tentang Kami</a>
                 <a href="#">Karir</a>
             </div>
@@ -297,8 +298,7 @@
             <span>Kategori</span>
         </a>
         <a href="cart.html" class="bottom-nav-item">
-            <i class="ph ph-shopping-cart"></i>
-            <span>Keranjang</span>
+            <div style="position: relative;"><i class="ph ph-shopping-cart"></i><span class="cart-badge" style="display: none;">0</span></div><span>Keranjang</span>
         </a>
         <a href="login.html" class="bottom-nav-item">
             <i class="ph ph-user"></i>
@@ -306,8 +306,8 @@
         </a>
     </nav>
 
-    <script src="script.js?v=10"></script>
-    <script src="transition.js?v=3"></script>
+    <script src="script.js?v=38"></script>
+    <script src="transition.js?v=28"></script>
 </body>
 
 </html>
