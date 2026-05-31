@@ -1683,6 +1683,9 @@ const trackProductView = (productId) => {
 
 const renderRecommendations = () => {
     const recommendationGrid = document.getElementById('recommendation-grid');
+    const lastViewedGrid = document.getElementById('last-viewed-grid');
+    const lastViewedSection = document.getElementById('last-viewed-section');
+    
     if (!recommendationGrid) return;
     
     let history = [];
@@ -1692,28 +1695,88 @@ const renderRecommendations = () => {
         history = [];
     }
     
-    history.sort((a, b) => {
-        if (b.count !== a.count) return b.count - a.count;
-        return b.lastViewed - a.lastViewed;
-    });
+    // Sort history by lastViewed descending for "Terakhir Dilihat"
+    history.sort((a, b) => b.lastViewed - a.lastViewed);
     
-    const maxItems = 20; 
+    const lastViewedProducts = [];
+    const viewedCategories = new Set();
     const recommendedIds = new Set();
-    const finalProductsToRender = [];
     
+    // Process history
     for (const item of history) {
-        if (productsDatabase[item.id] && finalProductsToRender.length < maxItems) {
-            finalProductsToRender.push({ id: item.id, ...productsDatabase[item.id] });
-            recommendedIds.add(item.id);
+        if (productsDatabase[item.id]) {
+            const prod = productsDatabase[item.id];
+            if (lastViewedProducts.length < 5) {
+                lastViewedProducts.push({ id: item.id, ...prod });
+                recommendedIds.add(item.id);
+            }
+            if (prod.category) {
+                viewedCategories.add(prod.category);
+            }
         }
     }
     
+    // Render "Terakhir Dilihat"
+    if (lastViewedGrid && lastViewedSection) {
+        if (lastViewedProducts.length > 0) {
+            lastViewedSection.style.display = 'block';
+            lastViewedGrid.innerHTML = '';
+            
+            lastViewedProducts.forEach(prod => {
+                const badgeHtml = prod.discount ? `<span class="discount-badge">${prod.discount}</span>` : 
+                                  (prod.strike ? `<span class="discount-badge">Promo</span>` : '');
+                                  
+                const card = document.createElement('div');
+                card.className = 'etalase-card';
+                card.style.cursor = 'pointer';
+                card.title = 'Lihat Produk';
+                card.onclick = () => window.location.href = `product.html?id=${prod.id}`;
+                
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${prod.img}" alt="${prod.title}">
+                        ${badgeHtml}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${prod.title}</h3>
+                        <div class="product-price">${prod.price}</div>
+                        <div class="product-meta">
+                            <span class="rating"><i class="ph-fill ph-star"></i> ${prod.rating} | ${prod.sold}</span>
+                            <span class="location"><i class="ph ph-map-pin"></i> ${prod.location || 'Wangi-Wangi'}</span>
+                        </div>
+                    </div>
+                `;
+                lastViewedGrid.appendChild(card);
+            });
+        } else {
+            lastViewedSection.style.display = 'none';
+        }
+    }
+    
+    // Process Recommendations (based on categories, then random)
+    const maxItems = 20; 
+    const finalProductsToRender = [];
     const allIds = Object.keys(productsDatabase);
+    
+    // Shuffle allIds
     for (let i = allIds.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [allIds[i], allIds[j]] = [allIds[j], allIds[i]];
     }
     
+    // First, fill with items matching the viewed categories
+    if (viewedCategories.size > 0) {
+        for (const id of allIds) {
+            if (finalProductsToRender.length >= maxItems) break;
+            const prod = productsDatabase[id];
+            if (!recommendedIds.has(id) && viewedCategories.has(prod.category)) {
+                finalProductsToRender.push({ id, ...prod });
+                recommendedIds.add(id); // Mark as used so it doesn't duplicate
+            }
+        }
+    }
+    
+    // Next, fill the rest with random items
     for (const id of allIds) {
         if (finalProductsToRender.length >= maxItems) break;
         if (!recommendedIds.has(id)) {
@@ -1722,6 +1785,7 @@ const renderRecommendations = () => {
         }
     }
     
+    // Render "Rekomendasi Untukmu"
     recommendationGrid.innerHTML = '';
     finalProductsToRender.forEach(prod => {
         const badgeHtml = prod.discount ? `<span class="discount-badge">${prod.discount}</span>` : 
