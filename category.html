@@ -67,31 +67,21 @@
         <div class="category-layout">
             <!-- Left Sidebar: Filters -->
             <aside class="category-sidebar">
-                <div class="filter-group">
-                    <h3 class="filter-title">Kategori Terkait</h3>
-                    <ul class="filter-list">
-                        <li><a href="#" class="active">Semua Alat Tulis</a></li>
-                        <li><a href="#">Buku & Kertas</a></li>
-                        <li><a href="#">Alat Tulis Kantor</a></li>
-                        <li><a href="#">Peralatan Melukis</a></li>
-                        <li><a href="#">Kotak Pensil</a></li>
-                    </ul>
-                </div>
-
 
                 <div class="filter-group">
                     <h3 class="filter-title">Harga</h3>
                     <div class="price-range">
                         <div class="price-input">
                             <span class="currency">Rp</span>
-                            <input type="number" placeholder="Min">
+                            <input type="number" id="price-min" placeholder="Min">
                         </div>
                         <span class="price-separator">-</span>
                         <div class="price-input">
                             <span class="currency">Rp</span>
-                            <input type="number" placeholder="Maks">
+                            <input type="number" id="price-max" placeholder="Maks">
                         </div>
                     </div>
+                    <button id="apply-price-filter" style="width: 100%; margin-top: 10px; padding: 0.5rem; background: var(--accent-color); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 500;">Terapkan</button>
                 </div>
 
 
