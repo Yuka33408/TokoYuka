@@ -52,6 +52,17 @@
     /* Teks hitam agar kontras dengan warna aksen */
 }
 
+[data-theme="dark"] .cta-button:hover,
+[data-theme="dark"] .cta-button:active,
+[data-theme="dark"] .add-to-cart-btn:hover,
+[data-theme="dark"] .add-to-cart-btn:active,
+[data-theme="dark"] .checkout-btn:hover,
+[data-theme="dark"] .checkout-btn:active,
+[data-theme="dark"] .auth-submit-btn:hover,
+[data-theme="dark"] .auth-submit-btn:active {
+    color: #ffffff !important;
+}
+
 [data-theme="dark"] .input-group input,
 [data-theme="dark"] .form-group input,
 [data-theme="dark"] .form-group textarea {
