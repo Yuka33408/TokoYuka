@@ -174,12 +174,12 @@ window.addCustomToCart = (id, name, category, price, unit, icon, image, qty = 1)
     } else {
         cart.push({ id, name, category, price, unit, icon, image, quantity: qty });
     }
-    
+
     cartBadges.forEach(badge => {
         badge.classList.add('pop');
         setTimeout(() => badge.classList.remove('pop'), 300);
     });
-    
+
     updateCart();
     showToast('Berhasil ditambahkan ke keranjang!');
 };
@@ -211,12 +211,12 @@ window.showToast = (message) => {
         document.body.appendChild(toast);
     }
     toast.innerHTML = `<i class="ph-fill ph-check-circle" style="font-size: 1.2rem; color: #4ade80;"></i> ${message}`;
-    
+
     setTimeout(() => {
         toast.style.opacity = '1';
         toast.style.bottom = '100px';
     }, 10);
-    
+
     setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.bottom = '80px';
@@ -225,7 +225,7 @@ window.showToast = (message) => {
 
 // Sinkronisasi antar Tab
 window.addEventListener('storage', (e) => {
-    if(e.key === 'yuka_cart') {
+    if (e.key === 'yuka_cart') {
         cart = JSON.parse(e.newValue || '[]');
         updateCart();
     }
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const executeSearch = (query, isRealtime = false) => {
         const path = window.location.pathname;
         const isCatalogPage = path.includes('index.html') || path.includes('category.html') || path.endsWith('/') || path.endsWith('website');
-        
+
         if (!isCatalogPage) {
             if (!isRealtime && query) {
                 window.location.href = `index.html?search=${encodeURIComponent(query)}`;
@@ -383,11 +383,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Kalau di halaman katalog, filter kartunya
         const cards = document.querySelectorAll('.etalase-card, .fs-card');
         let found = false;
-        
+
         if (!query) {
             cards.forEach(card => {
-                if(card.classList.contains('etalase-card')) card.style.display = 'flex';
-                if(card.classList.contains('fs-card')) card.style.display = 'block';
+                if (card.classList.contains('etalase-card')) card.style.display = 'flex';
+                if (card.classList.contains('fs-card')) card.style.display = 'block';
             });
             const noResultMsg = document.getElementById('no-result-msg');
             if (noResultMsg) noResultMsg.style.display = 'none';
@@ -399,8 +399,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (titleEl) {
                 const title = titleEl.innerText.toLowerCase();
                 if (title.includes(query.toLowerCase())) {
-                    if(card.classList.contains('etalase-card')) card.style.display = 'flex';
-                    if(card.classList.contains('fs-card')) card.style.display = 'block';
+                    if (card.classList.contains('etalase-card')) card.style.display = 'flex';
+                    if (card.classList.contains('fs-card')) card.style.display = 'block';
                     found = true;
                 } else {
                     card.style.display = 'none';
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 noResultMsg.style.padding = '3rem 1rem';
                 noResultMsg.style.color = 'var(--text-secondary)';
                 noResultMsg.style.fontSize = '1.1rem';
-                
+
                 const grid = document.querySelector('.etalase-grid') || document.querySelector('.category-main-content');
                 if (grid) grid.appendChild(noResultMsg);
             }
@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchParam = urlParamsSearch.get('search');
     const pathParams = window.location.pathname;
     const isCatalog = pathParams.includes('index.html') || pathParams.includes('category.html') || pathParams.endsWith('/') || pathParams.endsWith('website');
-    
+
     if (searchParam && isCatalog) {
         searchInputs.forEach(input => input.value = searchParam);
         setTimeout(() => {
@@ -468,12 +468,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('category.html') || window.location.href.includes('category.html')) {
         const urlParams = new URLSearchParams(window.location.search);
         let categoryParam = urlParams.get('cat');
-        
+
         const breadcrumbSpan = document.querySelector('.breadcrumb span');
         const bannerH2 = document.querySelector('.banner-overlay h2');
         const bannerP = document.querySelector('.banner-overlay p');
         const sidebarLinks = document.querySelectorAll('.filter-list a');
-        
+
         if (categoryParam) {
             if (breadcrumbSpan) breadcrumbSpan.innerText = categoryParam;
             if (bannerH2) bannerH2.innerText = categoryParam + " Terlengkap";
@@ -516,25 +516,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentSort = sortBy;
                 currentPage = page;
                 grid.innerHTML = '';
-                
+
                 const isGratisOngkir = document.getElementById('filter-gratis-ongkir')?.checked;
                 const isDiskon = document.getElementById('filter-diskon')?.checked;
                 const isCashback = document.getElementById('filter-cashback')?.checked;
                 const isRating4 = document.getElementById('filter-rating-4')?.checked;
                 const isRating3 = document.getElementById('filter-rating-3')?.checked;
-                
+
                 const minPriceInput = document.getElementById('price-min');
                 const maxPriceInput = document.getElementById('price-max');
                 const minPriceVal = minPriceInput && minPriceInput.value ? parseInt(minPriceInput.value) : 0;
                 const maxPriceVal = maxPriceInput && maxPriceInput.value ? parseInt(maxPriceInput.value) : Infinity;
-                
+
                 let matchedProducts = [];
                 for (const key in productsDatabase) {
                     const prod = productsDatabase[key];
                     if (categoryParam === 'Semua Kategori' || prod.category.toLowerCase().includes(categoryParam.toLowerCase()) || categoryParam.toLowerCase().includes(prod.category.toLowerCase())) {
-                        
+
                         let numPrice = parsePrice(prod.price);
-                        
+
                         if (numPrice < minPriceVal || numPrice > maxPriceVal) continue;
                         let hasDiskon = !!prod.discount || !!prod.strike;
                         let hasGratisOngkir = numPrice > 50000;
@@ -550,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         matchedProducts.push({ key, hasGratisOngkir, hasDiskon, hasCashback, ...prod });
                     }
                 }
-                
+
                 if (sortBy === 'Terbaru') {
                     matchedProducts.reverse();
                 } else if (sortBy === 'Terlaris') {
@@ -565,12 +565,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (paginationContainer) paginationContainer.innerHTML = '';
                     return;
                 }
-                
+
                 // Pagination slice
                 const totalPages = Math.ceil(matchedProducts.length / itemsPerPage);
                 const startIndex = (currentPage - 1) * itemsPerPage;
                 const paginatedProducts = matchedProducts.slice(startIndex, startIndex + itemsPerPage);
-                
+
                 paginatedProducts.forEach(prod => {
                     const card = document.createElement('a');
                     card.className = 'etalase-card';
@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.style.color = 'inherit';
                     card.title = 'Lihat Produk';
                     card.href = `product.html?id=${prod.key}`;
-                    
+
                     let badgeHtml = '';
                     if (prod.discount) {
                         badgeHtml = `<span class="discount-badge">${prod.discount}</span>`;
@@ -592,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             badgeHtml = `<span class="cashback-badge">Terlaris</span>`;
                         }
                     }
-                    
+
                     card.innerHTML = `
                         <div class="product-image">
                             <img src="${prod.img}" alt="${prod.title}">
@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
             filterCheckboxes.forEach(cb => {
                 if (cb) cb.addEventListener('change', () => renderGrid(currentSort, 1));
             });
-            
+
             const applyPriceBtn = document.getElementById('apply-price-filter');
             if (applyPriceBtn) {
                 applyPriceBtn.addEventListener('click', () => renderGrid(currentSort, 1));
@@ -697,29 +697,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const etalaseCards = document.querySelectorAll('.recommendation-section .etalase-card');
         if (etalaseCards.length > 0 && loadMoreBtn) {
             let currentItems = 10;
-            
+
             // Hide items beyond currentItems
             etalaseCards.forEach((card, index) => {
                 if (index >= currentItems) {
                     card.style.display = 'none';
                 }
             });
-            
+
             loadMoreBtn.addEventListener('click', () => {
                 loadMoreBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Memuat...';
-                
+
                 setTimeout(() => {
                     let nextItems = currentItems + 10;
-                    
+
                     etalaseCards.forEach((card, index) => {
                         if (index >= currentItems && index < nextItems) {
                             card.style.display = 'block';
                             card.style.animation = 'popIn 0.5s forwards';
                         }
                     });
-                    
+
                     currentItems = nextItems;
-                    
+
                     if (currentItems >= etalaseCards.length) {
                         loadMoreBtn.style.display = 'none';
                     } else {
@@ -784,16 +784,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     const indicatorsContainer = document.getElementById('carousel-indicators');
-    
+
     if (track && originalSlides.length > 0) {
         let currentIndex = 0;
         const totalSlides = originalSlides.length;
         let isTransitioning = false;
-        
+
         // Clone first and last slides for infinite scroll effect
         const firstClone = originalSlides[0].cloneNode(true);
         const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
-        
+
         track.appendChild(firstClone);
         track.prepend(lastClone);
 
@@ -831,7 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let activeIndex = currentIndex;
             if (currentIndex === totalSlides) activeIndex = 0;
             if (currentIndex === -1) activeIndex = totalSlides - 1;
-            
+
             indicators.forEach((dot, index) => {
                 dot.classList.toggle('active', index === activeIndex);
             });
@@ -863,19 +863,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if(nextBtn) nextBtn.addEventListener('click', nextSlide);
-        if(prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
 
         // Klaim Voucher Interaction
         const klaimBtns = document.querySelectorAll('.klaim-btn');
         klaimBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
+            btn.addEventListener('click', function (e) {
                 e.preventDefault();
                 if (!this.classList.contains('claimed')) {
                     const originalText = this.innerHTML;
                     this.innerHTML = '<i class="ph ph-spinner-gap"></i> Proses...';
                     this.style.opacity = '0.8';
-                    
+
                     setTimeout(() => {
                         this.classList.add('claimed');
                         this.innerHTML = '<i class="ph-fill ph-check-circle"></i> Berhasil';
@@ -892,10 +892,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Auto slide
         let slideInterval = setInterval(nextSlide, 5000);
-        
+
         // Pause on hover
         const carouselContainer = document.querySelector('.main-carousel');
-        if(carouselContainer) {
+        if (carouselContainer) {
             carouselContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
             carouselContainer.addEventListener('mouseleave', () => {
                 slideInterval = setInterval(nextSlide, 5000);
@@ -912,10 +912,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.classList.remove('active');
             });
             pdTabs.forEach(t => t.classList.remove('active'));
-            
+
             const targetContent = document.getElementById(targetId);
             const targetTab = document.querySelector(`.pd-tab[data-target="${targetId}"]`);
-            
+
             if (targetContent && targetTab) {
                 targetContent.style.display = 'block';
                 targetContent.classList.add('active');
@@ -982,48 +982,48 @@ if (modalQtyMinus && modalQtyPlus && modalQtyInput) {
     });
 }
 
-window.modalAddToCart = function() {
+window.modalAddToCart = function () {
     if (!modalTitle || currentModalBasePrice === 0) return;
-    
+
     let priceInt = currentModalBasePrice;
-    
+
     let qty = modalQtyInput ? parseInt(modalQtyInput.value) : 1;
     let title = modalTitle.innerText;
     let imgSrc = modalImg ? modalImg.src : '';
-    
+
     // Generate a pseudo-ID based on title length or hash so it stacks properly if added again
-    let pseudoId = title.length + priceInt; 
-    
+    let pseudoId = title.length + priceInt;
+
     // Call the global addCustomToCart
     window.addCustomToCart(pseudoId, title, 'Produk', priceInt, 'pcs', 'ph-package', imgSrc, qty);
-    
+
     if (closeModalBtn) closeModalBtn.click();
 };
 
-window.openProductModal = function(cardElement) {
+window.openProductModal = function (cardElement) {
     // Extract info from clicked card
     const title = cardElement.querySelector('.product-title').innerText;
     const priceText = cardElement.querySelector('.product-price').innerText;
     const imgSrc = cardElement.querySelector('img').src;
-    
+
     // Set base price
     let priceStr = priceText.replace(/[^\d]/g, '');
     currentModalBasePrice = parseInt(priceStr) || 0;
-    
+
     // Reset modal qty and subtotal
     if (modalQtyInput) {
         modalQtyInput.value = 1;
         updateModalSubtotal();
     }
-    
+
     // Some cards have rating and sold, some have progress-text (flash sale)
     const ratingEl = cardElement.querySelector('.rating');
     const soldEl = cardElement.querySelector('.progress-text');
     const strikeEl = cardElement.querySelector('.product-price-strike');
 
-    if(modalTitle) modalTitle.innerText = title;
-    if(modalPrice) modalPrice.innerText = priceText;
-    if(modalImg) modalImg.src = imgSrc;
+    if (modalTitle) modalTitle.innerText = title;
+    if (modalPrice) modalPrice.innerText = priceText;
+    if (modalImg) modalImg.src = imgSrc;
 
     if (strikeEl && modalStrike) {
         modalStrike.innerText = strikeEl.innerText;
@@ -1051,7 +1051,7 @@ window.openProductModal = function(cardElement) {
         }
     }
 
-    if(productModalOverlay) {
+    if (productModalOverlay) {
         productModalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent background scroll
     }
@@ -1087,7 +1087,7 @@ if (mainImg && thumbnails.length > 0) {
         thumb.addEventListener('click', () => {
             thumbnails.forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
-            
+
             const imgSrc = thumb.querySelector('img').src;
             mainImg.style.opacity = '0.5';
             setTimeout(() => {
@@ -1105,9 +1105,9 @@ const subtotalEl = document.querySelector('.pd-subtotal strong');
 if (qtyBtns.length === 2 && qtyInput) {
     const minusBtn = qtyBtns[0];
     const plusBtn = qtyBtns[1];
-    
+
     const updateSubtotal = () => {
-        if(subtotalEl) {
+        if (subtotalEl) {
             const price = window.currentProductPrice || 45000;
             subtotalEl.textContent = formatRupiah(price * parseInt(qtyInput.value));
         }
@@ -1120,7 +1120,7 @@ if (qtyBtns.length === 2 && qtyInput) {
             updateSubtotal();
         }
     });
-    
+
     plusBtn.addEventListener('click', () => {
         let val = parseInt(qtyInput.value);
         qtyInput.value = val + 1;
@@ -1135,11 +1135,11 @@ if (pdTabs.length > 0) {
         tab.addEventListener('click', () => {
             pdTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            
+
             const target = tab.getAttribute('data-target');
-            if(target) {
+            if (target) {
                 document.querySelectorAll('.pd-tab-contents .pd-description').forEach(content => {
-                    if(content.id === target) {
+                    if (content.id === target) {
                         content.style.display = 'block';
                         content.classList.add('active');
                     } else {
@@ -1266,7 +1266,7 @@ Polos, Emas, Silver, Warna Lain.`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg',
-                img2: 'https://parto.id/asset/foto_produk/664b.jpg',
+        img2: 'https://parto.id/asset/foto_produk/664b.jpg',
         img3: 'https://fixprint.id/_next/image?url=https%3A%2F%2Fminio.fixprint.id%2Ffixprint%2Fcatalog%2FTINTA%2F8885007024080_tinta_epson_664_baru_black_2.jpg&w=640&q=75',
         category: 'Percetakan',
         location: 'Wangi-Wangi',
@@ -1287,7 +1287,7 @@ Epson L100 L200 L1300 L1455`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://andalanatk.com/upload/produk/6901b814eefa81.87516637_986852_produk.webp',
-                img2: 'https://www.joyko.co.id/image/cache/data/additional/GP-265-size-01-650x650.jpg',
+        img2: 'https://www.joyko.co.id/image/cache/data/additional/GP-265-size-01-650x650.jpg',
         img3: 'https://www.joyko.co.id/image/cache/data/additional/GP-265-beauty-04-01-650x650.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1301,7 +1301,7 @@ Epson L100 L200 L1300 L1455`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-55436011/br-m036969-07062_-pack-buku-tulis-sidu-sinar-dunia-58-lembar-murah_full01.jpg',
-                img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/103/MTA-141175399/brd-48790_buku-tulis-sidu-58_full01-fe242727.jpg',
+        img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/103/MTA-141175399/brd-48790_buku-tulis-sidu-58_full01-fe242727.jpg',
         img3: 'https://bangkitperkasa.com/storage/2023/01/BUKU-TULIS-SIDU-58-LEMBAR.jpg',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
@@ -1325,7 +1325,7 @@ Epson L100 L200 L1300 L1455`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_macbook_air_13.6_inci_m4_2025_sky_blue_1_2.jpg&w=1920&q=45',
-                img2: 'https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg',
+        img2: 'https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg',
         img3: 'https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_macbook_air_13.6_inci_m4_2025_sky_blue_10_2.jpg&w=1920&q=45',
         category: 'Komputer',
         location: 'Wangi-Wangi',
@@ -1363,7 +1363,7 @@ Kabel USB-C ke Magsafe 3 (2m)`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://images.tokopedia.net/img/cache/700/aphluv/1997/1/1/b967c0e56d2247fbad1fc041522694f9~.jpeg.webp',
-                img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg_KAFv7PQvZxeEuEAH0KlBPmoDGGopioobA&s',
+        img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg_KAFv7PQvZxeEuEAH0KlBPmoDGGopioobA&s',
         img3: 'https://philang.com/storage/products/joyko/36029a81-5225-448f-8303-f5fbaa1f34e1.jpg',
         category: 'Seni & Lukis',
         location: 'Wangi-Wangi',
@@ -1377,7 +1377,7 @@ Kabel USB-C ke Magsafe 3 (2m)`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Stapler/Heavy-Duty-Stapler-HD-12L24-700x700.jpg',
-                img2: 'https://alattuliskantor.id/wp-content/uploads/2024/11/88.jpg',
+        img2: 'https://alattuliskantor.id/wp-content/uploads/2024/11/88.jpg',
         img3: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/104/MTA-182197157/no_brand_heavy_duty_stapler_j0yk0_hd12l-24-_stapler_or_staples_hd_12l-24_full01_v2rgx761.jpg',
         category: 'Alat Kantor',
         location: 'Wangi-Wangi',
@@ -1391,7 +1391,7 @@ Kabel USB-C ke Magsafe 3 (2m)`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://www.zifriend.net/cdn/shop/files/TK68_-800_-RGB_239acbec-f497-4122-8b63-9d29d27e6538.jpg?v=1742524963&width=990',
-                img2: 'https://www.zifriend.net/cdn/shop/files/TK68_-800RGB.jpg?v=1742524963&width=990',
+        img2: 'https://www.zifriend.net/cdn/shop/files/TK68_-800RGB.jpg?v=1742524963&width=990',
         img3: 'https://www.zifriend.net/cdn/shop/files/TK68_-800_f21a2ab8-b6ca-4126-8831-aa3d216b3696.jpg?v=1742524963&width=990',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
@@ -1412,7 +1412,7 @@ Tata letak bahasa Rusia/Portugis/Spanyol/Inggris`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/product-1/2019/12/16/77174725/77174725_3d8d3e5c-1471-4de0-8478-754da270438c_700_700~tplv-aphluv4xwc-resize-jpeg:700:0.image',
-                img2: 'https://id-test-11.slatic.net/p/c988e4ea7a0061c673d337c81c97b507.jpg',
+        img2: 'https://id-test-11.slatic.net/p/c988e4ea7a0061c673d337c81c97b507.jpg',
         img3: 'https://id-live-01.slatic.net/p/66a8325a864224ee2816f26394886754.jpg',
         category: 'Alat Kantor',
         location: 'Wangi-Wangi',
@@ -1426,7 +1426,7 @@ Tata letak bahasa Rusia/Portugis/Spanyol/Inggris`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://www.ankerindonesia.com/cdn/shop/products/9faf5720-7124-4e0f-93b0-8db1dfa1f9d6-a3948h11-soundcore-a20i-black-1-1.jpg?v=1709833930&width=823',
-                img2: 'https://www.ankerindonesia.com/cdn/shop/products/57872b98-cee8-4cdc-a16f-1c8927b6123c-a3948h11-soundcore-a20i-black-3-1.jpg?v=1709833930&width=823',
+        img2: 'https://www.ankerindonesia.com/cdn/shop/products/57872b98-cee8-4cdc-a16f-1c8927b6123c-a3948h11-soundcore-a20i-black-3-1.jpg?v=1709833930&width=823',
         img3: 'https://www.ankerindonesia.com/cdn/shop/products/a25cc789-677a-4273-a713-4d4f387d7bf5-a3948h11-soundcore-a20i-black-7-1.jpg?v=1709833930&width=823',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
@@ -1515,7 +1515,7 @@ IPX5`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://leksikabookstore.com/uploads/5beceacf418dc_20181115104103-1.jpg',
-                img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/94/MTA-181824240/br-m036969-03044_spidol-set-12-warna-snowman-pw-12a-coloring-marker-12-color-markers-pencil_full03-04f08754.jpg',
+        img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/94/MTA-181824240/br-m036969-03044_spidol-set-12-warna-snowman-pw-12a-coloring-marker-12-color-markers-pencil_full03-04f08754.jpg',
         img3: 'https://siplah.blibli.com/data/images/STWS-0009-00154/5fa56659-a8ab-4263-b40d-72889fea5091.png',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1533,7 +1533,7 @@ IPX5`
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-top-view-black-gallery-01.png',
-                img2: 'https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-black-gallery-03.png',
+        img2: 'https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-black-gallery-03.png',
         img3: 'https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-black-gallery-05.png',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
@@ -1586,7 +1586,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/MTA-150816804/tidak_ada_merk_kertas_karton_manila_-_kertas_karton_warna_full01_h80xj2nw.jpg',
-                img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa95dhJPbVHd4DpJAWnnqYsSH2ZYMUbMR8Cg&s',
+        img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa95dhJPbVHd4DpJAWnnqYsSH2ZYMUbMR8Cg&s',
         img3: 'https://cdn.ralali.id/assets/img/Libraries/Kertas-Karton-BC-Lux-Manila-A1-60x84cm-(Hitam-coklat-ungu)_kK85TaoMZQbTsrwV_1639080652.png',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
@@ -1600,7 +1600,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://id-test-11.slatic.net/p/e66288f609ad7f13b6b0a1e1fb6169b8.jpg',
-                img2: 'https://parto.id/asset/foto_produk/cb614c2edee69585d2f60062f1a0b660_jpg_720x720q80_jpg_.png',
+        img2: 'https://parto.id/asset/foto_produk/cb614c2edee69585d2f60062f1a0b660_jpg_720x720q80_jpg_.png',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzKUfj_BfFuulXCMm5QmC5WK3eNmosJejL8Q&s',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1614,7 +1614,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://els.id/wp-content/uploads/2023/09/783a496e-c097-43bd-84bf-8b23bd06000b-1.jpg',
-                img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-17208559/canon_tinta_canon_790_black_original_full01_drhkmvv6.jpg',
+        img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-17208559/canon_tinta_canon_790_black_original_full01_drhkmvv6.jpg',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwL7Nfees0ZgGmZLCOI-ExNajTy7FOwDcVJg&s',
         category: 'Percetakan',
         location: 'Wangi-Wangi',
@@ -1628,7 +1628,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/315926c63c9114f311842e0d376573c9',
-                img2: 'https://imgx.brdcdn.com/imgx/1200/aW1hZ2VzLnRva29wZWRpYS5uZXQvaW1nL2NhY2hlLzcwMC9WcWJjbU0vMjAyMS8xMC84L2U5ZjhkMWZjLWJlNjItNGJlZi04ZjJmLTMxZGM3MTcxYzlmYQ==.jpg',
+        img2: 'https://imgx.brdcdn.com/imgx/1200/aW1hZ2VzLnRva29wZWRpYS5uZXQvaW1nL2NhY2hlLzcwMC9WcWJjbU0vMjAyMS8xMC84L2U5ZjhkMWZjLWJlNjItNGJlZi04ZjJmLTMxZGM3MTcxYzlmYQ==.jpg',
         img3: 'https://id-live-01.slatic.net/p/bd947bca925b462685893fae9a145189.jpg',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
@@ -1642,7 +1642,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://www.joyko.co.id/image/cache/data/additional/526-B40BL-Info-01-650x650.jpg',
-                img2: 'https://www.joyko.co.id/image/cache/data/additional/ERASER-526-B40BL-BEAUTY-2-01-650x650.jpg',
+        img2: 'https://www.joyko.co.id/image/cache/data/additional/ERASER-526-B40BL-BEAUTY-2-01-650x650.jpg',
         img3: 'https://www.joyko.co.id/image/cache/data/additional/526-B40BL-+-Box-01-650x650.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1656,7 +1656,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://andalanatk.com/upload/produk/6901b62a281963.99038156_1641963771_faber-castell_faber-castell-9000-2b-pensil--12-pcs-_full02.webp',
-                img2: 'https://faber-castell.co.id/cfind/source/images/product/gwm/117102-a.jpg',
+        img2: 'https://faber-castell.co.id/cfind/source/images/product/gwm/117102-a.jpg',
         img3: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-5355299/faber-castell_faber_castell_pensil_2b_1_pack_isi_12_full03_ldwvx84y.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1677,7 +1677,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Ruler%20Stainless/Stainless-Steel-Ruler-700x700.jpg',
-                img2: 'https://siplah.blibli.com/data/images/SWID-0002-00009/1df13639-bd1c-4857-bd25-c09a29dbbd24.jpg',
+        img2: 'https://siplah.blibli.com/data/images/SWID-0002-00009/1df13639-bd1c-4857-bd25-c09a29dbbd24.jpg',
         img3: 'https://gadingonline.co.id/image/product/8998838358078.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1695,7 +1695,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Glue-Stick/Glue-Stick-L=25gr-700x700.jpg',
-                img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//108/MTA-67191768/kenko_lem-glue-stick-kenko-25-gr_full01.jpg',
+        img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//108/MTA-67191768/kenko_lem-glue-stick-kenko-25-gr_full01.jpg',
         img3: 'https://media.monotaro.id/mid01/big/Kebutuhan%20Kantor/Produk%20Kantor/Lem/Lem%20Glue%20Stick/Kenko%20Lem%20Stik/P101005461-2.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1709,7 +1709,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-3165910/joyko_joyko-mms-3-memo-stick-post-it--225-sheets-_full02.jpg',
-                img2: 'https://image.bosoffice.co.id/s3/productimages/webp/co240310/p1635276/w600-h600/7ba4c7a5-d61c-449a-8095-d87138c70d2c.png',
+        img2: 'https://image.bosoffice.co.id/s3/productimages/webp/co240310/p1635276/w600-h600/7ba4c7a5-d61c-449a-8095-d87138c70d2c.png',
         img3: 'https://static-tokodaring.tisera.id/prod/images/produk_gambar/685111194adfd.jpg',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
@@ -1723,7 +1723,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://stationary.co.id/cdn/shop/products/kalkulator-citizen-sdc-810-office-stationery-toko-atk_354_1024x1024.jpg?v=1533822468',
-                img2: 'https://siplah.blibli.com/data/images/STBS-0037-00103/a8042a7d-25e0-40e6-a5fa-72fbe49e58cc.png',
+        img2: 'https://siplah.blibli.com/data/images/STBS-0037-00103/a8042a7d-25e0-40e6-a5fa-72fbe49e58cc.png',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYNZjjXBKzRgUcU-q1Nxu4KkmqTrN_BqlZww&s',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
@@ -1737,7 +1737,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/87e02a945bc134e67279769484306537',
-                img2: 'https://els.id/wp-content/uploads/2024/10/Sandisk-Cruzer-Blade.png',
+        img2: 'https://els.id/wp-content/uploads/2024/10/Sandisk-Cruzer-Blade.png',
         img3: 'https://sadarjaya.com/wp-content/uploads/2021/04/32gb-1.png',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
@@ -1751,7 +1751,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Photo%20Paper/Glossy-Photo-Paper-210-gsm-GP-210-A4-700x700.jpg',
-                img2: 'https://shop.kenko.co.id/image/cache/catalog/product/Photo%20Paper/Glossy-Photo-Paper-230-gsm-GP-230-A4-300x300.jpg',
+        img2: 'https://shop.kenko.co.id/image/cache/catalog/product/Photo%20Paper/Glossy-Photo-Paper-230-gsm-GP-230-A4-300x300.jpg',
         img3: 'https://down-id.img.susercontent.com/file/1b2b2a3f59764b314781b4c5ca0face8',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
@@ -1765,7 +1765,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/ec9b199d8bd5be12f7ef3e75e9ce8a64',
-                img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6TC99Ett_a90pab8XLuQkRJtJED0qpt4Vjg&s',
+        img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6TC99Ett_a90pab8XLuQkRJtJED0qpt4Vjg&s',
         img3: 'https://down-id.img.susercontent.com/file/2efc20911cdc8f9c77d82998503138dc',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1779,7 +1779,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://siplah.blibli.com/data/images/STFA-0004-00199/cb342b41-4979-4a22-a737-1f9ecfab0fa8.jpg',
-                img2: 'https://siplah.blibli.com/data/images/SUSS-0001-00026/33ff6996-3484-48b0-bb67-5738d08b70d2.jpg',
+        img2: 'https://siplah.blibli.com/data/images/SUSS-0001-00026/33ff6996-3484-48b0-bb67-5738d08b70d2.jpg',
         img3: 'https://down-id.img.susercontent.com/file/099ed989b5ac315fc84487eeff7fbc86',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1793,7 +1793,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/42d7d0c4eb99feb8b7e692a3336e528a',
-                img2: 'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mc8d6gqyn51jd4',
+        img2: 'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mc8d6gqyn51jd4',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs4jPIxkrRNAcs2CdqkL_ABgkI1zYLdiONog&s',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1810,7 +1810,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/id-11134207-7qukw-lf261km982t90d',
-                img2: 'https://andalanatk.com/upload/produk/617180_produk.jpg',
+        img2: 'https://andalanatk.com/upload/produk/617180_produk.jpg',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvzBGkI-I1ue-CwY5HTRvPilDQ2DJI4H6Kw&s',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1826,7 +1826,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://www.joyko.co.id/image/cache/data/additional/B-650x650.jpg',
-                img2: 'https://www.joyko.co.id/image/cache/data/A-650x650.jpg',
+        img2: 'https://www.joyko.co.id/image/cache/data/A-650x650.jpg',
         img3: 'https://www.joyko.co.id/image/cache/data/additional/C-650x650.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
@@ -1840,7 +1840,7 @@ Dokumentasi pengguna
         rating: '0',
         sold: 'Terjual 0',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSaJ8rvY8CeoX7tftrzsd_Phs2FoKAWPy7zQ&s',
-                img2: 'https://id-test-11.slatic.net/p/ca74b1226a9e2b19ab0f4da86dbe0b56.jpg',
+        img2: 'https://id-test-11.slatic.net/p/ca74b1226a9e2b19ab0f4da86dbe0b56.jpg',
         img3: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/MTA-124700570/sidu_kertas_lipat_-_origami_sidu_12x12_isi_100_lembar_full01_bhlqbp2z.jpg',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
@@ -1911,6 +1911,412 @@ Intuitive Buttons
 Termasuk toner berkapasitas penuh. Hasil hingga 7500/5000 halaman (hitam/berwarna)*
 Kompatibel dengan Aplikasi Seluler Mobile Connect
 Termasuk garansi bawaan 3 tahun atau 30.000 halaman**`
+    },
+    'laptop-dell': {
+        title: 'Dell XPS 13 9350 Intel® Core™ Ultra 7 processor 256V Series 2 (2025)',
+        price: 'Rp 24.500.000',
+        strike: 'Rp 28.000.000',
+        discount: 'Diskon 12%',
+        rating: '0',
+        sold: 'Terjual 0',
+        img: 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/media-gallery/platinum/notebook-xps-13-9350-t-oled-sl-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&wid=3988&hei=2292&qlt=100,1&resMode=sharp2&size=3988,2292&chrss=full&imwidth=5000',
+        img2: 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/media-gallery/platinum/notebook-xps-13-9350-t-oled-sl-gallery-4.psd?fmt=png-alpha&pscan=auto&scl=1&wid=3509&hei=2077&qlt=100,1&resMode=sharp2&size=3509,2077&chrss=full&imwidth=5000',
+        img3: 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9350/media-gallery/platinum/notebook-xps-13-9350-t-oled-sl-gallery-7.psd?fmt=png-alpha&pscan=auto&scl=1&wid=3755&hei=2244&qlt=100,1&resMode=sharp2&size=3755,2244&chrss=full&imwidth=5000',
+        category: 'Komputer',
+        location: 'Wangi-Wangi',
+        desc: `Processor
+Intel® Core™ Ultra 7 processor 256V Series 2 (12MB Cache, 8 cores, up to 4.8 GHz)
+
+Operating System
+(Dell Technologies recommends Windows 11 Pro for business)
+Windows 11 Home, Copilot+ PC
+
+Graphics Card
+Intel® Arc™ graphics
+
+Display
+13.4", Non-Touch, 2K, 30-120Hz, 500 nits, InfinityEdge
+
+Memory 
+16GB, LPDDR5X, 8533MT/s, integrated
+
+Storage
+1 TB, M.2, PCIe NVMe, SSD
+
+Case
+Platinum
+
+Microsoft Office
+Activate Your Microsoft 365 For A 30 Day Trial
+
+Home and Small Business Security Solutions
+McAfee+ Premium 1-year
+
+Protect your purchase - View Support offers below 
+1Y Premium Support with Hardware and Software1-2 Biz Day Onsite after remote diagnosis
+
+Accidental Damage Service
+None
+
+Keyboard
+Platinum English US backlit keyboard with fingerprint reader
+
+Ports
+2 x Thunderbolt™ 4 (USB Type-C™) with Power Delivery and DisplayPort
+
+Slots
+Not applicable
+
+Dimensions & Weight
+Height: 0.60 in. (15.30 mm) for laptops shipped with FHD+ or QHD+ display, 0.58 in. (14.80 mm) for laptops shipped with OLED display
+Width: 11.62 in. (295.30 mm)
+Depth: 7.84 in. (199.10 mm)
+Starting weight: 2.60 lb (1.18 kg) for laptops shipped with OLED display, 2.70 lb (1.21 kg) for laptops shipped with QHD+ display, 2.70 lb (1.22 kg) for laptops shipped with FHD+ display
+
+Touchpad
+Multi-touch gesture-enabled precision touchpad with integrated scrolling
+
+Camera
+1080p at 30 fps FHD RGB camera, Dual-array microphones
+360p at 15 fps IR camera, Dual-array microphones
+
+Audio and Speakers
+Quad-speaker design (tweeter + woofer), Realtek ALC1318, 2W x 4 = 8W total
+
+Chassis
+Exterior Chassis Materials
+CNC-machined aluminum
+
+Wireless 
+Intel® Killer™ Wi-Fi 7 1750i (BE201) 2x2 + Bluetooth 5.4 Wireless Card
+
+Primary Battery
+3 Cell, 55 Wh, integrated
+
+Power
+60W AC adapter, USB Type-C`
+    },
+    'laptop-rog': {
+        title: 'ASUS ROG Strix G16 G615 Intel® Core™ Ultra 9 Processor 275HX, NVIDIA® GeForce RTX™ 5060 Laptop (2025)',
+        price: 'Rp 36.999.999',
+        strike: '',
+        discount: '',
+        rating: '0',
+        sold: 'Terjual 0',
+        img: 'https://dlcdnwebimgs.asus.com/gain/68E55D05-BB23-4998-B3D4-7A389DFE58DA',
+        img2: 'https://dlcdnwebimgs.asus.com/gain/733FEFA3-4FD8-40A0-AF54-E4DA20F8A0D5/w1000/h732',
+        img3: 'https://webobjects2.cdw.com/is/image/CDW/8404439?$product-main$',
+        category: 'Komputer',
+        location: 'Wangi-Wangi',
+        desc: `Sistem Operasi:
+Windows 11 Home
+*Windows 11 Home is available only as the Single Language edition in selected markets. Learn more about Windows 11 Home Single language: https://support.microsoft.com/article/eaf060a6-3642-4612-6b75-b34e57a08abf<br>
+Prosesor:
+Intel® Core™ Ultra 9 Processor 275HX 2.7 GHz (36MB Cache, up to 5.4 GHz, 24 cores, 24 Threads); Intel® AI Boost NPU up to 13TOPS<br>
+Grafis:
+NVIDIA® GeForce RTX™ 5060 Laptop GPU
+ROG Boost: 1610MHz* at 115W  (1560MHz Boost Clock+50MHz OC, 100W+15W Dynamic Boost)
+8GB GDDR7<br>
+Neural Processor:
+Intel® AI Boost NPU up to 13TOPS
+Tampilan
+ROG Nebula Display
+16-inch
+2.5K (2560 x 1600, WQXGA) 16:10 aspect ratio
+IPS-level
+Anti-glare display
+DCI-P3:
+100%
+Refresh Rate:
+240Hz
+Response Time:
+3ms
+G-Sync
+Pantone Validated
+MUX Switch + NVIDIA® Advanced Optimus<br>
+Memori:
+16GB DDR5-5600 SO-DIMM x 2
+The memory speed of the systems vary by CPU SPEC
+Max Capacity:
+64GB
+Support dual channel memory technology<br>
+Penyimpanan:
+1TB PCIe® 4.0 NVMe™ M.2 SSD
+Expansion Slots (includes used):
+-2x DDR5 SO-DIMM slots
+-2x M.2 PCIe<br>
+Port I/O:
+1x 3.5mm Combo Audio Jack
+1x HDMI 2.1 FRL
+3x USB 3.2 Gen 2 Type-A (data speed up to 10Gbps)
+1x USB 3.2 Gen 2 Type-C with support for DisplayPort™ / power delivery / G-SYNC (data speed up to 10Gbps)
+1x Thunderbolt™ 4 with support for DisplayPort™ / power delivery (data speed up to 40Gbps)
+1x RJ45 LAN port<br>
+Keyboard dan Touchpad:
+Backlit Chiclet Keyboard 4-Zone RGB
+Touchpad
+With Copilot key
+*Copilot in Windows (in preview) is rolling out gradually within the latest update to Windows 11 in select global markets. Timing of availability varies by device and market. Learn more: https://www.microsoft.com/en-us/windows/copilot-ai-features?r=1#faq<br>
+Kamera:
+1080P FHD IR Camera for Windows Hello<br>
+Audio:
+Smart Amp Technology
+Hi-Res certification (for headphone)
+Dolby Atmos
+AI noise-canceling technology
+Built-in array microphone
+2-speaker system with Smart Amplifier Technology<br>
+Jaringan dan Komunikasi:
+Wi-Fi 7(802.11be) (Triple band) 2*2+Bluetooth® 5.4 Wireless Card (*Bluetooth® version may change with OS version different.)
+Baterai
+90WHrs, 4S1P, 4-cell Li-ion<br>
+Suplai Daya:
+Rectangle Conn, 280W AC Adapter, Output: 20V DC, 14A, 280W, Input: 100-240V AC, 50/60Hz universal<br>
+AURA SYNC:
+Yes<br>
+Lampu Perangkat:
+Aura Sync Light Bar<br>
+Berat:
+2.65 Kg (5.84 lbs)<br>
+Dimensi (L x D x T):
+35.4 x 26.8 x 2.28 ~ 3.08 cm (13.94" x 10.55" x 0.90" ~ 1.21")
+Microsoft Office:
+Microsoft Office Home 2024 + Microsoft 365 Basic (with 100GB of cloud storage)<br>
+Xbox Game Pass:
+Xbox Game Pass for PC_3 months (*Terms and exclusions apply. Offer only available in eligible markets for Xbox Game Pass for PC. Eligible markets are determined at activation. Game catalog varies by region, device, and time.)<br>
+Security:
+Trusted Platform Module (Firmware TPM)
+BIOS Administrator Password and User Password Protection
+McAfee® 30 days free trial
+Disertakan dalam Kotaknya
+ROG backpack
+ROG Impact Gaming Mouse
+*Included accessories vary according to country and territory. Please check with your local ASUS retailer for details`
+    },
+    'laptop-thinkpad': {
+        title: 'ThinkPad X13 Gen 7 (13" Intel)',
+        price: 'Rp 37.000.000',
+        strike: 'Rp 45.000.000',
+        discount: 'Diskon 17%',
+        rating: '0',
+        sold: 'Terjual 0',
+        img: 'https://p4-ofp.static.pub/ShareResource/optimized/pdp/thinkpad/thinkpad-x-series/len101t0172/lenovo-thinkpad-x13-gen-7-13-intel-pdp-hero.png?width=584&height=584',
+        img2: 'https://p1-ofp.static.pub/ShareResource/optimized/pdp/thinkpad/thinkpad-x-series/len101t0172/lenovo-thinkpad-x13-gen-7-13-intel-pdp-gallery-1.png?width=584&height=584',
+        img3: 'https://p3-ofp.static.pub/ShareResource/optimized/pdp/thinkpad/thinkpad-x-series/len101t0172/lenovo-thinkpad-x13-gen-7-13-intel-pdp-gallery-5.png?width=584&height=584',
+        category: 'Komputer',
+        location: 'Wangi-Wangi',
+        desc: `Processor
+Up to Intel® Core™ Ultra 7 Series 3 with Intel vPro®
+
+Up to 22W thermal design power (TDP)
+
+Operating System
+Windows 11 Pro — Lenovo recommends Windows 11 Pro for business
+
+Windows 11 Home
+
+Linux®
+
+Neural Processing Unit (NPU)
+Up to 50 trillion operations per second (TOPS) AI performance
+
+Graphics
+Intel® Integrated Graphics
+
+Memory
+Up to 64GB LPDDR5x (8533MHz) soldered
+
+Storage
+Up to 1TB PCIe Gen5 SSD (2280)
+
+Battery
+54.7Whr, customer replaceable unit (CRU) 
+
+41Whr, CRU
+
+Supports Rapid Charge (60 minutes = 80% capacity) with 65W or   
+higher adapter
+
+Audio
+Dolby Atmos®
+
+Lenovo Clear Voice
+
+2 x speakers
+
+2 x mics
+
+Camera
+5MP RGB with webcam privacy shutter
+
+5MP & infrared (IR) with webcam privacy shutter
+
+Power Supply Unit
+65W USB-C® 110cc AC Adapter
+
+65W GaN USB-C® 80cc AC Adapter
+
+65W GaN USB-C® Wall Mount 49cc AC Adapter
+
+Connectivity
+Ports/Slots
+Left side:
+
+HDMI® 2.1 (supports resolution up to 4K@60Hz)
+
+2 x USB-C® (Thunderbolt™ 4, USB 40Gbps) with power delivery 3.0 & DisplayPort™ 2.1
+
+Headphone / mic combo
+
+ 
+
+Right side:
+
+USB-A (USB 5Gbps), always on
+
+Optional: Nano SIM
+
+Optional: Smart Card Reader
+
+Kensington Nano Security Slot™
+
+Wireless
+Intel® WiFi 7* (Whale Peak 2) BE211 with Intel vPro®
+
+Bluetooth® 5.4
+
+WWAN**: 5G LTE CAT6 / sub6
+
+Optional: Near-field communication (NFC)
+
+ 
+
+* WiFi 7 requires Windows 11 OS, as well as a separate WiFi 7 router and / or other networking devices to meet full WiFi 7 requirements. It’s backwards compatible with prior WiFi standards & available only in countries where WiFi 7 is supported.
+
+** Optional WWAN availability varies by region and must be configured at time of purchase; it requires a network service provider.
+
+Supported Docking
+Thunderbolt™ 4 Dock
+
+USB-C® Dock
+
+Design
+Display
+13.3” WUXGA (1920 x 1200) IPS, antiglare, 400 nits, 16:10 aspect ratio, 100% sRGB, 87.8% STBR, Eyesafe® 2.0 Certified Low Blue Light
+
+13.3” WUXGA (1920 x 1200) IPS, antiglare, 400 nits, 16:10 aspect ratio, 100% sRGB, 87.8% STBR, Eyesafe® 2.0 Certified Low Blue Light, on cell touchscreen
+
+Dimensions (H (front to back) x W x D)
+9.85mm – 16mm x 299.3mm x 207mm / 0.38" –  0.62" x 11.78" x 8.15"
+
+Weight
+Starting at 930g / 2.05lbs
+
+Keyboard
+Backlit with white LED
+
+Dual-function TrackPoint: navigate cursor or double-tap to open TrackPoint Quick Menu
+
+Spill-resistant
+
+Tactile markings for significant keys & slots (including power in, Enter, Fn, Insert, Volume)
+
+ThinkPad TrackPoint Copilot Keyboard (1.5mm travel stroke)
+
+TrackPad (115mm x 74.3mm / 4.53" x 2.93")
+
+Color
+Eclipse Black
+
+Sustainability
+Material
+30% post-consumer content, carbon fiber-reinforced plastic (CFRP) used in top (A) cover
+
+48% PCC recycled plastic used in bezel (B)
+
+90% recycled magnesium used in keyboard frame (C)
+
+55% recycled aluminum in bottom (D) cover
+
+85% PCC recycled plastic used in keycaps
+
+100% recycled cobalt used in battery
+
+90% PCC recycled plastic in speaker enclosure
+
+90% PCC recycled plastic in AC adapter (65W standard adapter & 65W slim GaN charger)
+
+95% PCC used in cable holders
+
+100% PCC used in speaker magnet / hall sensor
+
+100% plastic-free primary packaging, recycled and/or sustainable & Forest Steward Council® (FSC)-certified*
+
+ 
+
+*Packaging composed of recycled, and/or biobased, and/or sustainably forested content.
+
+Certifications / Registries
+9/10 iFixit Repairability Score
+
+ENERGY STAR® 9.0
+
+Eyesafe® 2.0
+
+Forest Stewardship Council® (FSC) for packaging
+
+MIL-SPEC-810H
+
+TCO 10.0
+
+Other information
+ThinkShield Security
+Discrete Trusted Platform Module (dTPM) 2.0
+
+Facial recognition login (requires IR camera)
+
+Kensington Nano Security Slot™
+
+Microsoft Secured-core PCs
+
+Optional: Intel vPro® security
+
+Smart Power-on: Match-on-chip (MOC) Fingerprint Reader
+
+Ultrasonic Human Presence Detection for lock on leave & wake on approach
+
+Webcam privacy shutter
+
+Customer Replaceable Units (CRUs)
+Battery
+
+Bottom (D) cover
+
+SSD
+
+Real-time clock (RTC) battery
+
+WWAN
+
+Preloaded Software
+Intel® Connectivity Performance Suite
+
+Lenovo Commercial Vantage
+
+Lenovo View
+
+Office 365 (trial)
+
+Smart Connect
+
+TrackPoint Quick Menu
+
+What’s in the Box
+Lenovo ThinkPad X13 Gen 7 (13" Intel) laptop
+
+65W AC adapter (USB-C® or GaN)
+
+Quick Start Guide`
     }
 };
 
@@ -1930,7 +2336,7 @@ if (storedStats) {
                 }
             }
         }
-    } catch(e) {
+    } catch (e) {
         console.error("Error parsing yuka_product_stats", e);
     }
 }
@@ -1946,7 +2352,7 @@ const trackProductView = (productId) => {
     } catch (e) {
         history = [];
     }
-    
+
     const existingIndex = history.findIndex(item => item.id === productId);
     if (existingIndex > -1) {
         history[existingIndex].count += 1;
@@ -1954,7 +2360,7 @@ const trackProductView = (productId) => {
     } else {
         history.push({ id: productId, count: 1, lastViewed: Date.now() });
     }
-    
+
     if (history.length > 50) {
         history.sort((a, b) => b.lastViewed - a.lastViewed);
         history = history.slice(0, 50);
@@ -1966,23 +2372,23 @@ const renderRecommendations = () => {
     const recommendationGrid = document.getElementById('recommendation-grid');
     const lastViewedGrid = document.getElementById('last-viewed-grid');
     const lastViewedSection = document.getElementById('last-viewed-section');
-    
+
     if (!recommendationGrid) return;
-    
+
     let history = [];
     try {
         history = JSON.parse(localStorage.getItem('yuka_view_history')) || [];
     } catch (e) {
         history = [];
     }
-    
+
     // Sort history by lastViewed descending for "Terakhir Dilihat"
     history.sort((a, b) => b.lastViewed - a.lastViewed);
-    
+
     const lastViewedProducts = [];
     const viewedCategories = new Set();
     const recommendedIds = new Set();
-    
+
     // Process history
     for (const item of history) {
         if (productsDatabase[item.id]) {
@@ -1996,24 +2402,24 @@ const renderRecommendations = () => {
             }
         }
     }
-    
+
     // Render "Terakhir Dilihat"
     if (lastViewedGrid && lastViewedSection) {
         if (lastViewedProducts.length > 0) {
             lastViewedSection.style.display = 'block';
             lastViewedGrid.innerHTML = '';
-            
+
             lastViewedProducts.forEach(prod => {
-                const badgeHtml = prod.discount ? `<span class="discount-badge">${prod.discount}</span>` : 
-                                  (prod.strike ? `<span class="discount-badge">Promo</span>` : '');
-                                  
+                const badgeHtml = prod.discount ? `<span class="discount-badge">${prod.discount}</span>` :
+                    (prod.strike ? `<span class="discount-badge">Promo</span>` : '');
+
                 const card = document.createElement('a');
                 card.className = 'etalase-card';
                 card.style.textDecoration = 'none';
                 card.style.color = 'inherit';
                 card.title = 'Lihat Produk';
                 card.href = `product.html?id=${prod.id}`;
-                
+
                 card.innerHTML = `
                     <div class="product-image">
                         <img src="${prod.img}" alt="${prod.title}">
@@ -2034,18 +2440,18 @@ const renderRecommendations = () => {
             lastViewedSection.style.display = 'none';
         }
     }
-    
+
     // Process Recommendations (based on categories, then random)
-    const maxItems = 20; 
+    const maxItems = 20;
     const finalProductsToRender = [];
     const allIds = Object.keys(productsDatabase);
-    
+
     // Shuffle allIds
     for (let i = allIds.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [allIds[i], allIds[j]] = [allIds[j], allIds[i]];
     }
-    
+
     // First, fill with items matching the viewed categories
     if (viewedCategories.size > 0) {
         for (const id of allIds) {
@@ -2057,7 +2463,7 @@ const renderRecommendations = () => {
             }
         }
     }
-    
+
     // Next, fill the rest with random items
     for (const id of allIds) {
         if (finalProductsToRender.length >= maxItems) break;
@@ -2066,20 +2472,20 @@ const renderRecommendations = () => {
             recommendedIds.add(id);
         }
     }
-    
+
     // Render "Rekomendasi Untukmu"
     recommendationGrid.innerHTML = '';
     finalProductsToRender.forEach(prod => {
-        const badgeHtml = prod.discount ? `<span class="discount-badge">${prod.discount}</span>` : 
-                          (prod.strike ? `<span class="discount-badge">Promo</span>` : '');
-                          
+        const badgeHtml = prod.discount ? `<span class="discount-badge">${prod.discount}</span>` :
+            (prod.strike ? `<span class="discount-badge">Promo</span>` : '');
+
         const card = document.createElement('a');
         card.className = 'etalase-card';
         card.style.textDecoration = 'none';
         card.style.color = 'inherit';
         card.title = 'Lihat Produk';
         card.href = `product.html?id=${prod.id || 'pensil-warna'}`;
-        
+
         card.innerHTML = `
             <div class="product-image">
                 <img src="${prod.img}" alt="${prod.title}">
@@ -2102,18 +2508,18 @@ const renderRecommendations = () => {
 if (window.location.pathname.includes('product.html') || window.location.href.includes('product.html')) {
     const urlParams = new URLSearchParams(window.location.search);
     let productId = urlParams.get('id');
-    
+
     // Fallback if no ID is provided
     if (!productId || !productsDatabase[productId]) {
-        productId = 'pensil-warna'; 
+        productId = 'pensil-warna';
     }
-    
+
     if (typeof trackProductView === 'function') {
         trackProductView(productId);
     }
 
     const product = productsDatabase[productId];
-    
+
     // Update DOM elements
     const titleEl = document.querySelector('.pd-title');
     const priceEl = document.querySelector('.pd-price');
@@ -2125,36 +2531,36 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
     const breadcrumbCat = document.querySelector('.breadcrumb a:nth-child(2)');
     const breadcrumbTitle = document.querySelector('.breadcrumb span');
     const descEl = document.querySelector('.pd-description');
-    
+
     // Need to safely find the store location text node
     const storeProfile = document.querySelector('.store-profile');
     let storeLoc = null;
-    if(storeProfile) {
+    if (storeProfile) {
         const pTags = storeProfile.querySelectorAll('p');
         pTags.forEach(p => {
-            if(p.innerHTML.includes('Online')) {
+            if (p.innerHTML.includes('Online')) {
                 storeLoc = p;
             }
         });
     }
 
-    if(titleEl) titleEl.innerText = product.title;
-    if(priceEl) priceEl.innerText = product.price;
-    if(mainImgEl) mainImgEl.src = product.img;
-    if(soldEl) soldEl.innerText = product.sold;
-    if(ratingEl) ratingEl.innerHTML = `<i class="ph-fill ph-star"></i> ${product.rating} (Banyak ulasan)`;
-    
-    if(strikeEl) {
-        if(product.strike) {
+    if (titleEl) titleEl.innerText = product.title;
+    if (priceEl) priceEl.innerText = product.price;
+    if (mainImgEl) mainImgEl.src = product.img;
+    if (soldEl) soldEl.innerText = product.sold;
+    if (ratingEl) ratingEl.innerHTML = `<i class="ph-fill ph-star"></i> ${product.rating} (Banyak ulasan)`;
+
+    if (strikeEl) {
+        if (product.strike) {
             strikeEl.innerText = product.strike;
             strikeEl.style.display = 'inline';
         } else {
             strikeEl.style.display = 'none';
         }
     }
-    
-    if(badgeEl) {
-        if(product.discount) {
+
+    if (badgeEl) {
+        if (product.discount) {
             badgeEl.innerText = product.discount;
             badgeEl.style.display = 'inline';
         } else {
@@ -2162,10 +2568,10 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         }
     }
 
-    if(breadcrumbCat && product.category) breadcrumbCat.innerText = product.category;
-    if(breadcrumbTitle) breadcrumbTitle.innerText = product.title;
-    
-    if(descEl) {
+    if (breadcrumbCat && product.category) breadcrumbCat.innerText = product.category;
+    if (breadcrumbTitle) breadcrumbTitle.innerText = product.title;
+
+    if (descEl) {
         descEl.innerHTML = `
             <p><strong>Kondisi:</strong> Baru</p>
             <p><strong>Min. Pemesanan:</strong> 1 Buah</p>
@@ -2176,29 +2582,29 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         `;
     }
 
-    if(storeLoc) {
+    if (storeLoc) {
         storeLoc.innerHTML = `<span class="online-dot"></span> Online 5 menit lalu &bull; ${product.location}`;
     }
-    
+
     // Setup the price for the subtotal calculator
     window.currentProductPrice = parseInt(product.price.replace(/[^\d]/g, '')) || 0;
 
     // Update Subtotal on side panel
     const subtotalEl = document.querySelector('.pd-subtotal strong');
-    if(subtotalEl) {
+    if (subtotalEl) {
         let qty = document.querySelector('.qty-input') ? parseInt(document.querySelector('.qty-input').value) : 1;
         subtotalEl.innerText = formatRupiah(window.currentProductPrice * qty);
     }
-    
+
     // Update thumbnail just for visual consistency in demo
     const thumbnails = document.querySelectorAll('.thumbnail img');
-    if(thumbnails.length > 0) {
+    if (thumbnails.length > 0) {
         thumbnails[0].src = product.img;
         let shortTitle = product.title.length > 20 ? product.title.substring(0, 20) + '...' : product.title;
-        if(thumbnails.length > 1) {
+        if (thumbnails.length > 1) {
             thumbnails[1].src = product.img2 || `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Samping)`;
         }
-        if(thumbnails.length > 2) {
+        if (thumbnails.length > 2) {
             thumbnails[2].src = product.img3 || `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Belakang)`;
         }
     }
@@ -2233,16 +2639,16 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
     // Update "Add to Cart" button in product page
     const addToCartBtn = document.querySelector('.add-to-cart-btn');
     if (addToCartBtn) {
-        addToCartBtn.onclick = function() {
+        addToCartBtn.onclick = function () {
             let qty = document.querySelector('.qty-input') ? parseInt(document.querySelector('.qty-input').value) : 1;
             addCustomToCart(
-                productId, 
-                product.title, 
-                product.category, 
-                window.currentProductPrice, 
-                'pcs', 
-                'ph-package', 
-                product.img, 
+                productId,
+                product.title,
+                product.category,
+                window.currentProductPrice,
+                'pcs',
+                'ph-package',
+                product.img,
                 qty
             );
         };
@@ -2260,7 +2666,7 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         const allThumbs = document.querySelectorAll('.thumbnail img');
 
         const updateLightboxImage = (index) => {
-            if(allThumbs.length > 0) {
+            if (allThumbs.length > 0) {
                 lightboxImg.src = allThumbs[index].src;
             } else {
                 lightboxImg.src = mainImgEl.src;
@@ -2309,7 +2715,7 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         // Swipe Support for mobile
         let touchstartX = 0;
         let touchendX = 0;
-        
+
         lightbox.addEventListener('touchstart', e => {
             touchstartX = e.changedTouches[0].screenX;
         });
@@ -2317,10 +2723,10 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         lightbox.addEventListener('touchend', e => {
             touchendX = e.changedTouches[0].screenX;
             if (touchendX < touchstartX - 50) {
-                if(lightboxNext) lightboxNext.click(); // Swipe left -> Next
+                if (lightboxNext) lightboxNext.click(); // Swipe left -> Next
             }
             if (touchendX > touchstartX + 50) {
-                if(lightboxPrev) lightboxPrev.click(); // Swipe right -> Prev
+                if (lightboxPrev) lightboxPrev.click(); // Swipe right -> Prev
             }
         });
     }
@@ -2341,13 +2747,13 @@ const initFlashSaleCountdown = () => {
     // UNTUK MEMULAI FLASH SALE BARU: Ganti tanggal di bawah ini dengan format 'YYYY-MM-DDTHH:mm:ss'
     // Contoh: '2026-06-15T23:59:59'
     // Jika dikosongkan (''), fitur Flash Sale akan disembunyikan.
-    const FLASH_SALE_END_DATE = '2026-06-15T23:59:59'; 
-    
+    const FLASH_SALE_END_DATE = '2026-06-15T23:59:59';
+
     let targetDate;
 
     if (FLASH_SALE_END_DATE) {
         targetDate = new Date(FLASH_SALE_END_DATE).getTime();
-        
+
         // If the date has passed, hide the flash sale section
         if (targetDate < new Date().getTime()) {
             const flashSaleSection = document.querySelector('.flash-sale');
@@ -2413,10 +2819,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tab.addEventListener('click', () => {
                 orderTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-                
+
                 const target = tab.getAttribute('data-target');
                 document.querySelectorAll('.order-list').forEach(list => {
-                    if(list.id === target) {
+                    if (list.id === target) {
                         list.style.display = 'flex';
                     } else {
                         list.style.display = 'none';
@@ -2443,7 +2849,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 trackingOverlay.style.display = 'none';
             });
         }
-        
+
         trackingOverlay.addEventListener('click', (e) => {
             if (e.target === trackingOverlay) {
                 trackingOverlay.style.display = 'none';
@@ -2457,12 +2863,12 @@ document.addEventListener('DOMContentLoaded', () => {
 const renderOrders = () => {
     const ordersContainerSemua = document.getElementById('tab-semua');
     const ordersContainerDikemas = document.getElementById('tab-dikemas');
-    
+
     if (!ordersContainerSemua || !ordersContainerDikemas) return; // Only run on orders.html
 
     const ordersData = localStorage.getItem('yuka_orders');
     if (!ordersData) return; // Keep empty states
-    
+
     const orders = JSON.parse(ordersData);
     if (orders.length === 0) return; // Keep empty states
 
@@ -2486,34 +2892,34 @@ const renderOrders = () => {
         const firstItem = order.items[0];
         const additionalItems = order.items.length > 1 ? '<p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px;">+ ' + (order.items.length - 1) + ' produk lainnya</p>' : '';
         const img = firstItem.image || 'https://via.placeholder.com/60';
-        
+
         htmlContent += '<div class="order-card" style="margin-bottom: 1.5rem;">' +
             '<div class="order-card-header">' +
-                '<span class="order-id"><i class="ph ph-bag"></i> Belanja • ' + order.date + '</span>' +
-                '<span class="order-status status-dikirim" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">' + (order.status.charAt(0).toUpperCase() + order.status.slice(1)) + '</span>' +
+            '<span class="order-id"><i class="ph ph-bag"></i> Belanja • ' + order.date + '</span>' +
+            '<span class="order-status status-dikirim" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">' + (order.status.charAt(0).toUpperCase() + order.status.slice(1)) + '</span>' +
             '</div>' +
             '<div class="order-card-body">' +
-                '<div class="order-item-detail">' +
-                    '<img src="' + img + '" alt="Product Image">' +
-                    '<div>' +
-                        '<h4>' + firstItem.name + '</h4>' +
-                        '<p class="order-qty">' + firstItem.quantity + ' x ' + formatRupiah(firstItem.price) + '</p>' +
-                        additionalItems +
-                    '</div>' +
-                '</div>' +
-                '<div class="order-total">' +
-                    '<p>Total Belanja</p>' +
-                    '<h4>' + formatRupiah(order.total) + '</h4>' +
-                '</div>' +
+            '<div class="order-item-detail">' +
+            '<img src="' + img + '" alt="Product Image">' +
+            '<div>' +
+            '<h4>' + firstItem.name + '</h4>' +
+            '<p class="order-qty">' + firstItem.quantity + ' x ' + formatRupiah(firstItem.price) + '</p>' +
+            additionalItems +
+            '</div>' +
+            '</div>' +
+            '<div class="order-total">' +
+            '<p>Total Belanja</p>' +
+            '<h4>' + formatRupiah(order.total) + '</h4>' +
+            '</div>' +
             '</div>' +
             '<div class="order-card-footer">' +
-                '<span class="order-courier">Otomatis • ' + order.id + '</span>' +
-                '<div class="order-actions">' +
-                    '<button class="outline-btn" onclick="window.location.href=\'index.html\'">Beli Lagi</button>' +
-                    '<button class="primary-btn track-btn" data-order="' + order.id + '">Lacak Pesanan</button>' +
-                '</div>' +
+            '<span class="order-courier">Otomatis • ' + order.id + '</span>' +
+            '<div class="order-actions">' +
+            '<button class="outline-btn" onclick="window.location.href=\'index.html\'">Beli Lagi</button>' +
+            '<button class="primary-btn track-btn" data-order="' + order.id + '">Lacak Pesanan</button>' +
             '</div>' +
-        '</div>';
+            '</div>' +
+            '</div>';
     });
 
     // Append to container
@@ -2548,7 +2954,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'checkout.html';
                 }, 400);
             } else {
-                if(typeof showAuthPopup === 'function') {
+                if (typeof showAuthPopup === 'function') {
                     showAuthPopup();
                 } else {
                     window.location.href = 'login.html';
