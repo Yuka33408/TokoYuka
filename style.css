@@ -3536,10 +3536,10 @@ footer {
     .header-actions .nav-btn, .header-actions .divider, .header-actions .cart-btn { display: none; }
     
     /* Make search bar take more space but fit */
-    .search-container { order: 3; width: 100%; margin-top: 5px; }
-    .search-box input { padding: 0.6rem 0.8rem; }
+    .header-container { flex-wrap: wrap; padding: 0; gap: 0.5rem; justify-content: space-between; width: 100%; }
+    .search-container { flex: 0 0 100%; order: 3; margin-top: 5px; }
+    .search-box input { padding: 0.6rem 0.8rem; width: 100%; }
     .search-tags { display: none; }
-    .header-container { flex-wrap: wrap; padding: 0; gap: 0.5rem; }
     
     /* Bottom Navigation Bar */
     .bottom-nav {
@@ -3580,8 +3580,11 @@ footer {
         padding-bottom: 10px;
         gap: 1rem;
         grid-template-columns: none; /* override grid */
+        margin: 0 -5%;
+        padding: 0 5%;
     }
     .category-item { flex: 0 0 80px; scroll-snap-align: start; }
+    .categories-grid::after { content: ''; flex: 0 0 1px; }
     
     .flash-sale-items {
         display: flex;
@@ -3590,8 +3593,11 @@ footer {
         gap: 1rem;
         padding-bottom: 10px;
         grid-template-columns: none;
+        margin: 0 -5%;
+        padding: 0 5%;
     }
     .fs-card { flex: 0 0 200px; scroll-snap-align: start; }
+    .flash-sale-items::after { content: ''; flex: 0 0 1px; }
 
     /* Last Viewed horizontal scroll */
     #last-viewed-grid {
@@ -3601,6 +3607,12 @@ footer {
         padding-bottom: 15px;
         gap: 10px;
         grid-template-columns: none; /* override grid */
+        margin: 0 -5%; /* Extend to screen edges */
+        padding: 0 5%; /* Keep items from touching edges */
+    }
+    #last-viewed-grid::after {
+        content: '';
+        flex: 0 0 1px; /* Extra space so last item isn't clipped perfectly */
     }
     #last-viewed-grid .etalase-card { 
         flex: 0 0 160px; 
