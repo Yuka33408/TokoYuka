@@ -496,11 +496,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentPage = page;
                 grid.innerHTML = '';
                 
+                const isGratisOngkir = document.getElementById('filter-gratis-ongkir')?.checked;
+                const isDiskon = document.getElementById('filter-diskon')?.checked;
+                const isCashback = document.getElementById('filter-cashback')?.checked;
+                
                 let matchedProducts = [];
                 for (const key in productsDatabase) {
                     const prod = productsDatabase[key];
                     if (categoryParam === 'Semua Kategori' || prod.category.toLowerCase().includes(categoryParam.toLowerCase()) || categoryParam.toLowerCase().includes(prod.category.toLowerCase())) {
-                        matchedProducts.push({ key, ...prod });
+                        
+                        let numPrice = parsePrice(prod.price);
+                        let hasDiskon = !!prod.discount || !!prod.strike;
+                        let hasGratisOngkir = numPrice > 50000;
+                        let hasCashback = numPrice >= 20000 && numPrice <= 50000;
+
+                        if (isGratisOngkir && !hasGratisOngkir) continue;
+                        if (isDiskon && !hasDiskon) continue;
+                        if (isCashback && !hasCashback) continue;
+
+                        matchedProducts.push({ key, hasGratisOngkir, hasDiskon, hasCashback, ...prod });
                     }
                 }
                 
@@ -534,11 +548,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     let badgeHtml = '';
                     if (prod.discount) {
                         badgeHtml = `<span class="discount-badge">${prod.discount}</span>`;
+                    } else if (prod.hasCashback) {
+                        badgeHtml = `<span class="cashback-badge" style="background:var(--accent-color); color:white;">Cashback</span>`;
+                    } else if (prod.hasGratisOngkir) {
+                        badgeHtml = `<span class="cashback-badge">Gratis Ongkir</span>`;
                     } else {
                         let numPrice = parsePrice(prod.price);
-                        if (numPrice > 50000) {
-                            badgeHtml = `<span class="cashback-badge">Gratis Ongkir</span>`;
-                        } else if (numPrice < 15000) {
+                        if (numPrice < 15000) {
                             badgeHtml = `<span class="cashback-badge">Terlaris</span>`;
                         }
                     }
@@ -584,6 +600,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Initial render
             renderGrid('Terkait', 1);
+
+            const offerCheckboxes = document.querySelectorAll('#filter-gratis-ongkir, #filter-diskon, #filter-cashback');
+            offerCheckboxes.forEach(cb => {
+                if (cb) cb.addEventListener('change', () => renderGrid(currentSort, 1));
+            });
 
             if (sortingTabs.length > 0) {
                 sortingTabs.forEach(tab => {
