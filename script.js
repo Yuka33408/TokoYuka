@@ -2535,3 +2535,25 @@ const renderOrders = () => {
 };
 
 document.addEventListener('DOMContentLoaded', renderOrders);
+// Handle Beli Langsung
+document.addEventListener('DOMContentLoaded', () => {
+    const buyNowBtn = document.getElementById('buy-now-trigger');
+    if (buyNowBtn) {
+        buyNowBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (localStorage.getItem('yuka_logged_in') === 'true') {
+                const overlay = document.querySelector('.page-transition-overlay');
+                if (overlay) overlay.classList.add('active');
+                setTimeout(() => {
+                    window.location.href = 'checkout.html';
+                }, 400);
+            } else {
+                if(typeof showAuthPopup === 'function') {
+                    showAuthPopup();
+                } else {
+                    window.location.href = 'login.html';
+                }
+            }
+        });
+    }
+});
