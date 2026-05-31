@@ -1348,7 +1348,7 @@ footer {
 .product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.3s ease;
 }
 
@@ -2536,6 +2536,24 @@ footer {
     align-items: center;
     gap: 1rem;
 }
+.header-actions .bottom-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+.header-actions .bottom-nav-item i {
+    font-size: 1.5rem;
+}
+.header-actions .bottom-nav-item:hover {
+    color: var(--accent-color);
+}
+[data-theme="dark"] .header-actions .bottom-nav-item {
+    color: #e2a559;
+}
 .icon-btn {
     color: var(--text-secondary);
     font-size: 1.5rem;
@@ -3196,7 +3214,7 @@ footer {
 .etalase-card .product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .etalase-card .product-info {
     padding: 0.8rem;
@@ -3354,7 +3372,7 @@ footer {
 .product-modal-image img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
 .product-modal-details {
     flex: 1;
@@ -3422,7 +3440,7 @@ footer {
 .main-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .thumbnail-list {
     display: flex;
@@ -3442,7 +3460,7 @@ footer {
 .thumbnail img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .product-info-main {
     display: flex;
@@ -3916,10 +3934,11 @@ footer {
     .bottom-nav-item i { font-size: 1.5rem; }
     .bottom-nav-item.active {
         color: var(--primary-color);
-        background: rgba(124, 58, 237, 0.1);
+        background: rgba(210, 204, 221, 0.1);
     }
     [data-theme="dark"] .bottom-nav-item.active {
-        background: rgba(167, 139, 250, 0.15);
+        background: rgba(255, 255, 255, 0.1);
+        color: #e2a559;
     }
     .bottom-nav-item.active span {
         display: block;
