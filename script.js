@@ -502,12 +502,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isRating4 = document.getElementById('filter-rating-4')?.checked;
                 const isRating3 = document.getElementById('filter-rating-3')?.checked;
                 
+                const minPriceInput = document.getElementById('price-min');
+                const maxPriceInput = document.getElementById('price-max');
+                const minPriceVal = minPriceInput && minPriceInput.value ? parseInt(minPriceInput.value) : 0;
+                const maxPriceVal = maxPriceInput && maxPriceInput.value ? parseInt(maxPriceInput.value) : Infinity;
+                
                 let matchedProducts = [];
                 for (const key in productsDatabase) {
                     const prod = productsDatabase[key];
                     if (categoryParam === 'Semua Kategori' || prod.category.toLowerCase().includes(categoryParam.toLowerCase()) || categoryParam.toLowerCase().includes(prod.category.toLowerCase())) {
                         
                         let numPrice = parsePrice(prod.price);
+                        
+                        if (numPrice < minPriceVal || numPrice > maxPriceVal) continue;
                         let hasDiskon = !!prod.discount || !!prod.strike;
                         let hasGratisOngkir = numPrice > 50000;
                         let hasCashback = numPrice >= 20000 && numPrice <= 50000;
@@ -610,6 +617,11 @@ document.addEventListener('DOMContentLoaded', () => {
             filterCheckboxes.forEach(cb => {
                 if (cb) cb.addEventListener('change', () => renderGrid(currentSort, 1));
             });
+            
+            const applyPriceBtn = document.getElementById('apply-price-filter');
+            if (applyPriceBtn) {
+                applyPriceBtn.addEventListener('click', () => renderGrid(currentSort, 1));
+            }
 
             if (sortingTabs.length > 0) {
                 sortingTabs.forEach(tab => {
@@ -657,6 +669,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadMoreBtn = document.getElementById('load-more-btn');
     const path = window.location.pathname;
     if (path.includes('index.html') || path.endsWith('/') || path.endsWith('website') || path === '') {
+        if (typeof renderRecommendations === 'function') {
+            renderRecommendations();
+        }
         const etalaseCards = document.querySelectorAll('.recommendation-section .etalase-card');
         if (etalaseCards.length > 0 && loadMoreBtn) {
             let currentItems = 10;
@@ -799,35 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 3. Flash Sale Countdown Timer
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-
-    if (hoursEl && minutesEl && secondsEl) {
-        // Set target time: 2 hours from now for demo
-        let targetTime = new Date().getTime() + (2 * 60 * 60 * 1000);
-
-        const updateTimer = () => {
-            const now = new Date().getTime();
-            const distance = targetTime - now;
-
-            if (distance < 0) {
-                targetTime = new Date().getTime() + (24 * 60 * 60 * 1000); // reset to 24h
-            }
-
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            hoursEl.textContent = hours.toString().padStart(2, '0');
-            minutesEl.textContent = minutes.toString().padStart(2, '0');
-            secondsEl.textContent = seconds.toString().padStart(2, '0');
-        };
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
-    }
+    // Flash sale countdown logic is now handled by initFlashSaleCountdown() at the bottom of the file
 });
 
 // ==========================================
@@ -1082,11 +1069,16 @@ const productsDatabase = {
         rating: '5.0',
         sold: 'Terjual 80+',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEJs5tSZ5YLwH0Vt5OaO0oeeqAZ87ddgNxdg&s',
-        img2: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=400&h=400&fit=crop',
-        img3: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=400&h=400&fit=crop',
+        img2: 'https://sg-test-11.slatic.net/p/534918bdab075978ef2e1574778fc46d.jpg',
+        img3: 'https://laz-img-sg.alicdn.com/p/ec329345ad0280fad3a9093e0709fcdc.png',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
-        desc: 'Pensil Warna Set 48 Warna dengan kualitas premium. Cocok untuk seniman profesional maupun pemula. Warna cerah, mudah di-blend, dan tidak mudah patah.'
+        desc: `Aman untuk anak-anak
+Tidak beracun
+Warna-warna yang cemerlang
+Sistem SV Bonding, ujung pensil tidak mudah patah
+Tersedia warna emas
+Sudah bersertifikat TKDN (Tingkat Komponen Dalam Negeri).`
     },
     'tas-laptop': {
         title: 'ANTARESTAR Tas Ransel Helios',
@@ -1098,7 +1090,7 @@ const productsDatabase = {
         img: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98s-lqea2zbvaxb2e3.jpg',
         img2: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98o-lqea2zbvcbvi9b-510x510.jpg',
         img3: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98w-lqea2zbvhy5ae1-510x510.jpg',
-        category: 'Elektronik',
+        category: 'Aksesoris',
         location: 'Wangi-Wangi',
         desc: `Buat yang suka bepergian travelling atau beraktifitas kemana mana, kadang kita butuh extra BACKPACK yang BESAR untuk menemani trip kita. Nah, BACKPACK HELIOS ini sangat cocok untuk menemani petualangan dan segala aktifitas kalian.
 Dengan bahan Premium Bimo Polyster yang Waterproof dan resleting full zipper waterproof membuat Backpack HELIOS ini tahan di cuaca panas maupun hujan. Barang-barangmu tetap terjaga aman tanpa perlu takut kebasahan.
@@ -1114,43 +1106,66 @@ Desain Simple, Keren, dan Elegan
 Pada bagian punggung dan tali terdapat bantalan busa..`
     },
     'buku-agenda': {
-        title: 'Buku Agenda Kulit Eksklusif 2026',
+        title: 'MAHADA Buku Agenda Kulit Blok Lem',
         price: 'Rp 65.000',
         strike: 'Rp 81.500',
-        discount: 'Diskon 20%',
+        discount: '20%',
         rating: '4.9',
         sold: 'Terjual 250+',
-        img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=300&h=300&fit=crop',
-        img2: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=400&fit=crop',
-        img3: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&h=400&fit=crop',
+        img: 'https://www.mahada.co.id/wp-content/uploads/2021/06/Buku-Agenda-Berbahan-Kulit-Dengan-Model-Jilid-Blok-Lem-Dilengkapi-Pengunci-Magnet-1.jpg.webp',
+        img2: 'https://www.mahada.co.id/wp-content/uploads/2021/06/Buku-Agenda-Berbahan-Kulit-Dengan-Model-Jilid-Blok-Lem-Dilengkapi-Pengunci-Magnet-6.jpg.webp',
+        img3: 'https://www.mahada.co.id/wp-content/uploads/2021/06/Buku-Agenda-Berbahan-Kulit-Dengan-Model-Jilid-Blok-Lem-Dilengkapi-Pengunci-Magnet-5.jpg.webp',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
-        desc: 'Buku agenda dengan sampul kulit sintetis. Dilengkapi kalender, pembatas pita, dan kertas berkualitas tinggi (100gsm).'
+        desc: `Bahan Cover	
+Hardcover Dilapis Kulit
+
+Isi Buku	
+Polos, Cetakan
+
+Logo	
+Deboss Logo Foil
+
+Pilihan Jilid	
+Blok Lem
+
+Pengunci Cover	
+Magnet
+
+Warna Logo	
+Polos, Emas, Silver, Warna Lain.`
     },
     'tinta-printer': {
-        title: 'Tinta Printer EPSON 664 Hitam',
-        price: 'Rp 100.000',
-        strike: 'Rp 125.000',
-        discount: 'Diskon 15%',
+        title: 'Tinta Printer EPSON 664 Black T6641',
+        price: 'Rp 120.000',
+        strike: 'Rp 150.000',
+        discount: '20%',
         rating: '4.7',
         sold: 'Terjual 150+',
         img: 'https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg',
-                img2: 'https://picsum.photos/seed/82187/400/400',
-        img3: 'https://picsum.photos/seed/83191/400/400',
-        category: 'Elektronik',
+                img2: 'https://parto.id/asset/foto_produk/664b.jpg',
+        img3: 'https://fixprint.id/_next/image?url=https%3A%2F%2Fminio.fixprint.id%2Ffixprint%2Fcatalog%2FTINTA%2F8885007024080_tinta_epson_664_baru_black_2.jpg&w=640&q=75',
+        category: 'Percetakan',
         location: 'Wangi-Wangi',
-        desc: 'Tinta botol berkualitas tinggi, hasil cetak tajam, anti luntur. Kompatibel dengan mayoritas printer inkjet.'
+        desc: `Support Printer Type :
+Epson L110 L120 L210
+Epson L220 L300 L310
+Epson L350 L355 L360
+Epson L365 L380 L385
+Epson L405 L485 L550
+Epson L555 L565 L655
+Epson L100 L200 L1300 L1455`
     },
     'pulpen-gel': {
         title: 'Pulpen Gel Joyko GP-265 0.5mm Hitam (Lusin)',
-        price: 'Rp 15.000',
-        strike: '',
-        discount: '',
+        price: 'Rp 13.500',
+        strike: 'Rp 15.000',
+        discount: '10%',
         rating: '4.9',
         sold: 'Terjual 2rb+',
         img: 'https://andalanatk.com/upload/produk/6901b814eefa81.87516637_986852_produk.webp',
-                img2: 'https://picsum.photos/seed/88680/400/400',
-        img3: 'https://picsum.photos/seed/46254/400/400',
+                img2: 'https://www.joyko.co.id/image/cache/data/additional/GP-265-size-01-650x650.jpg',
+        img3: 'https://www.joyko.co.id/image/cache/data/additional/GP-265-beauty-04-01-650x650.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Tinta lebih lancar, cepat kering, dan sangat nyaman digunakan untuk menulis dokumen penting atau catatan harian.'
@@ -1163,29 +1178,63 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         rating: '4.8',
         sold: 'Terjual 500+',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-55436011/br-m036969-07062_-pack-buku-tulis-sidu-sinar-dunia-58-lembar-murah_full01.jpg',
-                img2: 'https://picsum.photos/seed/15127/400/400',
-        img3: 'https://picsum.photos/seed/62128/400/400',
+                img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/103/MTA-141175399/brd-48790_buku-tulis-sidu-58_full01-fe242727.jpg',
+        img3: 'https://bangkitperkasa.com/storage/2023/01/BUKU-TULIS-SIDU-58-LEMBAR.jpg',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
-        desc: 'Buku catatan bersampul kraft elegan. Berisi 100 lembar kertas HVS polos yang tidak tembus tinta.'
+        desc: ` Kualitas kertas tebal, putih, dan halus
+
+> Nyaman untuk menulis
+
+> Tidak tembus tinta
+
+> Ideal digunakan untuk pelajar SD dalam kegiatan sekolah
+
+> Terdiri dari beraneka macam gambar sampul buku
+
+> Pilihan gambar sampul sesuai dengan stok yang tersedia`
     },
-    'laptop-i5': {
+    'macbook-air-m4': {
         title: 'MacBook Air M4',
-        price: 'Rp 16.999.999',
+        price: 'Rp 15.999.999',
         strike: '',
         discount: '',
         rating: '5.0',
         sold: 'Terjual 50+',
-        img: 'https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg',
-                img2: 'https://picsum.photos/seed/18672/400/400',
-        img3: 'https://picsum.photos/seed/59795/400/400',
-        category: 'Elektronik',
+        img: 'https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_macbook_air_13.6_inci_m4_2025_sky_blue_1_2.jpg&w=1920&q=45',
+                img2: 'https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg',
+        img3: 'https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_macbook_air_13.6_inci_m4_2025_sky_blue_10_2.jpg&w=1920&q=45',
+        category: 'Komputer',
         location: 'Wangi-Wangi',
-        desc: 'Laptop tangguh dengan prosesor terbaru, ideal untuk kebutuhan sekolah, kuliah, desain grafis ringan, hingga kantoran.'
+        desc: `MacBook Air 13 inci dengan chip M4 memungkinkan Anda menuntaskan pekerjaan dan permainan dengan cepat. Dengan layar Liquid Retina yang cemerlang, kekuatan baterai hingga 18 jam, dan desain yang luar biasa tipis dan ringan, MacBook Air dibuat agar lebih tahan lama dan mampu melakukan segalanya, di mana saja.
+
+FITUR:
+
+BERTENAGA SUPER BERKAT M4 — Chip Apple M4 membuat semua yang Anda lakukan menjadi jauh lebih cepat dan lancar, seperti bekerja di berbagai aplikasi, mengedit video, atau bermain game sarat grafis.
+
+KEKUATAN BATERAI HINGGA 18 JAM — MacBook Air memberikan performa yang sama-sama luar biasa ketika dicolok maupun tidak.
+
+DESAIN PORTABEL — Sangat ringan dan hanya setengah inci tipisnya, MacBook Air pas di tas Anda — dan menyatu dengan mudah dalam gaya hidup Anda.
+
+LAYAR CEMERLANG — Layar Liquid Retina 13,6 inci mendukung satu miliar warna. Foto dan video tampil memukau dengan kontras kaya dan detail tajam, dan teks terlihat sangat jelas.
+
+TERLIHAT DAN TERDENGAR SEMPURNA — Semuanya terlihat dan terdengar memukau dengan kamera 12MP Center Stage, tiga mikrofon, dan empat speaker dengan Audio Spasial.
+
+HUBUNGKAN SEMUANYA — MacBook Air memiliki dua port Thunderbolt 4, port pengisian daya MagSafe, jek headphone, Wi-Fi 6E, dan Bluetooth 5.3. Dan mendukung hingga dua layar eksternal.
+
+APLIKASI BEKERJA CEPAT DI MACOS — Semua aplikasi favorit Anda berjalan sangat cepat di macOS, termasuk Microsoft 365, Adobe Creative Cloud, dan Google Workspace.
+
+KALAU SUKA IPHONE, ANDA AKAN SUKA MAC — Mac bekerja serasi dengan perangkat Apple lainnya. Lihat dan kendalikan semua yang ada di iPhone Anda dari Mac Anda dengan Pencerminan iPhone. Salin sesuatu di iPhone dan tempelkan di Mac. Kirim teks dengan Pesan atau gunakan Mac untuk melakukan dan menjawab panggilan FaceTime.
+
+ISI KOTAK:
+
+MacBook Air 13 inch M4
+Adaptor daya USB-C
+Kabel USB-C ke Magsafe 3 (2m)`
     },
     'kuas-lukis': {
         title: 'Kuas Lukis Cat Air Watercolor Set 6 Pcs',
-        price: 'Rp 25.000',
+        price: 'Rp 20.000',
         strike: '',
         discount: '',
         rating: '4.8',
@@ -1221,7 +1270,7 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop',
                 img2: 'https://picsum.photos/seed/19360/400/400',
         img3: 'https://picsum.photos/seed/27739/400/400',
-        category: 'Elektronik',
+        category: 'Aksesoris',
         location: 'Wangi-Wangi',
         desc: 'Keyboard gaming mechanical yang *clicky*, responsif, dengan lampu latar RGB 16 juta warna.'
     },
@@ -1291,7 +1340,7 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop',
                 img2: 'https://picsum.photos/seed/13948/400/400',
         img3: 'https://picsum.photos/seed/71070/400/400',
-        category: 'Elektronik',
+        category: 'Aksesoris',
         location: 'Wangi-Wangi',
         desc: 'Mouse wireless handal dengan jangkauan 10 meter. Sangat nyaman untuk penggunaan harian.'
     },
@@ -1333,7 +1382,7 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         img: 'https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg',
                 img2: 'https://picsum.photos/seed/16750/400/400',
         img3: 'https://picsum.photos/seed/92778/400/400',
-        category: 'Elektronik',
+        category: 'Percetakan',
         location: 'Wangi-Wangi',
         desc: 'Tinta botol original Canon, hasil cetak tajam dan awet.'
     },
@@ -1445,7 +1494,7 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop',
                 img2: 'https://picsum.photos/seed/36704/400/400',
         img3: 'https://picsum.photos/seed/84691/400/400',
-        category: 'Elektronik',
+        category: 'Aksesoris',
         location: 'Wangi-Wangi',
         desc: 'Flashdisk original dengan garansi resmi 5 tahun.'
     },
@@ -1515,7 +1564,7 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
                 img2: 'https://picsum.photos/seed/49505/400/400',
         img3: 'https://picsum.photos/seed/87734/400/400',
-        category: 'Alat Tulis',
+        category: 'Aksesoris',
         location: 'Wangi-Wangi',
         desc: 'Name tag plastik bening tebal beserta talinya.'
     },
@@ -1561,7 +1610,145 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         location: 'Wangi-Wangi',
         desc: 'Kertas lipat origami untuk prakarya, warna cerah.'
     },
+    'printer-epson': {
+        title: 'Printer EPSON EcoTank L3210 All-in-One',
+        price: 'Rp 2.150.000',
+        strike: 'Rp 2.500.000',
+        discount: '14%',
+        rating: '4.9',
+        sold: 'Terjual 3rb+',
+        img: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/10/22/e1b6f634-93cc-49ff-ac1d-3b56cc0c98f9.jpg',
+        img2: 'https://picsum.photos/seed/101/400/400',
+        img3: 'https://picsum.photos/seed/102/400/400',
+        category: 'Percetakan',
+        location: 'Wangi-Wangi',
+        desc: `Printer multifungsi Epson EcoTank L3210 (Print, Scan, Copy) yang sangat hemat tinta. Cocok untuk kebutuhan cetak dokumen sekolah, kantor, maupun usaha percetakan kecil.`
+    },
+    'printer-canon': {
+        title: 'Printer Canon PIXMA G2020 All-in-One',
+        price: 'Rp 1.950.000',
+        strike: '',
+        discount: '',
+        rating: '4.8',
+        sold: 'Terjual 1rb+',
+        img: 'https://images.tokopedia.net/img/cache/700/VqbcmM/2021/3/3/03a08892-dbec-4993-9c88-c7ea519c50fc.jpg',
+        img2: 'https://picsum.photos/seed/103/400/400',
+        img3: 'https://picsum.photos/seed/104/400/400',
+        category: 'Percetakan',
+        location: 'Wangi-Wangi',
+        desc: `Canon PIXMA G2020 merupakan printer ink tank multifungsi dengan fitur print, scan, dan copy. Sangat andal untuk pencetakan bervolume tinggi.`
+    },
+    'printer-brother': {
+        title: 'Printer Brother DCP-T420W Wireless',
+        price: 'Rp 2.250.000',
+        strike: '',
+        discount: '',
+        rating: '4.9',
+        sold: 'Terjual 850+',
+        img: 'https://images.tokopedia.net/img/cache/700/hDjmkQ/2023/2/14/d81c3c97-6a4a-4e2b-b6d8-1e42b260907e.jpg',
+        img2: 'https://picsum.photos/seed/105/400/400',
+        img3: 'https://picsum.photos/seed/106/400/400',
+        category: 'Percetakan',
+        location: 'Wangi-Wangi',
+        desc: `Brother DCP-T420W mendukung pencetakan via nirkabel (Wi-Fi). Memudahkan Anda mencetak langsung dari smartphone atau laptop tanpa kabel. Sistem tangki tinta isi ulang praktis.`
+    }
+};
 
+// ==========================================
+// Tracking & Recommendation Logic
+// ==========================================
+const trackProductView = (productId) => {
+    if (!productId || !productsDatabase[productId]) return;
+    let history = [];
+    try {
+        history = JSON.parse(localStorage.getItem('yuka_view_history')) || [];
+    } catch (e) {
+        history = [];
+    }
+    
+    const existingIndex = history.findIndex(item => item.id === productId);
+    if (existingIndex > -1) {
+        history[existingIndex].count += 1;
+        history[existingIndex].lastViewed = Date.now();
+    } else {
+        history.push({ id: productId, count: 1, lastViewed: Date.now() });
+    }
+    
+    if (history.length > 50) {
+        history.sort((a, b) => b.lastViewed - a.lastViewed);
+        history = history.slice(0, 50);
+    }
+    localStorage.setItem('yuka_view_history', JSON.stringify(history));
+};
+
+const renderRecommendations = () => {
+    const recommendationGrid = document.getElementById('recommendation-grid');
+    if (!recommendationGrid) return;
+    
+    let history = [];
+    try {
+        history = JSON.parse(localStorage.getItem('yuka_view_history')) || [];
+    } catch (e) {
+        history = [];
+    }
+    
+    history.sort((a, b) => {
+        if (b.count !== a.count) return b.count - a.count;
+        return b.lastViewed - a.lastViewed;
+    });
+    
+    const maxItems = 20; 
+    const recommendedIds = new Set();
+    const finalProductsToRender = [];
+    
+    for (const item of history) {
+        if (productsDatabase[item.id] && finalProductsToRender.length < maxItems) {
+            finalProductsToRender.push({ id: item.id, ...productsDatabase[item.id] });
+            recommendedIds.add(item.id);
+        }
+    }
+    
+    const allIds = Object.keys(productsDatabase);
+    for (let i = allIds.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allIds[i], allIds[j]] = [allIds[j], allIds[i]];
+    }
+    
+    for (const id of allIds) {
+        if (finalProductsToRender.length >= maxItems) break;
+        if (!recommendedIds.has(id)) {
+            finalProductsToRender.push({ id, ...productsDatabase[id] });
+            recommendedIds.add(id);
+        }
+    }
+    
+    recommendationGrid.innerHTML = '';
+    finalProductsToRender.forEach(prod => {
+        const badgeHtml = prod.discount ? `<span class="discount-badge">${prod.discount}</span>` : 
+                          (prod.strike ? `<span class="discount-badge">Promo</span>` : '');
+                          
+        const card = document.createElement('div');
+        card.className = 'etalase-card';
+        card.style.cursor = 'pointer';
+        card.title = 'Lihat Produk';
+        card.onclick = () => window.location.href = `product.html?id=${prod.id}`;
+        
+        card.innerHTML = `
+            <div class="product-image">
+                <img src="${prod.img}" alt="${prod.title}">
+                ${badgeHtml}
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${prod.title}</h3>
+                <div class="product-price">${prod.price}</div>
+                <div class="product-meta">
+                    <span class="rating"><i class="ph-fill ph-star"></i> ${prod.rating} | ${prod.sold}</span>
+                    <span class="location"><i class="ph ph-map-pin"></i> ${prod.location || 'Wangi-Wangi'}</span>
+                </div>
+            </div>
+        `;
+        recommendationGrid.appendChild(card);
+    });
 };
 
 // Render Product Page based on URL parameter ?id=...
@@ -1572,6 +1759,10 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
     // Fallback if no ID is provided
     if (!productId || !productsDatabase[productId]) {
         productId = 'pensil-warna'; 
+    }
+    
+    if (typeof trackProductView === 'function') {
+        trackProductView(productId);
     }
 
     const product = productsDatabase[productId];
@@ -1799,28 +1990,42 @@ const initFlashSaleCountdown = () => {
 
     if (!hoursEl || !minutesEl || !secondsEl) return;
 
-    // Check localStorage for existing target date
-    let targetDateStr = localStorage.getItem('yuka_flashsale_target');
+    // Check for target date
+    // UNTUK MEMULAI FLASH SALE BARU: Ganti tanggal di bawah ini dengan format 'YYYY-MM-DDTHH:mm:ss'
+    // Contoh: '2026-06-15T23:59:59'
+    // Jika dikosongkan (''), fitur Flash Sale akan disembunyikan.
+    const FLASH_SALE_END_DATE = '2026-06-15T23:59:59'; 
+    
     let targetDate;
 
-    if (targetDateStr) {
-        targetDate = new Date(targetDateStr).getTime();
-        // If the date has passed, reset it to 13 days from now
+    if (FLASH_SALE_END_DATE) {
+        targetDate = new Date(FLASH_SALE_END_DATE).getTime();
+        
+        // If the date has passed, hide the flash sale section
         if (targetDate < new Date().getTime()) {
-            targetDate = new Date().getTime() + (13 * 24 * 60 * 60 * 1000);
-            localStorage.setItem('yuka_flashsale_target', new Date(targetDate).toISOString());
+            const flashSaleSection = document.querySelector('.flash-sale');
+            if (flashSaleSection) flashSaleSection.style.display = 'none';
+            return;
         }
     } else {
-        // Set to 13 days from now initially
-        targetDate = new Date().getTime() + (13 * 24 * 60 * 60 * 1000);
-        localStorage.setItem('yuka_flashsale_target', new Date(targetDate).toISOString());
+        // If no date is set, hide the flash sale section
+        const flashSaleSection = document.querySelector('.flash-sale');
+        if (flashSaleSection) flashSaleSection.style.display = 'none';
+        return;
     }
+
+    let countdownInterval;
 
     const updateCountdown = () => {
         const now = new Date().getTime();
         const distance = targetDate - now;
 
-        if (distance < 0) return;
+        if (distance < 0) {
+            const flashSaleSection = document.querySelector('.flash-sale');
+            if (flashSaleSection) flashSaleSection.style.display = 'none';
+            if (countdownInterval) clearInterval(countdownInterval);
+            return;
+        }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -1834,7 +2039,7 @@ const initFlashSaleCountdown = () => {
     };
 
     updateCountdown(); // Initial call to avoid 1-sec delay
-    setInterval(updateCountdown, 1000);
+    countdownInterval = setInterval(updateCountdown, 1000);
 };
 
 // Run the countdown initialization
