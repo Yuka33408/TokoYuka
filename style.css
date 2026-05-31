@@ -4010,11 +4010,44 @@ footer {
     
     .product-detail-grid { grid-template-columns: minmax(0, 1fr); padding-bottom: 120px; } /* Give room for sticky box */
     
-    /* Banners */
+    /* Banners & Modern Slide Fixes */
     .banner-container { flex-direction: column; }
-    .side-banners { flex-direction: row; width: 100%; }
-    .side-banner-img { width: calc(50% - 0.5rem); height: 120px; }
-    .main-carousel { width: 100%; height: 320px; }
+    .side-banners { flex-direction: row; width: 100%; gap: 0.5rem; }
+    .main-carousel { width: 100%; height: 380px; }
+    
+    .modern-slide {
+        flex-direction: column-reverse;
+        padding: 1.5rem 1rem 3rem 1rem; /* Extra padding at bottom for indicators */
+        gap: 0.5rem;
+        text-align: center;
+        justify-content: flex-end;
+    }
+    .slide-content { display: flex; flex-direction: column; align-items: center; }
+    .slide-content h2 { font-size: 1.3rem; margin-bottom: 0.3rem; }
+    .slide-content p { font-size: 0.85rem; margin-bottom: 0.8rem; max-width: 100%; }
+    .slide-badge { font-size: 0.7rem; padding: 0.2rem 0.5rem; margin-bottom: 0.5rem; }
+    .slide-btn { padding: 0.5rem 1rem; font-size: 0.8rem; margin: 0 auto; width: fit-content; }
+    
+    .slide-image { height: 150px; width: 100%; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; }
+    .slide-image img { max-height: 100%; object-fit: contain; }
+    
+    .carousel-btn { width: 36px; height: 36px; font-size: 1.2rem; }
+    .prev-btn { left: 0.5rem; }
+    .next-btn { right: 0.5rem; }
+    .carousel-indicators { bottom: 0.5rem; padding: 0.3rem 0.8rem; }
+    
+    .side-promo-card { padding: 1rem; height: 140px; width: calc(50% - 0.25rem); }
+    .voucher-card h3 { font-size: 0.95rem; }
+    .voucher-card p { font-size: 0.75rem; margin-bottom: 0.5rem; }
+    .voucher-card .promo-icon { font-size: 1.5rem; margin-bottom: 0.2rem; }
+    .klaim-btn { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+    .decor-1, .decor-2 { display: none; } /* Sembunyikan dekorasi di layar kecil agar tidak sesak */
+    
+    .ongkir-card { padding: 0.8rem; flex-direction: column; text-align: center; justify-content: center; gap: 0.5rem; }
+    .ongkir-image { width: 45px; height: 45px; margin: 0 auto; }
+    .ongkir-card h3 { font-size: 0.85rem; }
+    .ongkir-card p { font-size: 0.7rem; margin-bottom: 0.2rem; display: none; } /* Sembunyikan p agar muat */
+    .promo-link { justify-content: center; font-size: 0.75rem; }
 }
 
 /* Hide Bottom Nav on Desktop */
