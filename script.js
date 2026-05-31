@@ -322,6 +322,27 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCart(); // Sinkronisasi UI dengan data cart dari localStorage
 
+    // Update hardcoded Flash Sale DOM with dynamic rating/sold
+    const flashSaleItems = document.querySelectorAll('.fs-card');
+    flashSaleItems.forEach(card => {
+        const linkStr = card.getAttribute('href');
+        if (linkStr && linkStr.includes('?id=')) {
+            const id = linkStr.split('?id=')[1];
+            if (productsDatabase[id]) {
+                const prod = productsDatabase[id];
+                const progressText = card.querySelector('.progress-text');
+                const progressFill = card.querySelector('.progress-fill');
+                if (progressText) progressText.innerText = prod.sold;
+                if (progressFill) {
+                    let soldNum = parseInt(prod.sold.replace(/[^0-9]/g, '')) || 0;
+                    let widthPct = Math.min((soldNum / 100) * 100, 100);
+                    if (soldNum === 0) widthPct = 0; // Ensures 0 sold = 0%
+                    progressFill.style.width = `${widthPct}%`;
+                }
+            }
+        }
+    });
+
     // Inisialisasi Filter Kategori
     const filterBtns = document.querySelectorAll('.category-filters .filter-btn');
     if (filterBtns.length > 0) {
@@ -1168,8 +1189,8 @@ const productsDatabase = {
         price: 'Rp 125.000',
         strike: 'Rp 150.000',
         discount: 'Diskon 50%',
-        rating: '5.0',
-        sold: 'Terjual 80+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEJs5tSZ5YLwH0Vt5OaO0oeeqAZ87ddgNxdg&s',
         img2: 'https://sg-test-11.slatic.net/p/534918bdab075978ef2e1574778fc46d.jpg',
         img3: 'https://laz-img-sg.alicdn.com/p/ec329345ad0280fad3a9093e0709fcdc.png',
@@ -1187,8 +1208,8 @@ Sudah bersertifikat TKDN (Tingkat Komponen Dalam Negeri).`
         price: 'Rp 269.500',
         strike: 'Rp 475.000',
         discount: 'Diskon 40%',
-        rating: '4.8',
-        sold: 'Terjual 300+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98s-lqea2zbvaxb2e3.jpg',
         img2: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98o-lqea2zbvcbvi9b-510x510.jpg',
         img3: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98w-lqea2zbvhy5ae1-510x510.jpg',
@@ -1212,8 +1233,8 @@ Pada bagian punggung dan tali terdapat bantalan busa..`
         price: 'Rp 65.000',
         strike: 'Rp 81.500',
         discount: '20%',
-        rating: '4.9',
-        sold: 'Terjual 250+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.mahada.co.id/wp-content/uploads/2021/06/Buku-Agenda-Berbahan-Kulit-Dengan-Model-Jilid-Blok-Lem-Dilengkapi-Pengunci-Magnet-1.jpg.webp',
         img2: 'https://www.mahada.co.id/wp-content/uploads/2021/06/Buku-Agenda-Berbahan-Kulit-Dengan-Model-Jilid-Blok-Lem-Dilengkapi-Pengunci-Magnet-6.jpg.webp',
         img3: 'https://www.mahada.co.id/wp-content/uploads/2021/06/Buku-Agenda-Berbahan-Kulit-Dengan-Model-Jilid-Blok-Lem-Dilengkapi-Pengunci-Magnet-5.jpg.webp',
@@ -1242,8 +1263,8 @@ Polos, Emas, Silver, Warna Lain.`
         price: 'Rp 120.000',
         strike: 'Rp 150.000',
         discount: '20%',
-        rating: '4.7',
-        sold: 'Terjual 150+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg',
                 img2: 'https://parto.id/asset/foto_produk/664b.jpg',
         img3: 'https://fixprint.id/_next/image?url=https%3A%2F%2Fminio.fixprint.id%2Ffixprint%2Fcatalog%2FTINTA%2F8885007024080_tinta_epson_664_baru_black_2.jpg&w=640&q=75',
@@ -1263,8 +1284,8 @@ Epson L100 L200 L1300 L1455`
         price: 'Rp 13.500',
         strike: 'Rp 15.000',
         discount: '10%',
-        rating: '4.9',
-        sold: 'Terjual 2rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://andalanatk.com/upload/produk/6901b814eefa81.87516637_986852_produk.webp',
                 img2: 'https://www.joyko.co.id/image/cache/data/additional/GP-265-size-01-650x650.jpg',
         img3: 'https://www.joyko.co.id/image/cache/data/additional/GP-265-beauty-04-01-650x650.jpg',
@@ -1277,8 +1298,8 @@ Epson L100 L200 L1300 L1455`
         price: 'Rp 35.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 500+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-55436011/br-m036969-07062_-pack-buku-tulis-sidu-sinar-dunia-58-lembar-murah_full01.jpg',
                 img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/103/MTA-141175399/brd-48790_buku-tulis-sidu-58_full01-fe242727.jpg',
         img3: 'https://bangkitperkasa.com/storage/2023/01/BUKU-TULIS-SIDU-58-LEMBAR.jpg',
@@ -1301,8 +1322,8 @@ Epson L100 L200 L1300 L1455`
         price: 'Rp 15.999.999',
         strike: '',
         discount: '',
-        rating: '5.0',
-        sold: 'Terjual 50+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_macbook_air_13.6_inci_m4_2025_sky_blue_1_2.jpg&w=1920&q=45',
                 img2: 'https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg',
         img3: 'https://ibox.co.id/_next/image?url=https%3A%2F%2Fcdnpro.eraspace.com%2Fmedia%2Fcatalog%2Fproduct%2Fa%2Fp%2Fapple_macbook_air_13.6_inci_m4_2025_sky_blue_10_2.jpg&w=1920&q=45',
@@ -1339,8 +1360,8 @@ Kabel USB-C ke Magsafe 3 (2m)`
         price: 'Rp 20.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 120+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://images.tokopedia.net/img/cache/700/aphluv/1997/1/1/b967c0e56d2247fbad1fc041522694f9~.jpeg.webp',
                 img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg_KAFv7PQvZxeEuEAH0KlBPmoDGGopioobA&s',
         img3: 'https://philang.com/storage/products/joyko/36029a81-5225-448f-8303-f5fbaa1f34e1.jpg',
@@ -1353,8 +1374,8 @@ Kabel USB-C ke Magsafe 3 (2m)`
         price: 'Rp 471.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 1rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Stapler/Heavy-Duty-Stapler-HD-12L24-700x700.jpg',
                 img2: 'https://alattuliskantor.id/wp-content/uploads/2024/11/88.jpg',
         img3: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/104/MTA-182197157/no_brand_heavy_duty_stapler_j0yk0_hd12l-24-_stapler_or_staples_hd_12l-24_full01_v2rgx761.jpg',
@@ -1367,8 +1388,8 @@ Kabel USB-C ke Magsafe 3 (2m)`
         price: 'Rp 489.000',
         strike: '',
         discount: '',
-        rating: '4.7',
-        sold: 'Terjual 800+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.zifriend.net/cdn/shop/files/TK68_-800_-RGB_239acbec-f497-4122-8b63-9d29d27e6538.jpg?v=1742524963&width=990',
                 img2: 'https://www.zifriend.net/cdn/shop/files/TK68_-800RGB.jpg?v=1742524963&width=990',
         img3: 'https://www.zifriend.net/cdn/shop/files/TK68_-800_f21a2ab8-b6ca-4126-8831-aa3d216b3696.jpg?v=1742524963&width=990',
@@ -1388,8 +1409,8 @@ Tata letak bahasa Rusia/Portugis/Spanyol/Inggris`
         price: 'Rp 12.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 450+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://p16-oec-sg.ibyteimg.com/tos-alisg-i-aphluv4xwc-sg/img/product-1/2019/12/16/77174725/77174725_3d8d3e5c-1471-4de0-8478-754da270438c_700_700~tplv-aphluv4xwc-resize-jpeg:700:0.image',
                 img2: 'https://id-test-11.slatic.net/p/c988e4ea7a0061c673d337c81c97b507.jpg',
         img3: 'https://id-live-01.slatic.net/p/66a8325a864224ee2816f26394886754.jpg',
@@ -1402,8 +1423,8 @@ Tata letak bahasa Rusia/Portugis/Spanyol/Inggris`
         price: 'Rp 699.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 3rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.ankerindonesia.com/cdn/shop/products/9faf5720-7124-4e0f-93b0-8db1dfa1f9d6-a3948h11-soundcore-a20i-black-1-1.jpg?v=1709833930&width=823',
                 img2: 'https://www.ankerindonesia.com/cdn/shop/products/57872b98-cee8-4cdc-a16f-1c8927b6123c-a3948h11-soundcore-a20i-black-3-1.jpg?v=1709833930&width=823',
         img3: 'https://www.ankerindonesia.com/cdn/shop/products/a25cc789-677a-4273-a713-4d4f387d7bf5-a3948h11-soundcore-a20i-black-7-1.jpg?v=1709833930&width=823',
@@ -1491,8 +1512,8 @@ IPX5`
         price: 'Rp 25.000',
         strike: '',
         discount: '',
-        rating: '4.7',
-        sold: 'Terjual 150+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://leksikabookstore.com/uploads/5beceacf418dc_20181115104103-1.jpg',
                 img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/94/MTA-181824240/br-m036969-03044_spidol-set-12-warna-snowman-pw-12a-coloring-marker-12-color-markers-pencil_full03-04f08754.jpg',
         img3: 'https://siplah.blibli.com/data/images/STWS-0009-00154/5fa56659-a8ab-4263-b40d-72889fea5091.png',
@@ -1509,8 +1530,8 @@ IPX5`
         price: 'Rp 285.000',
         strike: 'Rp 329.000',
         discount: '13%',
-        rating: '4.8',
-        sold: 'Terjual 560+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-top-view-black-gallery-01.png',
                 img2: 'https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-black-gallery-03.png',
         img3: 'https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m330-wireless-silent-mouse/2024-update/gallery/m330-wireless-mouse-black-gallery-05.png',
@@ -1562,8 +1583,8 @@ Dokumentasi pengguna
         price: 'Rp 15.000',
         strike: '',
         discount: '',
-        rating: '4.7',
-        sold: 'Terjual 500+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/MTA-150816804/tidak_ada_merk_kertas_karton_manila_-_kertas_karton_warna_full01_h80xj2nw.jpg',
                 img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa95dhJPbVHd4DpJAWnnqYsSH2ZYMUbMR8Cg&s',
         img3: 'https://cdn.ralali.id/assets/img/Libraries/Kertas-Karton-BC-Lux-Manila-A1-60x84cm-(Hitam-coklat-ungu)_kK85TaoMZQbTsrwV_1639080652.png',
@@ -1576,8 +1597,8 @@ Dokumentasi pengguna
         price: 'Rp 75.000',
         strike: 'Rp 100.000',
         discount: '11%',
-        rating: '4.9',
-        sold: 'Terjual 800+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://id-test-11.slatic.net/p/e66288f609ad7f13b6b0a1e1fb6169b8.jpg',
                 img2: 'https://parto.id/asset/foto_produk/cb614c2edee69585d2f60062f1a0b660_jpg_720x720q80_jpg_.png',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzKUfj_BfFuulXCMm5QmC5WK3eNmosJejL8Q&s',
@@ -1590,8 +1611,8 @@ Dokumentasi pengguna
         price: 'Rp 115.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 1.2rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://els.id/wp-content/uploads/2023/09/783a496e-c097-43bd-84bf-8b23bd06000b-1.jpg',
                 img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-17208559/canon_tinta_canon_790_black_original_full01_drhkmvv6.jpg',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwL7Nfees0ZgGmZLCOI-ExNajTy7FOwDcVJg&s',
@@ -1604,8 +1625,8 @@ Dokumentasi pengguna
         price: 'Rp 45.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 900+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/315926c63c9114f311842e0d376573c9',
                 img2: 'https://imgx.brdcdn.com/imgx/1200/aW1hZ2VzLnRva29wZWRpYS5uZXQvaW1nL2NhY2hlLzcwMC9WcWJjbU0vMjAyMS8xMC84L2U5ZjhkMWZjLWJlNjItNGJlZi04ZjJmLTMxZGM3MTcxYzlmYQ==.jpg',
         img3: 'https://id-live-01.slatic.net/p/bd947bca925b462685893fae9a145189.jpg',
@@ -1618,8 +1639,8 @@ Dokumentasi pengguna
         price: 'Rp 32.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 2rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.joyko.co.id/image/cache/data/additional/526-B40BL-Info-01-650x650.jpg',
                 img2: 'https://www.joyko.co.id/image/cache/data/additional/ERASER-526-B40BL-BEAUTY-2-01-650x650.jpg',
         img3: 'https://www.joyko.co.id/image/cache/data/additional/526-B40BL-+-Box-01-650x650.jpg',
@@ -1632,8 +1653,8 @@ Dokumentasi pengguna
         price: 'Rp 48.000',
         strike: 'Rp 55.000',
         discount: '12%',
-        rating: '5.0',
-        sold: 'Terjual 5rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://andalanatk.com/upload/produk/6901b62a281963.99038156_1641963771_faber-castell_faber-castell-9000-2b-pensil--12-pcs-_full02.webp',
                 img2: 'https://faber-castell.co.id/cfind/source/images/product/gwm/117102-a.jpg',
         img3: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-5355299/faber-castell_faber_castell_pensil_2b_1_pack_isi_12_full03_ldwvx84y.jpg',
@@ -1653,8 +1674,8 @@ Dokumentasi pengguna
         price: 'Rp 12.500',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 1rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Ruler%20Stainless/Stainless-Steel-Ruler-700x700.jpg',
                 img2: 'https://siplah.blibli.com/data/images/SWID-0002-00009/1df13639-bd1c-4857-bd25-c09a29dbbd24.jpg',
         img3: 'https://gadingonline.co.id/image/product/8998838358078.jpg',
@@ -1671,8 +1692,8 @@ Dokumentasi pengguna
         price: 'Rp 8.000',
         strike: '',
         discount: '',
-        rating: '4.7',
-        sold: 'Terjual 750+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Glue-Stick/Glue-Stick-L=25gr-700x700.jpg',
                 img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//108/MTA-67191768/kenko_lem-glue-stick-kenko-25-gr_full01.jpg',
         img3: 'https://media.monotaro.id/mid01/big/Kebutuhan%20Kantor/Produk%20Kantor/Lem/Lem%20Glue%20Stick/Kenko%20Lem%20Stik/P101005461-2.jpg',
@@ -1685,8 +1706,8 @@ Dokumentasi pengguna
         price: 'Rp 15.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 600+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-3165910/joyko_joyko-mms-3-memo-stick-post-it--225-sheets-_full02.jpg',
                 img2: 'https://image.bosoffice.co.id/s3/productimages/webp/co240310/p1635276/w600-h600/7ba4c7a5-d61c-449a-8095-d87138c70d2c.png',
         img3: 'https://static-tokodaring.tisera.id/prod/images/produk_gambar/685111194adfd.jpg',
@@ -1699,8 +1720,8 @@ Dokumentasi pengguna
         price: 'Rp 85.000',
         strike: 'Rp 100.000',
         discount: '15%',
-        rating: '4.9',
-        sold: 'Terjual 1.5rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://stationary.co.id/cdn/shop/products/kalkulator-citizen-sdc-810-office-stationery-toko-atk_354_1024x1024.jpg?v=1533822468',
                 img2: 'https://siplah.blibli.com/data/images/STBS-0037-00103/a8042a7d-25e0-40e6-a5fa-72fbe49e58cc.png',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYNZjjXBKzRgUcU-q1Nxu4KkmqTrN_BqlZww&s',
@@ -1713,8 +1734,8 @@ Dokumentasi pengguna
         price: 'Rp 183.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 4rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/87e02a945bc134e67279769484306537',
                 img2: 'https://els.id/wp-content/uploads/2024/10/Sandisk-Cruzer-Blade.png',
         img3: 'https://sadarjaya.com/wp-content/uploads/2021/04/32gb-1.png',
@@ -1727,8 +1748,8 @@ Dokumentasi pengguna
         price: 'Rp 35.000',
         strike: '',
         discount: '',
-        rating: '4.7',
-        sold: 'Terjual 400+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Photo%20Paper/Glossy-Photo-Paper-210-gsm-GP-210-A4-700x700.jpg',
                 img2: 'https://shop.kenko.co.id/image/cache/catalog/product/Photo%20Paper/Glossy-Photo-Paper-230-gsm-GP-230-A4-300x300.jpg',
         img3: 'https://down-id.img.susercontent.com/file/1b2b2a3f59764b314781b4c5ca0face8',
@@ -1741,8 +1762,8 @@ Dokumentasi pengguna
         price: 'Rp 30.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 900+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/ec9b199d8bd5be12f7ef3e75e9ce8a64',
                 img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6TC99Ett_a90pab8XLuQkRJtJED0qpt4Vjg&s',
         img3: 'https://down-id.img.susercontent.com/file/2efc20911cdc8f9c77d82998503138dc',
@@ -1755,8 +1776,8 @@ Dokumentasi pengguna
         price: 'Rp 14.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 2.5rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://siplah.blibli.com/data/images/STFA-0004-00199/cb342b41-4979-4a22-a737-1f9ecfab0fa8.jpg',
                 img2: 'https://siplah.blibli.com/data/images/SUSS-0001-00026/33ff6996-3484-48b0-bb67-5738d08b70d2.jpg',
         img3: 'https://down-id.img.susercontent.com/file/099ed989b5ac315fc84487eeff7fbc86',
@@ -1769,8 +1790,8 @@ Dokumentasi pengguna
         price: 'Rp 60.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 300+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/42d7d0c4eb99feb8b7e692a3336e528a',
                 img2: 'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mc8d6gqyn51jd4',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs4jPIxkrRNAcs2CdqkL_ABgkI1zYLdiONog&s',
@@ -1786,8 +1807,8 @@ Dokumentasi pengguna
         price: 'Rp 12.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 1.2rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://down-id.img.susercontent.com/file/id-11134207-7qukw-lf261km982t90d',
                 img2: 'https://andalanatk.com/upload/produk/617180_produk.jpg',
         img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvzBGkI-I1ue-CwY5HTRvPilDQ2DJI4H6Kw&s',
@@ -1802,8 +1823,8 @@ Dokumentasi pengguna
         price: 'Rp 10.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 2.1rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.joyko.co.id/image/cache/data/additional/B-650x650.jpg',
                 img2: 'https://www.joyko.co.id/image/cache/data/A-650x650.jpg',
         img3: 'https://www.joyko.co.id/image/cache/data/additional/C-650x650.jpg',
@@ -1816,8 +1837,8 @@ Dokumentasi pengguna
         price: 'Rp 8.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 1rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSaJ8rvY8CeoX7tftrzsd_Phs2FoKAWPy7zQ&s',
                 img2: 'https://id-test-11.slatic.net/p/ca74b1226a9e2b19ab0f4da86dbe0b56.jpg',
         img3: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/MTA-124700570/sidu_kertas_lipat_-_origami_sidu_12x12_isi_100_lembar_full01_bhlqbp2z.jpg',
@@ -1830,8 +1851,8 @@ Dokumentasi pengguna
         price: 'Rp 2.150.000',
         strike: 'Rp 2.500.000',
         discount: '14%',
-        rating: '4.9',
-        sold: 'Terjual 3rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://mediaserver.goepson.com/adaptivemedia/rendition?id=d60560b00fe766443f873ee2fdc6da1b9be04f59&vid=d60560b00fe766443f873ee2fdc6da1b9be04f59&prid=1200Wx1200H&clid=SAPDAM&prclid=banner&assetDescr=L3210-%281%29',
         img2: 'https://mediaserver.goepson.com/adaptivemedia/rendition?id=9924598c45e305f67a81a456a259831a14062408&vid=9924598c45e305f67a81a456a259831a14062408&prid=1200Wx1200H&clid=SAPDAM&prclid=banner&assetDescr=L3210-%282%29',
         img3: 'https://mediaserver.goepson.com/adaptivemedia/rendition?id=6c2da331442440f05853f13fb1a2ddfa6bad8715&vid=6c2da331442440f05853f13fb1a2ddfa6bad8715&prid=1200Wx1200H&clid=SAPDAM&prclid=banner&assetDescr=L3210-%283%29',
@@ -1853,8 +1874,8 @@ Borderless printing up to 4R`
         price: 'Rp 1.950.000',
         strike: '',
         discount: '',
-        rating: '4.8',
-        sold: 'Terjual 1rb+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://api.mdp.co.id/upload/pictures/product/PR1453.jpg',
         img2: 'https://m.media-amazon.com/images/I/81WP7Y2CIQL.jpg',
         img3: 'https://id-test-11.slatic.net/p/bba94e18b3d98770aa5159e2510f6dc1.jpg',
@@ -1877,8 +1898,8 @@ Pengiriman Aman`
         price: 'Rp 2.250.000',
         strike: '',
         discount: '',
-        rating: '4.9',
-        sold: 'Terjual 850+',
+        rating: '0',
+        sold: 'Terjual 0',
         img: 'https://www.brother.co.id/-/media/d053ab0be0b14e719a1b0e6a49df4a7c.jpg?as=0&h=454&w=454&rev=cd20e33669b743ee81bc95868c2eebe2&hash=E9E93136C449ABFD0DFAD312D64B9B49',
         img2: 'https://www.brother.co.id/-/media/22291b9afb9340e68dcd8cc91d63be7c.jpg?as=0&h=454&w=454&rev=b00e90217752404b94ef08e3799134f8&hash=70D9A8CF98E615E2A150C0DFE06C2655',
         img3: 'https://www.brother.co.id/-/media/62e91d02684a465ba7ebbd42066c5b30.jpg?as=0&h=454&w=454&rev=fb03d742741c423a81faea4261e9507e&hash=FC95E4FD085B29528E6E193252879F3C',
@@ -1892,6 +1913,27 @@ Kompatibel dengan Aplikasi Seluler Mobile Connect
 Termasuk garansi bawaan 3 tahun atau 30.000 halaman**`
     }
 };
+
+// ==========================================
+// Dynamic Rating & Sold Merge Logic
+// ==========================================
+const storedStats = localStorage.getItem('yuka_product_stats');
+if (storedStats) {
+    try {
+        const stats = JSON.parse(storedStats);
+        for (const [id, data] of Object.entries(stats)) {
+            if (productsDatabase[id]) {
+                productsDatabase[id].sold = `Terjual ${data.soldCount}`;
+                if (data.ratingCount > 0) {
+                    const avg = (data.totalRating / data.ratingCount).toFixed(1);
+                    productsDatabase[id].rating = avg.toString();
+                }
+            }
+        }
+    } catch(e) {
+        console.error("Error parsing yuka_product_stats", e);
+    }
+}
 
 // ==========================================
 // Tracking & Recommendation Logic
@@ -2360,3 +2402,136 @@ const initFlashSaleCountdown = () => {
 
 // Run the countdown initialization
 initFlashSaleCountdown();
+// ==========================================
+// Orders & Tracking Page Logic
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Orders Tabs
+    const orderTabs = document.querySelectorAll('.order-tab');
+    if (orderTabs.length > 0) {
+        orderTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                orderTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const target = tab.getAttribute('data-target');
+                document.querySelectorAll('.order-list').forEach(list => {
+                    if(list.id === target) {
+                        list.style.display = 'flex';
+                    } else {
+                        list.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // Tracking Modal
+    const trackBtns = document.querySelectorAll('.track-btn');
+    const trackingOverlay = document.getElementById('tracking-overlay');
+    const closeTrackingBtn = document.querySelector('.close-tracking-btn');
+
+    if (trackBtns.length > 0 && trackingOverlay) {
+        trackBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                trackingOverlay.style.display = 'flex';
+            });
+        });
+
+        if (closeTrackingBtn) {
+            closeTrackingBtn.addEventListener('click', () => {
+                trackingOverlay.style.display = 'none';
+            });
+        }
+        
+        trackingOverlay.addEventListener('click', (e) => {
+            if (e.target === trackingOverlay) {
+                trackingOverlay.style.display = 'none';
+            }
+        });
+    }
+});
+// ==========================================
+// Dynamic Orders Rendering
+// ==========================================
+const renderOrders = () => {
+    const ordersContainerSemua = document.getElementById('tab-semua');
+    const ordersContainerDikemas = document.getElementById('tab-dikemas');
+    
+    if (!ordersContainerSemua || !ordersContainerDikemas) return; // Only run on orders.html
+
+    const ordersData = localStorage.getItem('yuka_orders');
+    if (!ordersData) return; // Keep empty states
+    
+    const orders = JSON.parse(ordersData);
+    if (orders.length === 0) return; // Keep empty states
+
+    // Remove empty state from Semua and Dikemas
+    const emptySemua = document.getElementById('empty-state-semua');
+    if (emptySemua) emptySemua.style.display = 'none';
+    const emptyDikemas = document.getElementById('empty-state-dikemas');
+    if (emptyDikemas) emptyDikemas.style.display = 'none';
+
+    const formatRupiah = (number) => {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(number);
+    };
+
+    let htmlContent = '';
+    orders.forEach(order => {
+        // Use the first item's image and name for the preview
+        const firstItem = order.items[0];
+        const additionalItems = order.items.length > 1 ? '<p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px;">+ ' + (order.items.length - 1) + ' produk lainnya</p>' : '';
+        const img = firstItem.image || 'https://via.placeholder.com/60';
+        
+        htmlContent += '<div class="order-card" style="margin-bottom: 1.5rem;">' +
+            '<div class="order-card-header">' +
+                '<span class="order-id"><i class="ph ph-bag"></i> Belanja • ' + order.date + '</span>' +
+                '<span class="order-status status-dikirim" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">' + (order.status.charAt(0).toUpperCase() + order.status.slice(1)) + '</span>' +
+            '</div>' +
+            '<div class="order-card-body">' +
+                '<div class="order-item-detail">' +
+                    '<img src="' + img + '" alt="Product Image">' +
+                    '<div>' +
+                        '<h4>' + firstItem.name + '</h4>' +
+                        '<p class="order-qty">' + firstItem.quantity + ' x ' + formatRupiah(firstItem.price) + '</p>' +
+                        additionalItems +
+                    '</div>' +
+                '</div>' +
+                '<div class="order-total">' +
+                    '<p>Total Belanja</p>' +
+                    '<h4>' + formatRupiah(order.total) + '</h4>' +
+                '</div>' +
+            '</div>' +
+            '<div class="order-card-footer">' +
+                '<span class="order-courier">Otomatis • ' + order.id + '</span>' +
+                '<div class="order-actions">' +
+                    '<button class="outline-btn" onclick="window.location.href=\'index.html\'">Beli Lagi</button>' +
+                    '<button class="primary-btn track-btn" data-order="' + order.id + '">Lacak Pesanan</button>' +
+                '</div>' +
+            '</div>' +
+        '</div>';
+    });
+
+    // Append to container
+    ordersContainerSemua.innerHTML += htmlContent;
+    ordersContainerDikemas.innerHTML += htmlContent;
+
+    // Rebind tracking modal events for dynamically added buttons
+    const trackBtns = document.querySelectorAll('.track-btn');
+    const trackingOverlay = document.getElementById('tracking-overlay');
+    if (trackBtns.length > 0 && trackingOverlay) {
+        trackBtns.forEach(btn => {
+            btn.onclick = () => {
+                trackingOverlay.style.display = 'flex';
+                const resiText = trackingOverlay.querySelector('.tracking-info strong');
+                if (resiText) resiText.innerText = btn.getAttribute('data-order');
+            };
+        });
+    }
+};
+
+document.addEventListener('DOMContentLoaded', renderOrders);
