@@ -1419,7 +1419,7 @@ Tata letak bahasa Rusia/Portugis/Spanyol/Inggris`
         desc: 'Gunting dengan pegangan ergonomis berlapis karet. Bilah stainless steel anti karat.'
     },
     'earphone': {
-        title: 'Soundcore Snker a20i',
+        title: 'Soundcore Anker A20i',
         price: 'Rp 699.000',
         strike: '',
         discount: '',
