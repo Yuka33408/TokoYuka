@@ -1781,20 +1781,6 @@ Dokumentasi pengguna
 >Mudah dibawa dan disimpan karena ukurannya pas.<br>
 >Tersedia dalam berbagai macam warna cerah.`
     },
-    'name-tag': {
-        title: 'Name Tag Panitia + Tali Lanyard',
-        price: 'Rp 5.000',
-        strike: '',
-        discount: '',
-        rating: '4.7',
-        sold: 'Terjual 800+',
-        img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/49505/400/400',
-        img3: 'https://picsum.photos/seed/87734/400/400',
-        category: 'Aksesoris',
-        location: 'Wangi-Wangi',
-        desc: 'Name tag plastik bening tebal beserta talinya.'
-    },
     'papan-ujian': {
         title: 'Papan Ujian / Clipboard Kayu MDF',
         price: 'Rp 12.000',
