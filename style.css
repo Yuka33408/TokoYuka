@@ -3579,6 +3579,11 @@ footer {
     .main-header { padding-left: 10px; padding-right: 10px; }
     
     /* Category & Flash Sale horizontal scroll */
+    .flash-sale-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .flash-sale-title { flex-wrap: wrap; gap: 8px; }
+    .flash-sale-title h2 { font-size: 1.4rem; }
+    .time-box { padding: 0.2rem 0.4rem; font-size: 0.9rem; }
+
     .categories-grid {
         display: flex;
         overflow-x: auto;
