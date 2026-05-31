@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="style.css?v=33">
+    <link rel="stylesheet" href="style.css?v=45">
 </head>
 
 <body>
@@ -173,9 +173,29 @@
             <i class="ph ph-check-circle" style="font-size: 6rem; color: #10b981; margin-bottom: 1rem;"></i>
             <h2 style="font-size: 2.5rem;">Pembayaran <span class="text-gradient">Berhasil!</span></h2>
             <p style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1.1rem;">Terima kasih, pesanan Anda
-                sedang kami proses dan akan segera dikirim ke alamat tujuan.</p>
+                telah kami proses.</p>
             <button class="auth-submit-btn" onclick="window.location.href='index.html'" style="width: 100%;">Kembali ke
                 Beranda</button>
+        </div>
+    </div>
+
+    <!-- Rating Modal Overlay -->
+    <div class="auth-overlay" id="rating-overlay" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;">
+        <div class="auth-modal" style="text-align: center; max-width: 450px; background: var(--bg-surface); padding: 2rem; border-radius: 20px;">
+            <i class="ph ph-star" style="font-size: 4rem; color: #f59e0b; margin-bottom: 1rem;"></i>
+            <h2 style="font-size: 2rem;">Pesanan <span class="text-gradient">Tiba!</span></h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Silakan beri penilaian (1-5 bintang) untuk pesanan ini agar kami dapat meningkatkan layanan kami.</p>
+            
+            <div id="rating-stars" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 2rem; cursor: pointer;">
+                <i class="ph-fill ph-star" data-val="1"></i>
+                <i class="ph-fill ph-star" data-val="2"></i>
+                <i class="ph-fill ph-star" data-val="3"></i>
+                <i class="ph-fill ph-star" data-val="4"></i>
+                <i class="ph-fill ph-star" data-val="5"></i>
+            </div>
+
+            <button class="auth-submit-btn" id="submit-rating-btn" style="width: 100%; opacity: 0.5; pointer-events: none; border-radius: 8px; padding: 1rem;">Kirim Penilaian</button>
+            <button class="outline-btn" id="skip-rating-btn" style="width: 100%; margin-top: 1rem; border-radius: 8px; padding: 1rem; cursor: pointer;">Lewati</button>
         </div>
     </div>
 
@@ -307,9 +327,81 @@
                 }
 
                 setTimeout(() => {
-                    localStorage.removeItem('yuka_cart'); // Kosongkan keranjang di localstorage
-                    successOverlay.classList.add('active'); // Munculkan pop-up sukses
+                    const ratingOverlay = document.getElementById('rating-overlay');
+                    if (ratingOverlay) {
+                        ratingOverlay.style.display = 'flex';
+                        ratingOverlay.classList.add('active');
+                    }
                 }, 2000);
+            });
+
+            // Rating Interaction Logic
+            let selectedRating = 0;
+            const stars = document.querySelectorAll('#rating-stars i');
+            stars.forEach(star => {
+                star.addEventListener('click', (e) => {
+                    selectedRating = parseInt(e.target.getAttribute('data-val'));
+                    stars.forEach(s => {
+                        if (parseInt(s.getAttribute('data-val')) <= selectedRating) {
+                            s.style.color = '#f59e0b';
+                        } else {
+                            s.style.color = 'var(--text-secondary)';
+                        }
+                    });
+                    const submitRatingBtn = document.getElementById('submit-rating-btn');
+                    submitRatingBtn.style.opacity = '1';
+                    submitRatingBtn.style.pointerEvents = 'auto';
+                });
+            });
+
+            const processRatingAndComplete = (rating) => {
+                const cartDataLocal = localStorage.getItem('yuka_cart');
+                if (cartDataLocal) {
+                    const cartArr = JSON.parse(cartDataLocal);
+                    let stats = JSON.parse(localStorage.getItem('yuka_product_stats') || '{}');
+                    
+                    cartArr.forEach(item => {
+                        if (!stats[item.id]) {
+                            stats[item.id] = { soldCount: 0, totalRating: 0, ratingCount: 0 };
+                        }
+                        stats[item.id].soldCount += item.quantity;
+                        if (rating > 0) {
+                            stats[item.id].totalRating += rating;
+                            stats[item.id].ratingCount += 1;
+                        }
+                    });
+                    localStorage.setItem('yuka_product_stats', JSON.stringify(stats));
+                    
+                    // Save to yuka_orders
+                    let orders = JSON.parse(localStorage.getItem('yuka_orders') || '[]');
+                    const orderId = 'INV/2026/' + new Date().getTime().toString().slice(-6);
+                    
+                    let orderTotal = 0;
+                    cartArr.forEach(item => { orderTotal += item.price * item.quantity; });
+                    orderTotal += 15000; // Add ongkir
+                    
+                    const newOrder = {
+                        id: orderId,
+                        date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+                        status: 'dikemas',
+                        items: cartArr,
+                        total: orderTotal,
+                        ratingGiven: rating
+                    };
+                    orders.unshift(newOrder); // Add to beginning
+                    localStorage.setItem('yuka_orders', JSON.stringify(orders));
+                }
+                
+                localStorage.removeItem('yuka_cart');
+                document.getElementById('rating-overlay').style.display = 'none';
+                successOverlay.classList.add('active');
+            };
+
+            document.getElementById('submit-rating-btn')?.addEventListener('click', () => {
+                processRatingAndComplete(selectedRating);
+            });
+            document.getElementById('skip-rating-btn')?.addEventListener('click', () => {
+                processRatingAndComplete(0);
             });
             // Cancel Payment Interaction
             const cancelBtn = document.getElementById('cancel-payment-btn');
@@ -346,7 +438,7 @@
             }
         });
     </script>
-    <script src="transition.js?v=28"></script>
+    <script src="transition.js?v=45"></script>
 </body>
 
 </html>
