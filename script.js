@@ -1575,7 +1575,16 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
     
     // Update thumbnail just for visual consistency in demo
     const thumbnails = document.querySelectorAll('.thumbnail img');
-    if(thumbnails.length > 0) thumbnails[0].src = product.img;
+    if(thumbnails.length > 0) {
+        thumbnails[0].src = product.img;
+        let shortTitle = product.title.length > 20 ? product.title.substring(0, 20) + '...' : product.title;
+        if(thumbnails.length > 1) {
+            thumbnails[1].src = `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Samping)`;
+        }
+        if(thumbnails.length > 2) {
+            thumbnails[2].src = `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Belakang)`;
+        }
+    }
 
     // Update "Spesifikasi" Tab
     const specEl = document.getElementById('tab-spec');
