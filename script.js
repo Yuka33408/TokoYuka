@@ -499,6 +499,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isGratisOngkir = document.getElementById('filter-gratis-ongkir')?.checked;
                 const isDiskon = document.getElementById('filter-diskon')?.checked;
                 const isCashback = document.getElementById('filter-cashback')?.checked;
+                const isRating4 = document.getElementById('filter-rating-4')?.checked;
+                const isRating3 = document.getElementById('filter-rating-3')?.checked;
                 
                 let matchedProducts = [];
                 for (const key in productsDatabase) {
@@ -509,10 +511,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         let hasDiskon = !!prod.discount || !!prod.strike;
                         let hasGratisOngkir = numPrice > 50000;
                         let hasCashback = numPrice >= 20000 && numPrice <= 50000;
+                        let prodRating = parseFloat(prod.rating) || 0;
 
                         if (isGratisOngkir && !hasGratisOngkir) continue;
                         if (isDiskon && !hasDiskon) continue;
                         if (isCashback && !hasCashback) continue;
+                        if (isRating4 && prodRating < 4.0) continue;
+                        if (isRating3 && prodRating < 3.0) continue;
 
                         matchedProducts.push({ key, hasGratisOngkir, hasDiskon, hasCashback, ...prod });
                     }
@@ -601,8 +606,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Initial render
             renderGrid('Terkait', 1);
 
-            const offerCheckboxes = document.querySelectorAll('#filter-gratis-ongkir, #filter-diskon, #filter-cashback');
-            offerCheckboxes.forEach(cb => {
+            const filterCheckboxes = document.querySelectorAll('#filter-gratis-ongkir, #filter-diskon, #filter-cashback, #filter-rating-4, #filter-rating-3');
+            filterCheckboxes.forEach(cb => {
                 if (cb) cb.addEventListener('change', () => renderGrid(currentSort, 1));
             });
 
