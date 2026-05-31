@@ -4035,21 +4035,32 @@ footer {
     .next-btn { right: 0.5rem; }
     .carousel-indicators { bottom: 0.5rem; padding: 0.3rem 0.8rem; }
     
-    .side-promo-card { padding: 1rem; height: 150px; width: calc(50% - 0.25rem); justify-content: space-between; align-items: flex-start; }
-    .voucher-card h3 { font-size: 0.95rem; }
+    /* Hide scrollbars for mobile */
+    .categories-grid::-webkit-scrollbar,
+    .flash-sale-items::-webkit-scrollbar,
+    #last-viewed-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .categories-grid, .flash-sale-items, #last-viewed-grid {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .side-promo-card { padding: 1rem; height: auto; min-height: 110px; width: calc(50% - 0.25rem); justify-content: flex-start; align-items: flex-start; gap: 0.5rem; }
+    .voucher-card h3 { font-size: 0.95rem; margin-bottom: 0; }
     .voucher-card p { font-size: 0.75rem; margin-bottom: 0; }
-    .voucher-card .promo-info { display: flex; flex-direction: column; align-items: flex-start; }
-    .voucher-card .promo-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
-    .klaim-btn { font-size: 0.75rem; padding: 0.4rem 0.8rem; margin-top: auto; }
+    .voucher-card .promo-info { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+    .voucher-card .promo-icon { font-size: 1.5rem; margin-bottom: 0; }
+    .klaim-btn { font-size: 0.75rem; padding: 0.4rem 0.8rem; margin-top: 0.3rem; }
     .decor-1, .decor-2 { display: none; } /* Sembunyikan dekorasi di layar kecil agar tidak sesak */
     
-    .ongkir-card { padding: 1rem; align-items: center; text-align: center; }
-    .ongkir-card .promo-info { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; gap: 0.5rem; }
+    .ongkir-card { padding: 1rem; align-items: center; text-align: center; justify-content: center; }
+    .ongkir-card .promo-info { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; gap: 0.4rem; }
     .ongkir-image { display: none; } /* Sembunyikan gambar box di layar sempit agar teks lebih terbaca */
-    .ongkir-badge { font-size: 0.7rem; }
+    .ongkir-badge { font-size: 0.7rem; margin-bottom: 0; }
     .ongkir-card h3 { font-size: 0.95rem; margin-bottom: 0; }
     .ongkir-card p { font-size: 0.75rem; margin-bottom: 0; display: block; }
-    .promo-link { justify-content: center; font-size: 0.8rem; margin-top: auto; }
+    .promo-link { justify-content: center; font-size: 0.8rem; margin-top: 0.2rem; }
 }
 
 /* Hide Bottom Nav on Desktop */
