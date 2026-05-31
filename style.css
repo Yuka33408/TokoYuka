@@ -3931,11 +3931,10 @@ footer {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        padding-bottom: 10px;
         gap: 1rem;
         grid-template-columns: none; /* override grid */
         margin: 0 -10px;
-        padding: 0 10px;
+        padding: 5px 10px 20px 10px; /* Tambah padding bawah agar scrollbar tidak menimpa teks */
     }
     .category-item { flex: 0 0 75px; min-width: 75px; scroll-snap-align: start; }
     .category-icon-wrapper { width: 65px; height: 65px; }
@@ -3947,10 +3946,9 @@ footer {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 1rem;
-        padding-bottom: 10px;
         grid-template-columns: none;
         margin: 0 -10px;
-        padding: 0 10px;
+        padding: 5px 10px 20px 10px; /* Tambah padding bawah */
     }
     .fs-card { flex: 0 0 200px; scroll-snap-align: start; }
     .flash-sale-items::after { content: ''; flex: 0 0 1px; }
@@ -3960,11 +3958,10 @@ footer {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        padding-bottom: 15px;
         gap: 10px;
         grid-template-columns: none; /* override grid */
         margin: 0 -10px; /* Extend to screen edges */
-        padding: 0 10px; /* Keep items from touching edges */
+        padding: 5px 10px 20px 10px; /* Tambah padding bawah */
     }
     #last-viewed-grid::after {
         content: '';
@@ -4038,18 +4035,21 @@ footer {
     .next-btn { right: 0.5rem; }
     .carousel-indicators { bottom: 0.5rem; padding: 0.3rem 0.8rem; }
     
-    .side-promo-card { padding: 1rem; height: 140px; width: calc(50% - 0.25rem); }
+    .side-promo-card { padding: 1rem; height: 150px; width: calc(50% - 0.25rem); justify-content: space-between; align-items: flex-start; }
     .voucher-card h3 { font-size: 0.95rem; }
-    .voucher-card p { font-size: 0.75rem; margin-bottom: 0.5rem; }
-    .voucher-card .promo-icon { font-size: 1.5rem; margin-bottom: 0.2rem; }
-    .klaim-btn { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+    .voucher-card p { font-size: 0.75rem; margin-bottom: 0; }
+    .voucher-card .promo-info { display: flex; flex-direction: column; align-items: flex-start; }
+    .voucher-card .promo-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .klaim-btn { font-size: 0.75rem; padding: 0.4rem 0.8rem; margin-top: auto; }
     .decor-1, .decor-2 { display: none; } /* Sembunyikan dekorasi di layar kecil agar tidak sesak */
     
-    .ongkir-card { padding: 0.8rem; flex-direction: column; text-align: center; justify-content: center; gap: 0.5rem; }
-    .ongkir-image { width: 45px; height: 45px; margin: 0 auto; }
-    .ongkir-card h3 { font-size: 0.85rem; }
-    .ongkir-card p { font-size: 0.7rem; margin-bottom: 0.2rem; display: none; } /* Sembunyikan p agar muat */
-    .promo-link { justify-content: center; font-size: 0.75rem; }
+    .ongkir-card { padding: 1rem; align-items: center; text-align: center; }
+    .ongkir-card .promo-info { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; gap: 0.5rem; }
+    .ongkir-image { display: none; } /* Sembunyikan gambar box di layar sempit agar teks lebih terbaca */
+    .ongkir-badge { font-size: 0.7rem; }
+    .ongkir-card h3 { font-size: 0.95rem; margin-bottom: 0; }
+    .ongkir-card p { font-size: 0.75rem; margin-bottom: 0; display: block; }
+    .promo-link { justify-content: center; font-size: 0.8rem; margin-top: auto; }
 }
 
 /* Hide Bottom Nav on Desktop */
