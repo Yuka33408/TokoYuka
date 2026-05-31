@@ -797,6 +797,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const updateCarousel = (withTransition = true) => {
             if (withTransition) {
                 track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+                clearTimeout(track.transitionTimeout);
+                track.transitionTimeout = setTimeout(() => {
+                    if (isTransitioning) track.dispatchEvent(new Event('transitionend'));
+                }, 650);
             } else {
                 track.style.transition = 'none';
             }
@@ -2046,7 +2050,7 @@ const renderRecommendations = () => {
         card.style.textDecoration = 'none';
         card.style.color = 'inherit';
         card.title = 'Lihat Produk';
-        card.href = `product.html?id=${prod.id || key || 'pensil-warna'}`;
+        card.href = `product.html?id=${prod.id || 'pensil-warna'}`;
         
         card.innerHTML = `
             <div class="product-image">
