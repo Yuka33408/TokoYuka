@@ -3532,12 +3532,14 @@ footer {
 
     /* Hide top bar and non-essential header items */
     .top-bar { display: none; }
-    .header-actions .nav-btn, .header-actions .divider { display: none; }
+    .main-header { padding: 0.5rem 5%; }
+    .header-actions .nav-btn, .header-actions .divider, .header-actions .cart-btn { display: none; }
     
     /* Make search bar take more space but fit */
-    .search-container { order: 3; width: 100%; margin-top: 10px; }
+    .search-container { order: 3; width: 100%; margin-top: 5px; }
+    .search-box input { padding: 0.6rem 0.8rem; }
     .search-tags { display: none; }
-    .header-container { flex-wrap: wrap; padding: 10px; }
+    .header-container { flex-wrap: wrap; padding: 0; gap: 0.5rem; }
     
     /* Bottom Navigation Bar */
     .bottom-nav {
@@ -3590,6 +3592,20 @@ footer {
         grid-template-columns: none;
     }
     .fs-card { flex: 0 0 200px; scroll-snap-align: start; }
+
+    /* Last Viewed horizontal scroll */
+    #last-viewed-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 15px;
+        gap: 10px;
+        grid-template-columns: none; /* override grid */
+    }
+    #last-viewed-grid .etalase-card { 
+        flex: 0 0 160px; 
+        scroll-snap-align: start; 
+    }
 
     /* Grid 2 Columns for Etalase */
     .etalase-grid {
