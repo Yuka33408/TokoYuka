@@ -3930,7 +3930,7 @@ footer {
         gap: 1rem;
         grid-template-columns: none; /* override grid */
         margin: 0 -10px;
-        padding: 5px 10px 20px 10px; /* Tambah padding bawah agar scrollbar tidak menimpa teks */
+        padding: 35px 15px 35px 15px; /* Tambah padding agar hover dan shadow tidak terpotong di mobile */
     }
     .category-item { flex: 0 0 75px; min-width: 75px; scroll-snap-align: start; }
     .category-icon-wrapper { width: 65px; height: 65px; }
