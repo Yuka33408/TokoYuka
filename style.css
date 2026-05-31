@@ -114,6 +114,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -3572,6 +3573,11 @@ footer {
     /* Add padding to body so bottom nav doesn't hide content */
     body { padding-bottom: 70px; }
 
+    /* Widen page on mobile by reducing side padding */
+    .banner-section, .category-section, .flash-sale { padding-left: 10px; padding-right: 10px; }
+    .recommendation-section { padding-left: 10px; padding-right: 10px; }
+    .main-header { padding-left: 10px; padding-right: 10px; }
+    
     /* Category & Flash Sale horizontal scroll */
     .categories-grid {
         display: flex;
@@ -3580,8 +3586,8 @@ footer {
         padding-bottom: 10px;
         gap: 1rem;
         grid-template-columns: none; /* override grid */
-        margin: 0 -5%;
-        padding: 0 5%;
+        margin: 0 -10px;
+        padding: 0 10px;
     }
     .category-item { flex: 0 0 80px; scroll-snap-align: start; }
     .categories-grid::after { content: ''; flex: 0 0 1px; }
@@ -3593,8 +3599,8 @@ footer {
         gap: 1rem;
         padding-bottom: 10px;
         grid-template-columns: none;
-        margin: 0 -5%;
-        padding: 0 5%;
+        margin: 0 -10px;
+        padding: 0 10px;
     }
     .fs-card { flex: 0 0 200px; scroll-snap-align: start; }
     .flash-sale-items::after { content: ''; flex: 0 0 1px; }
@@ -3607,8 +3613,8 @@ footer {
         padding-bottom: 15px;
         gap: 10px;
         grid-template-columns: none; /* override grid */
-        margin: 0 -5%; /* Extend to screen edges */
-        padding: 0 5%; /* Keep items from touching edges */
+        margin: 0 -10px; /* Extend to screen edges */
+        padding: 0 10px; /* Keep items from touching edges */
     }
     #last-viewed-grid::after {
         content: '';
