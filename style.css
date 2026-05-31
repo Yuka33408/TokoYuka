@@ -2886,8 +2886,7 @@ footer {
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
-    padding-top: 1.5rem; /* Menambahkan padding atas agar efek hover tidak terpotong (clipped) oleh overflow */
-    padding-bottom: 1.5rem;
+    padding: 2.5rem 1rem; /* Menambahkan padding agar efek hover dan shadow tidak terpotong (clipped) oleh overflow */
     scrollbar-width: thin;
     scrollbar-color: var(--accent-color) transparent;
 }
