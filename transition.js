@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay = document.createElement('div');
         overlay.className = 'page-transition-overlay active';
         document.body.appendChild(overlay);
+        overlay.getBoundingClientRect(); // Force reflow
     }
 
     // Fade in page (fade out overlay)
@@ -92,9 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Handle smooth exit transitions
-    const links = document.querySelectorAll('a[href]:not([href^="#"])');
-    const buttons = document.querySelectorAll('button[onclick*="window.location"]');
-
+    // Handle smooth exit transitions using Event Delegation
     const handleExit = (e, targetUrl) => {
         e.preventDefault();
         overlay.classList.add('active');
@@ -102,35 +101,33 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = targetUrl;
         }, 400); // Wait for CSS transition to finish
 
-        // Failsafe: Jika karena suatu alasan navigasi tertunda atau di-block browser, 
-        // hilangkan overlay setelah 2 detik agar tidak stuck.
+        // Failsafe
         setTimeout(() => {
             overlay.classList.remove('active');
         }, 2000);
     };
 
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            if (link.target !== '_blank' && !link.hasAttribute('download')) {
-                handleExit(e, link.href);
-            }
-        });
-    });
+    document.body.addEventListener('click', (e) => {
+        // Find closest anchor tag
+        const link = e.target.closest('a[href]:not([href^="#"])');
+        if (link && link.target !== '_blank' && !link.hasAttribute('download')) {
+            handleExit(e, link.href);
+        }
 
-    buttons.forEach(btn => {
-        const onclickAttr = btn.getAttribute('onclick');
-        if (onclickAttr) {
-            const match = onclickAttr.match(/window\.location\.href\s*=\s*['"]([^'"]+)['"]/);
-            if (match) {
-                const url = match[1];
-                btn.removeAttribute('onclick');
-                btn.addEventListener('click', (e) => {
+        // Find closest button with onclick containing window.location
+        const btn = e.target.closest('button[onclick*="window.location"]');
+        if (btn) {
+            const onclickAttr = btn.getAttribute('onclick');
+            if (onclickAttr) {
+                const match = onclickAttr.match(/window\.location\.href\s*=\s*['"]([^'"]+)['"]/);
+                if (match) {
+                    const url = match[1];
+                    btn.removeAttribute('onclick'); // Prevent native execution
                     handleExit(e, url);
-                });
+                }
             }
         }
     });
-
     window.goBack = function (e) {
         if (e) e.preventDefault();
         overlay.classList.add('active');
