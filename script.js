@@ -1399,33 +1399,23 @@ Kabel USB-C ke Magsafe 3 (2m)`
         location: 'Wangi-Wangi',
         desc: 'Earbud nirkabel suara nge-bass. Baterai tahan hingga 20 jam pemutaran.'
     },
-    'buku-novel': {
-        title: 'Buku Novel Fiksi Terlaris Edisi Spesial',
-        price: 'Rp 95.000',
-        strike: '',
-        discount: '',
-        rating: '5.0',
-        sold: 'Terjual 5rb+',
-        img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/71380/400/400',
-        img3: 'https://picsum.photos/seed/55902/400/400',
-        category: 'Buku & Kertas',
-        location: 'Wangi-Wangi',
-        desc: 'Buku bacaan fiksi dengan jalan cerita menarik yang wajib dibaca tahun ini.'
-    },
     'spidol-warna': {
-        title: 'Spidol Warna Set 12',
+        title: 'Snowman Spidol Warna Set 12',
         price: 'Rp 25.000',
         strike: '',
         discount: '',
         rating: '4.7',
         sold: 'Terjual 150+',
-        img: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/42471/400/400',
-        img3: 'https://picsum.photos/seed/93264/400/400',
+        img: 'https://leksikabookstore.com/uploads/5beceacf418dc_20181115104103-1.jpg',
+                img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/94/MTA-181824240/br-m036969-03044_spidol-set-12-warna-snowman-pw-12a-coloring-marker-12-color-markers-pencil_full03-04f08754.jpg',
+        img3: 'https://siplah.blibli.com/data/images/STWS-0009-00154/5fa56659-a8ab-4263-b40d-72889fea5091.png',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
-        desc: 'Set 12 spidol warna berkualitas dengan warna yang cerah. Tinta cepat kering dan tidak mudah luntur.'
+        desc: `Set 12 spidol warna berkualitas dengan warna yang cerah. Tinta cepat kering dan tidak mudah luntur.
+        >Set 12 spidol warna cerah untuk menggambar, mewarnai, dan menulis.<br>
+        >Ujung runcing presisi dan tinta berbasis air yang tidak beracun.<br>
+        >Tidak mudah luntur dan aman untuk anak-anak.<br>
+        >Cocok digunakan di sekolah, rumah, dan aktivitas seni.`
     },
     'mouse-logitech': {
         title: 'Mouse Wireless Logitech M170',
@@ -1442,29 +1432,29 @@ Kabel USB-C ke Magsafe 3 (2m)`
         desc: 'Mouse wireless handal dengan jangkauan 10 meter. Sangat nyaman untuk penggunaan harian.'
     },
     'kertas-manila': {
-        title: 'Kertas Karton Manila Warna Warni (Isi 10)',
+        title: 'Kertas Karton Manila Warna Warni F4 (Isi 10)',
         price: 'Rp 15.000',
         strike: '',
         discount: '',
         rating: '4.7',
         sold: 'Terjual 500+',
-        img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/59297/400/400',
-        img3: 'https://picsum.photos/seed/80786/400/400',
+        img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/MTA-150816804/tidak_ada_merk_kertas_karton_manila_-_kertas_karton_warna_full01_h80xj2nw.jpg',
+                img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa95dhJPbVHd4DpJAWnnqYsSH2ZYMUbMR8Cg&s',
+        img3: 'https://cdn.ralali.id/assets/img/Libraries/Kertas-Karton-BC-Lux-Manila-A1-60x84cm-(Hitam-coklat-ungu)_kK85TaoMZQbTsrwV_1639080652.png',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
-        desc: 'Kertas manila kualitas terbaik, warna cerah, ideal untuk tugas sekolah dan prakarya.'
+        desc: `>Kertas manila warna-warni dengan ukuran F4.`
     },
     'spidol-board': {
         title: 'Spidol Board Marker Hitam (Pack isi 12)',
         price: 'Rp 75.000',
-        strike: 'Rp 85.000',
+        strike: 'Rp 100.000',
         discount: '11%',
         rating: '4.9',
         sold: 'Terjual 800+',
-        img: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/71548/400/400',
-        img3: 'https://picsum.photos/seed/21093/400/400',
+        img: 'https://id-test-11.slatic.net/p/e66288f609ad7f13b6b0a1e1fb6169b8.jpg',
+                img2: 'https://parto.id/asset/foto_produk/cb614c2edee69585d2f60062f1a0b660_jpg_720x720q80_jpg_.png',
+        img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzKUfj_BfFuulXCMm5QmC5WK3eNmosJejL8Q&s',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Spidol papan tulis yang mudah dihapus dan tahan lama, tidak cepat kering.'
@@ -1484,29 +1474,29 @@ Kabel USB-C ke Magsafe 3 (2m)`
         desc: 'Tinta botol original Canon, hasil cetak tajam dan awet.'
     },
     'binder-b5': {
-        title: 'Buku Binder B5 Pastel Edition',
+        title: 'JOYKO Buku Binder B5 Pastel B5',
         price: 'Rp 45.000',
         strike: '',
         discount: '',
         rating: '4.8',
         sold: 'Terjual 900+',
-        img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/73078/400/400',
-        img3: 'https://picsum.photos/seed/76992/400/400',
+        img: 'https://down-id.img.susercontent.com/file/315926c63c9114f311842e0d376573c9',
+                img2: 'https://imgx.brdcdn.com/imgx/1200/aW1hZ2VzLnRva29wZWRpYS5uZXQvaW1nL2NhY2hlLzcwMC9WcWJjbU0vMjAyMS8xMC84L2U5ZjhkMWZjLWJlNjItNGJlZi04ZjJmLTMxZGM3MTcxYzlmYQ==.jpg',
+        img3: 'https://id-live-01.slatic.net/p/bd947bca925b462685893fae9a145189.jpg',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Binder stylish ukuran B5 lengkap dengan isi kertas.'
     },
     'penghapus-joyko': {
-        title: 'Penghapus Joyko Putih (Box isi 40)',
+        title: 'Penghapus Joyko Eraser 526-B40BL',
         price: 'Rp 32.000',
         strike: '',
         discount: '',
         rating: '4.9',
         sold: 'Terjual 2rb+',
-        img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/70595/400/400',
-        img3: 'https://picsum.photos/seed/89846/400/400',
+        img: 'https://www.joyko.co.id/image/cache/data/additional/526-B40BL-Info-01-650x650.jpg',
+                img2: 'https://www.joyko.co.id/image/cache/data/additional/ERASER-526-B40BL-BEAUTY-2-01-650x650.jpg',
+        img3: 'https://www.joyko.co.id/image/cache/data/additional/526-B40BL-+-Box-01-650x650.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Penghapus berkualitas sangat bersih saat digunakan, tidak mengotori kertas.'
@@ -1518,37 +1508,48 @@ Kabel USB-C ke Magsafe 3 (2m)`
         discount: '12%',
         rating: '5.0',
         sold: 'Terjual 5rb+',
-        img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/90902/400/400',
-        img3: 'https://picsum.photos/seed/48620/400/400',
+        img: 'https://andalanatk.com/upload/produk/6901b62a281963.99038156_1641963771_faber-castell_faber-castell-9000-2b-pensil--12-pcs-_full02.webp',
+                img2: 'https://faber-castell.co.id/cfind/source/images/product/gwm/117102-a.jpg',
+        img3: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//101/MTA-5355299/faber-castell_faber_castell_pensil_2b_1_pack_isi_12_full03_ldwvx84y.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
-        desc: 'Pensil komputer 2B standar ujian nasional, hitam pekat.'
+        desc: `>Pensil khusus untuk ujian nasional<br>
+>Lulus uji scanner OMR dan DMR<br>
+>Terdiri dari 16 ketebalan berbeda untuk menghasilkan karya seni yang luar biasa.<br>
+>Mulai dari 6H sampai dengan 8B<br>
+>Banyak dipakai oleh seniman kelas dunia.<br>
+>Dengan teknologi SV Bonding sehingga tidak mudah patah<br>
+>Mudah diraut<br>
+>Sudah tersertifikasi TKDN (Tingkat Komposisi Dalam Negeri)`
     },
     'penggaris-besi': {
-        title: 'Penggaris Besi Stainless 30cm',
+        title: 'Kenko Penggaris Besi Stainless 30cm',
         price: 'Rp 12.500',
         strike: '',
         discount: '',
         rating: '4.8',
         sold: 'Terjual 1rb+',
-        img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/56023/400/400',
-        img3: 'https://picsum.photos/seed/75754/400/400',
+        img: 'https://shop.kenko.co.id/image/cache/catalog/product/Ruler%20Stainless/Stainless-Steel-Ruler-700x700.jpg',
+                img2: 'https://siplah.blibli.com/data/images/SWID-0002-00009/1df13639-bd1c-4857-bd25-c09a29dbbd24.jpg',
+        img3: 'https://gadingonline.co.id/image/product/8998838358078.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
-        desc: 'Penggaris besi anti karat dengan ukuran presisi 30 centimeter.'
+        desc: `>Penggaris besi anti karat dengan ukuran presisi 30 centimeter.
+        >Baja tahan karat untuk presisi dan daya tahan.<br>
+        >Tanda inci dan metrik untuk pengukuran serbaguna.<br>
+        >Tepi untuk menggambar garis atau membuat sudut.<br>
+        >Bagus untuk sekolah, kantor, dan proyek DIY.`
     },
     'lem-stick': {
-        title: 'Lem Kertas Glue Stick Kenko',
+        title: 'Lem Kertas Glue Stick Kenko 25 Gr',
         price: 'Rp 8.000',
         strike: '',
         discount: '',
         rating: '4.7',
         sold: 'Terjual 750+',
-        img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/48087/400/400',
-        img3: 'https://picsum.photos/seed/81019/400/400',
+        img: 'https://shop.kenko.co.id/image/cache/catalog/product/Glue-Stick/Glue-Stick-L=25gr-700x700.jpg',
+                img2: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//108/MTA-67191768/kenko_lem-glue-stick-kenko-25-gr_full01.jpg',
+        img3: 'https://media.monotaro.id/mid01/big/Kebutuhan%20Kantor/Produk%20Kantor/Lem/Lem%20Glue%20Stick/Kenko%20Lem%20Stik/P101005461-2.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Lem kertas tidak berbau dan sangat rekat untuk kerajinan.'
@@ -1582,32 +1583,32 @@ Kabel USB-C ke Magsafe 3 (2m)`
         desc: 'Kalkulator meja besar yang mudah ditekan dan awet.'
     },
     'flashdisk': {
-        title: 'Flashdisk Sandisk Cruzer Blade 32GB',
-        price: 'Rp 65.000',
+        title: 'Flashdisk SanDisk Cruzer Blade 32GB',
+        price: 'Rp 183.000',
         strike: '',
         discount: '',
         rating: '4.9',
         sold: 'Terjual 4rb+',
-        img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/36704/400/400',
-        img3: 'https://picsum.photos/seed/84691/400/400',
+        img: 'https://down-id.img.susercontent.com/file/87e02a945bc134e67279769484306537',
+                img2: 'https://els.id/wp-content/uploads/2024/10/Sandisk-Cruzer-Blade.png',
+        img3: 'https://sadarjaya.com/wp-content/uploads/2021/04/32gb-1.png',
         category: 'Aksesoris',
         location: 'Wangi-Wangi',
         desc: 'Flashdisk original dengan garansi resmi 5 tahun.'
     },
     'kertas-foto': {
-        title: 'Kertas Foto Glossy A4 210g',
+        title: 'Kertas Foto Glossy A4 210 Gsm',
         price: 'Rp 35.000',
         strike: '',
         discount: '',
         rating: '4.7',
         sold: 'Terjual 400+',
-        img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-55436011/br-m036969-07062_-pack-buku-tulis-sidu-sinar-dunia-58-lembar-murah_full01.jpg',
-                img2: 'https://picsum.photos/seed/91111/400/400',
-        img3: 'https://picsum.photos/seed/45549/400/400',
+        img: 'https://shop.kenko.co.id/image/cache/catalog/product/Photo%20Paper/Glossy-Photo-Paper-210-gsm-GP-210-A4-700x700.jpg',
+                img2: 'https://shop.kenko.co.id/image/cache/catalog/product/Photo%20Paper/Glossy-Photo-Paper-230-gsm-GP-230-A4-300x300.jpg',
+        img3: 'https://down-id.img.susercontent.com/file/1b2b2a3f59764b314781b4c5ca0face8',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
-        desc: 'Kertas khusus cetak foto yang mengkilap dan anti air.'
+        desc: `>Kertas khusus cetak foto yang mengkilap.`
     },
     'isolasi': {
         title: 'Isolasi Bening Nachi Tape (Pack isi 6)',
@@ -1616,40 +1617,43 @@ Kabel USB-C ke Magsafe 3 (2m)`
         discount: '',
         rating: '4.8',
         sold: 'Terjual 900+',
-        img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/42406/400/400',
-        img3: 'https://picsum.photos/seed/13018/400/400',
+        img: 'https://down-id.img.susercontent.com/file/ec9b199d8bd5be12f7ef3e75e9ce8a64',
+                img2: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6TC99Ett_a90pab8XLuQkRJtJED0qpt4Vjg&s',
+        img3: 'https://down-id.img.susercontent.com/file/2efc20911cdc8f9c77d82998503138dc',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Selotip bening ukuran besar, lem sangat kuat.'
     },
     'lakban-hitam': {
-        title: 'Lakban Hitam Daimaru',
+        title: 'Lakban Hitam Daimaru 2 inci',
         price: 'Rp 14.000',
         strike: '',
         discount: '',
         rating: '4.9',
         sold: 'Terjual 2.5rb+',
-        img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/63278/400/400',
-        img3: 'https://picsum.photos/seed/17795/400/400',
+        img: 'https://siplah.blibli.com/data/images/STFA-0004-00199/cb342b41-4979-4a22-a737-1f9ecfab0fa8.jpg',
+                img2: 'https://siplah.blibli.com/data/images/SUSS-0001-00026/33ff6996-3484-48b0-bb67-5738d08b70d2.jpg',
+        img3: 'https://down-id.img.susercontent.com/file/099ed989b5ac315fc84487eeff7fbc86',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Lakban kain hitam anti sobek, sangat cocok untuk penjilidan.'
     },
     'map-snailhecter': {
         title: 'Map Plastik Snailhecter (1 Lusin)',
-        price: 'Rp 45.000',
+        price: 'Rp 60.000',
         strike: '',
         discount: '',
         rating: '4.8',
         sold: 'Terjual 300+',
-        img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/51335/400/400',
-        img3: 'https://picsum.photos/seed/57783/400/400',
+        img: 'https://down-id.img.susercontent.com/file/42d7d0c4eb99feb8b7e692a3336e528a',
+                img2: 'https://down-id.img.susercontent.com/file/id-11134207-7ra0n-mc8d6gqyn51jd4',
+        img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs4jPIxkrRNAcs2CdqkL_ABgkI1zYLdiONog&s',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
-        desc: 'Map penyimpan dokumen dengan penjepit plastik.'
+        desc: `>Map plastik untuk menyimpan dokumen ukuran A4<br>
+>Penjepit plastik yang kuat dan tahan lama.<br>
+>Mudah dibawa dan disimpan karena ukurannya pas.<br>
+>Tersedia dalam berbagai macam warna cerah.`
     },
     'name-tag': {
         title: 'Name Tag Panitia + Tali Lanyard',
@@ -1672,12 +1676,14 @@ Kabel USB-C ke Magsafe 3 (2m)`
         discount: '',
         rating: '4.8',
         sold: 'Terjual 1.2rb+',
-        img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/18732/400/400',
-        img3: 'https://picsum.photos/seed/17935/400/400',
+        img: 'https://down-id.img.susercontent.com/file/id-11134207-7qukw-lf261km982t90d',
+                img2: 'https://andalanatk.com/upload/produk/617180_produk.jpg',
+        img3: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAvzBGkI-I1ue-CwY5HTRvPilDQ2DJI4H6Kw&s',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
-        desc: 'Papan jalan berbahan kayu yang kuat untuk alas menulis.'
+        desc: `>Papan jalan berbahan kayu yang kuat dan tahan lama.<br>
+>Mudah dibawa dan disimpan karena ukurannya pas.<br>
+>Tersedia dalam berbagai macam warna cerah.`
     },
     'tipex': {
         title: 'Tipe-X Kertas Roll (Correction Tape)',
@@ -1686,9 +1692,9 @@ Kabel USB-C ke Magsafe 3 (2m)`
         discount: '',
         rating: '4.9',
         sold: 'Terjual 2.1rb+',
-        img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop',
-                img2: 'https://picsum.photos/seed/87315/400/400',
-        img3: 'https://picsum.photos/seed/78169/400/400',
+        img: 'https://www.joyko.co.id/image/cache/data/additional/B-650x650.jpg',
+                img2: 'https://www.joyko.co.id/image/cache/data/A-650x650.jpg',
+        img3: 'https://www.joyko.co.id/image/cache/data/additional/C-650x650.jpg',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Penghapus pulpen praktis tanpa belepotan dan bisa langsung ditimpa.'
