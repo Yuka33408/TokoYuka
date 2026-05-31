@@ -758,48 +758,111 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Carousel Banner Logic
     const track = document.getElementById('carousel-track');
-    const slides = document.querySelectorAll('.carousel-slide');
+    const originalSlides = document.querySelectorAll('.carousel-slide');
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
     const indicatorsContainer = document.getElementById('carousel-indicators');
     
-    if (track && slides.length > 0) {
+    if (track && originalSlides.length > 0) {
         let currentIndex = 0;
+        const totalSlides = originalSlides.length;
+        let isTransitioning = false;
         
+        // Clone first and last slides for infinite scroll effect
+        const firstClone = originalSlides[0].cloneNode(true);
+        const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
+        
+        track.appendChild(firstClone);
+        track.prepend(lastClone);
+
         // Create indicators
-        slides.forEach((_, index) => {
+        originalSlides.forEach((_, index) => {
             const dot = document.createElement('div');
             dot.classList.add('indicator');
             if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
+            dot.addEventListener('click', () => {
+                if (isTransitioning || currentIndex === index) return;
+                currentIndex = index;
+                updateCarousel(true);
+            });
             if (indicatorsContainer) indicatorsContainer.appendChild(dot);
         });
         const indicators = document.querySelectorAll('.indicator');
 
-        const updateCarousel = () => {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        // Set initial position (accounting for prepended clone)
+        track.style.transition = 'none';
+        track.style.transform = `translateX(-100%)`;
+
+        const updateCarousel = (withTransition = true) => {
+            if (withTransition) {
+                track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+            } else {
+                track.style.transition = 'none';
+            }
+            track.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+
+            // Update indicators active state
+            let activeIndex = currentIndex;
+            if (currentIndex === totalSlides) activeIndex = 0;
+            if (currentIndex === -1) activeIndex = totalSlides - 1;
+            
             indicators.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
+                dot.classList.toggle('active', index === activeIndex);
             });
         };
 
         const nextSlide = () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
+            if (isTransitioning) return;
+            isTransitioning = true;
+            currentIndex++;
+            updateCarousel(true);
         };
 
         const prevSlide = () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
+            if (isTransitioning) return;
+            isTransitioning = true;
+            currentIndex--;
+            updateCarousel(true);
         };
 
-        const goToSlide = (index) => {
-            currentIndex = index;
-            updateCarousel();
-        };
+        track.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            // Instantly jump to the real slide if we reached a clone
+            if (currentIndex >= totalSlides) {
+                currentIndex = 0;
+                updateCarousel(false);
+            } else if (currentIndex <= -1) {
+                currentIndex = totalSlides - 1;
+                updateCarousel(false);
+            }
+        });
 
         if(nextBtn) nextBtn.addEventListener('click', nextSlide);
         if(prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+        // Klaim Voucher Interaction
+        const klaimBtns = document.querySelectorAll('.klaim-btn');
+        klaimBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!this.classList.contains('claimed')) {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="ph ph-spinner-gap"></i> Proses...';
+                    this.style.opacity = '0.8';
+                    
+                    setTimeout(() => {
+                        this.classList.add('claimed');
+                        this.innerHTML = '<i class="ph-fill ph-check-circle"></i> Berhasil';
+                        this.style.background = '#10b981'; // Success Green
+                        this.style.color = 'white';
+                        this.style.opacity = '1';
+                        this.style.pointerEvents = 'none'; // Disable multiple clicks
+                        this.style.transform = 'scale(1)';
+                        this.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
+                    }, 800);
+                }
+            });
+        });
 
         // Auto slide
         let slideInterval = setInterval(nextSlide, 5000);
@@ -811,6 +874,40 @@ document.addEventListener('DOMContentLoaded', () => {
             carouselContainer.addEventListener('mouseleave', () => {
                 slideInterval = setInterval(nextSlide, 5000);
             });
+        }
+    }
+
+    // Notifications and Messages Tabs Logic
+    const pdTabs = document.querySelectorAll('.pd-tab');
+    if (pdTabs.length > 0) {
+        const switchTab = (targetId) => {
+            document.querySelectorAll('.pd-description').forEach(content => {
+                content.style.display = 'none';
+                content.classList.remove('active');
+            });
+            pdTabs.forEach(t => t.classList.remove('active'));
+            
+            const targetContent = document.getElementById(targetId);
+            const targetTab = document.querySelector(`.pd-tab[data-target="${targetId}"]`);
+            
+            if (targetContent && targetTab) {
+                targetContent.style.display = 'block';
+                targetContent.classList.add('active');
+                targetTab.classList.add('active');
+            }
+        };
+
+        pdTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                switchTab(tab.getAttribute('data-target'));
+            });
+        });
+
+        // Check hash on load to open specific tab (e.g., #pesan)
+        if (window.location.hash === '#pesan') {
+            switchTab('tab-pesan');
+        } else {
+            switchTab(pdTabs[0].getAttribute('data-target'));
         }
     }
 
@@ -2096,10 +2193,21 @@ const initFlashSaleCountdown = () => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        if (daysEl) daysEl.innerText = days.toString().padStart(2, '0');
-        hoursEl.innerText = hours.toString().padStart(2, '0');
-        minutesEl.innerText = minutes.toString().padStart(2, '0');
-        secondsEl.innerText = seconds.toString().padStart(2, '0');
+        const updateBox = (el, value) => {
+            const strVal = value.toString().padStart(2, '0');
+            if (el && el.innerText !== strVal) {
+                el.innerText = strVal;
+                // Trigger CSS pop animation
+                el.classList.remove('pop');
+                void el.offsetWidth; // trigger reflow to restart animation
+                el.classList.add('pop');
+            }
+        };
+
+        if (daysEl) updateBox(daysEl, days);
+        updateBox(hoursEl, hours);
+        updateBox(minutesEl, minutes);
+        updateBox(secondsEl, seconds);
     };
 
     updateCountdown(); // Initial call to avoid 1-sec delay
