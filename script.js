@@ -1082,21 +1082,36 @@ const productsDatabase = {
         rating: '5.0',
         sold: 'Terjual 80+',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEJs5tSZ5YLwH0Vt5OaO0oeeqAZ87ddgNxdg&s',
+        img2: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=400&h=400&fit=crop',
+        img3: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=400&h=400&fit=crop',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Pensil Warna Set 48 Warna dengan kualitas premium. Cocok untuk seniman profesional maupun pemula. Warna cerah, mudah di-blend, dan tidak mudah patah.'
     },
     'tas-laptop': {
-        title: 'Tas Laptop Ransel Waterproof',
-        price: 'Rp 120.000',
-        strike: 'Rp 185.000',
-        discount: 'Diskon 35%',
+        title: 'ANTARESTAR Tas Ransel Helios',
+        price: 'Rp 269.500',
+        strike: 'Rp 475.000',
+        discount: 'Diskon 40%',
         rating: '4.8',
         sold: 'Terjual 300+',
-        img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop',
+        img: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98s-lqea2zbvaxb2e3.jpg',
+        img2: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98o-lqea2zbvcbvi9b-510x510.jpg',
+        img3: 'https://antarestar.com/wp-content/uploads/2024/01/id-11134207-7r98w-lqea2zbvhy5ae1-510x510.jpg',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
-        desc: 'Tas laptop anti air dengan banyak kompartemen. Cocok untuk pekerja kantoran maupun mahasiswa.'
+        desc: `Buat yang suka bepergian travelling atau beraktifitas kemana mana, kadang kita butuh extra BACKPACK yang BESAR untuk menemani trip kita. Nah, BACKPACK HELIOS ini sangat cocok untuk menemani petualangan dan segala aktifitas kalian.
+Dengan bahan Premium Bimo Polyster yang Waterproof dan resleting full zipper waterproof membuat Backpack HELIOS ini tahan di cuaca panas maupun hujan. Barang-barangmu tetap terjaga aman tanpa perlu takut kebasahan.
+FITUR :
+Tali ransel empuk
+Tersedia Tumblr Pocket tempat khusus botol minum
+Tas ransel fashionable
+1 kantong utama
+1 kompartemen khusus untuk laptop
+Saku depan multifungsi dengan zipper
+Tersedia 1 port Earphone Holder untuk menemani aktivitas bermusik kalian
+Desain Simple, Keren, dan Elegan
+Pada bagian punggung dan tali terdapat bantalan busa..`
     },
     'buku-agenda': {
         title: 'Buku Agenda Kulit Eksklusif 2026',
@@ -1106,6 +1121,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 250+',
         img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=300&h=300&fit=crop',
+        img2: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=400&fit=crop',
+        img3: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&h=400&fit=crop',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Buku agenda dengan sampul kulit sintetis. Dilengkapi kalender, pembatas pita, dan kertas berkualitas tinggi (100gsm).'
@@ -1118,6 +1135,8 @@ const productsDatabase = {
         rating: '4.7',
         sold: 'Terjual 150+',
         img: 'https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg',
+                img2: 'https://picsum.photos/seed/82187/400/400',
+        img3: 'https://picsum.photos/seed/83191/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Tinta botol berkualitas tinggi, hasil cetak tajam, anti luntur. Kompatibel dengan mayoritas printer inkjet.'
@@ -1130,6 +1149,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 2rb+',
         img: 'https://andalanatk.com/upload/produk/6901b814eefa81.87516637_986852_produk.webp',
+                img2: 'https://picsum.photos/seed/88680/400/400',
+        img3: 'https://picsum.photos/seed/46254/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Tinta lebih lancar, cepat kering, dan sangat nyaman digunakan untuk menulis dokumen penting atau catatan harian.'
@@ -1142,6 +1163,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 500+',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-55436011/br-m036969-07062_-pack-buku-tulis-sidu-sinar-dunia-58-lembar-murah_full01.jpg',
+                img2: 'https://picsum.photos/seed/15127/400/400',
+        img3: 'https://picsum.photos/seed/62128/400/400',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Buku catatan bersampul kraft elegan. Berisi 100 lembar kertas HVS polos yang tidak tembus tinta.'
@@ -1154,6 +1177,8 @@ const productsDatabase = {
         rating: '5.0',
         sold: 'Terjual 50+',
         img: 'https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg',
+                img2: 'https://picsum.photos/seed/18672/400/400',
+        img3: 'https://picsum.photos/seed/59795/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Laptop tangguh dengan prosesor terbaru, ideal untuk kebutuhan sekolah, kuliah, desain grafis ringan, hingga kantoran.'
@@ -1166,6 +1191,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 120+',
         img: 'https://images.tokopedia.net/img/cache/700/aphluv/1997/1/1/b967c0e56d2247fbad1fc041522694f9~.jpeg.webp',
+                img2: 'https://picsum.photos/seed/28379/400/400',
+        img3: 'https://picsum.photos/seed/55266/400/400',
         category: 'Seni & Lukis',
         location: 'Wangi-Wangi',
         desc: 'Set 6 kuas berbagai ukuran berbahan nilon sintetik halus. Mudah dibersihkan dan tidak rontok.'
@@ -1178,6 +1205,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 1rb+',
         img: 'https://shop.kenko.co.id/image/cache/catalog/product/Stapler/Heavy-Duty-Stapler-HD-12L24-700x700.jpg',
+                img2: 'https://picsum.photos/seed/10916/400/400',
+        img3: 'https://picsum.photos/seed/18905/400/400',
         category: 'Alat Kantor',
         location: 'Wangi-Wangi',
         desc: 'Stapler awet bahan besi kokoh anti macet. Sangat pas untuk penggunaan kantor dan sekolah sehari-hari.'
@@ -1190,6 +1219,8 @@ const productsDatabase = {
         rating: '4.7',
         sold: 'Terjual 800+',
         img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/19360/400/400',
+        img3: 'https://picsum.photos/seed/27739/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Keyboard gaming mechanical yang *clicky*, responsif, dengan lampu latar RGB 16 juta warna.'
@@ -1202,6 +1233,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 450+',
         img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/81092/400/400',
+        img3: 'https://picsum.photos/seed/59442/400/400',
         category: 'Alat Kantor',
         location: 'Wangi-Wangi',
         desc: 'Gunting dengan pegangan ergonomis berlapis karet. Bilah stainless steel anti karat.'
@@ -1214,6 +1247,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 3rb+',
         img: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/90654/400/400',
+        img3: 'https://picsum.photos/seed/30270/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Earbud nirkabel suara nge-bass. Baterai tahan hingga 20 jam pemutaran.'
@@ -1226,6 +1261,8 @@ const productsDatabase = {
         rating: '5.0',
         sold: 'Terjual 5rb+',
         img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/71380/400/400',
+        img3: 'https://picsum.photos/seed/55902/400/400',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Buku bacaan fiksi dengan jalan cerita menarik yang wajib dibaca tahun ini.'
@@ -1238,6 +1275,8 @@ const productsDatabase = {
         rating: '4.7',
         sold: 'Terjual 150+',
         img: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/42471/400/400',
+        img3: 'https://picsum.photos/seed/93264/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Set 12 spidol warna berkualitas dengan warna yang cerah. Tinta cepat kering dan tidak mudah luntur.'
@@ -1250,6 +1289,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 2rb+',
         img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/13948/400/400',
+        img3: 'https://picsum.photos/seed/71070/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Mouse wireless handal dengan jangkauan 10 meter. Sangat nyaman untuk penggunaan harian.'
@@ -1262,6 +1303,8 @@ const productsDatabase = {
         rating: '4.7',
         sold: 'Terjual 500+',
         img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/59297/400/400',
+        img3: 'https://picsum.photos/seed/80786/400/400',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Kertas manila kualitas terbaik, warna cerah, ideal untuk tugas sekolah dan prakarya.'
@@ -1274,6 +1317,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 800+',
         img: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/71548/400/400',
+        img3: 'https://picsum.photos/seed/21093/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Spidol papan tulis yang mudah dihapus dan tahan lama, tidak cepat kering.'
@@ -1286,6 +1331,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 1.2rb+',
         img: 'https://pegastore.id/media/product_image/1747906214-foto-produk-(30).jpg',
+                img2: 'https://picsum.photos/seed/16750/400/400',
+        img3: 'https://picsum.photos/seed/92778/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Tinta botol original Canon, hasil cetak tajam dan awet.'
@@ -1298,6 +1345,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 900+',
         img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/73078/400/400',
+        img3: 'https://picsum.photos/seed/76992/400/400',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Binder stylish ukuran B5 lengkap dengan isi kertas.'
@@ -1310,6 +1359,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 2rb+',
         img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/70595/400/400',
+        img3: 'https://picsum.photos/seed/89846/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Penghapus berkualitas sangat bersih saat digunakan, tidak mengotori kertas.'
@@ -1322,6 +1373,8 @@ const productsDatabase = {
         rating: '5.0',
         sold: 'Terjual 5rb+',
         img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/90902/400/400',
+        img3: 'https://picsum.photos/seed/48620/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Pensil komputer 2B standar ujian nasional, hitam pekat.'
@@ -1334,6 +1387,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 1rb+',
         img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/56023/400/400',
+        img3: 'https://picsum.photos/seed/75754/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Penggaris besi anti karat dengan ukuran presisi 30 centimeter.'
@@ -1346,6 +1401,8 @@ const productsDatabase = {
         rating: '4.7',
         sold: 'Terjual 750+',
         img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/48087/400/400',
+        img3: 'https://picsum.photos/seed/81019/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Lem kertas tidak berbau dan sangat rekat untuk kerajinan.'
@@ -1358,6 +1415,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 600+',
         img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/27881/400/400',
+        img3: 'https://picsum.photos/seed/68115/400/400',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Kertas catatan tempel warna warni isi 100 lembar.'
@@ -1370,6 +1429,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 1.5rb+',
         img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/72652/400/400',
+        img3: 'https://picsum.photos/seed/23460/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Kalkulator meja besar yang mudah ditekan dan awet.'
@@ -1382,6 +1443,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 4rb+',
         img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/36704/400/400',
+        img3: 'https://picsum.photos/seed/84691/400/400',
         category: 'Elektronik',
         location: 'Wangi-Wangi',
         desc: 'Flashdisk original dengan garansi resmi 5 tahun.'
@@ -1394,6 +1457,8 @@ const productsDatabase = {
         rating: '4.7',
         sold: 'Terjual 400+',
         img: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//89/MTA-55436011/br-m036969-07062_-pack-buku-tulis-sidu-sinar-dunia-58-lembar-murah_full01.jpg',
+                img2: 'https://picsum.photos/seed/91111/400/400',
+        img3: 'https://picsum.photos/seed/45549/400/400',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Kertas khusus cetak foto yang mengkilap dan anti air.'
@@ -1406,6 +1471,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 900+',
         img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/42406/400/400',
+        img3: 'https://picsum.photos/seed/13018/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Selotip bening ukuran besar, lem sangat kuat.'
@@ -1418,6 +1485,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 2.5rb+',
         img: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/63278/400/400',
+        img3: 'https://picsum.photos/seed/17795/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Lakban kain hitam anti sobek, sangat cocok untuk penjilidan.'
@@ -1430,6 +1499,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 300+',
         img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/51335/400/400',
+        img3: 'https://picsum.photos/seed/57783/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Map penyimpan dokumen dengan penjepit plastik.'
@@ -1442,6 +1513,8 @@ const productsDatabase = {
         rating: '4.7',
         sold: 'Terjual 800+',
         img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/49505/400/400',
+        img3: 'https://picsum.photos/seed/87734/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Name tag plastik bening tebal beserta talinya.'
@@ -1454,6 +1527,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 1.2rb+',
         img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/18732/400/400',
+        img3: 'https://picsum.photos/seed/17935/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Papan jalan berbahan kayu yang kuat untuk alas menulis.'
@@ -1466,6 +1541,8 @@ const productsDatabase = {
         rating: '4.9',
         sold: 'Terjual 2.1rb+',
         img: 'https://images.unsplash.com/photo-1588693951717-b1660ebed089?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/87315/400/400',
+        img3: 'https://picsum.photos/seed/78169/400/400',
         category: 'Alat Tulis',
         location: 'Wangi-Wangi',
         desc: 'Penghapus pulpen praktis tanpa belepotan dan bisa langsung ditimpa.'
@@ -1478,6 +1555,8 @@ const productsDatabase = {
         rating: '4.8',
         sold: 'Terjual 1rb+',
         img: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&h=300&fit=crop',
+                img2: 'https://picsum.photos/seed/19083/400/400',
+        img3: 'https://picsum.photos/seed/95579/400/400',
         category: 'Buku & Kertas',
         location: 'Wangi-Wangi',
         desc: 'Kertas lipat origami untuk prakarya, warna cerah.'
@@ -1554,7 +1633,7 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
             <p><strong>Min. Pemesanan:</strong> 1 Buah</p>
             <p><strong>Etalase:</strong> ${product.category}</p>
             <br>
-            <p>${product.desc}</p>
+            <p style="white-space: pre-line; line-height: 1.6; margin-bottom: 1rem;">${product.desc}</p>
             <p>Garansi resmi TokoYuka 100% Original. Silakan langsung dipesan, barang selalu ready stock!</p>
         `;
     }
@@ -1579,10 +1658,10 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         thumbnails[0].src = product.img;
         let shortTitle = product.title.length > 20 ? product.title.substring(0, 20) + '...' : product.title;
         if(thumbnails.length > 1) {
-            thumbnails[1].src = `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Samping)`;
+            thumbnails[1].src = product.img2 || `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Samping)`;
         }
         if(thumbnails.length > 2) {
-            thumbnails[2].src = `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Belakang)`;
+            thumbnails[2].src = product.img3 || `https://placehold.co/400x400/f8fafc/334155?text=${encodeURIComponent(shortTitle)}%0A(Tampak+Belakang)`;
         }
     }
 
@@ -1629,5 +1708,82 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
                 qty
             );
         };
+    }
+
+    // Lightbox Logic
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img-content');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+
+    if (lightbox && lightboxImg && mainImgEl) {
+        let currentLightboxIndex = 0;
+        const allThumbs = document.querySelectorAll('.thumbnail img');
+
+        const updateLightboxImage = (index) => {
+            if(allThumbs.length > 0) {
+                lightboxImg.src = allThumbs[index].src;
+            } else {
+                lightboxImg.src = mainImgEl.src;
+            }
+        };
+
+        mainImgEl.addEventListener('click', () => {
+            currentLightboxIndex = 0;
+            allThumbs.forEach((thumb, idx) => {
+                if (thumb.src === mainImgEl.src) {
+                    currentLightboxIndex = idx;
+                }
+            });
+            updateLightboxImage(currentLightboxIndex);
+            lightbox.classList.add('active');
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        if (lightboxPrev && lightboxNext) {
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (allThumbs.length > 0) {
+                    currentLightboxIndex = (currentLightboxIndex - 1 + allThumbs.length) % allThumbs.length;
+                    updateLightboxImage(currentLightboxIndex);
+                }
+            });
+
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (allThumbs.length > 0) {
+                    currentLightboxIndex = (currentLightboxIndex + 1) % allThumbs.length;
+                    updateLightboxImage(currentLightboxIndex);
+                }
+            });
+        }
+
+        // Swipe Support for mobile
+        let touchstartX = 0;
+        let touchendX = 0;
+        
+        lightbox.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        lightbox.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            if (touchendX < touchstartX - 50) {
+                if(lightboxNext) lightboxNext.click(); // Swipe left -> Next
+            }
+            if (touchendX > touchstartX + 50) {
+                if(lightboxPrev) lightboxPrev.click(); // Swipe right -> Prev
+            }
+        });
     }
 }
