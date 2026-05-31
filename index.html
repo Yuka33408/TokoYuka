@@ -55,7 +55,7 @@
                     <span class="cart-badge" style="display: none;">0</span>
                 </a>
                 <a href="notifications.html" class="icon-btn"><i class="ph ph-bell"></i></a>
-                <a href="notifications.html" class="icon-btn"><i class="ph ph-envelope-simple"></i></a>
+                <a href="notifications.html#pesan" class="icon-btn"><i class="ph ph-envelope-simple"></i></a>
                 <div class="divider"></div>
                 <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
                     <i class="ph ph-moon"></i>
@@ -72,12 +72,42 @@
             <div class="banner-container">
                 <div class="main-carousel">
                     <div class="carousel-track" id="carousel-track">
-                        <img src="https://api.vitech.asia/storage/produk/7677efae-a6be-461c-8e1f-5e16309194ce.jpg"
-                            alt="Promo Alat Tulis" class="carousel-slide">
-                        <img src="https://e-print.co.id/wp-content/uploads/2017/09/Glossy-Photo-Paper-A4-120gsm-c.jpg"
-                            alt="Promo Elektronik" class="carousel-slide">
-                        <img src="https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg"
-                            alt="Buku Diskon" class="carousel-slide">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide modern-slide slide-bg-1">
+                            <div class="slide-content">
+                                <span class="slide-badge">Super Sale</span>
+                                <h2>Kebutuhan Alat Tulis Kantormu</h2>
+                                <p>Diskon spesial hingga 50% untuk produk Sidu, Joyko, dan Faber-Castell.</p>
+                                <button class="slide-btn" onclick="window.location.href='category.html?cat=Alat%20Tulis'">Belanja Sekarang <i class="ph ph-arrow-right"></i></button>
+                            </div>
+                            <div class="slide-image">
+                                <img src="https://api.vitech.asia/storage/produk/7677efae-a6be-461c-8e1f-5e16309194ce.jpg" alt="Alat Tulis">
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide modern-slide slide-bg-2">
+                            <div class="slide-content">
+                                <span class="slide-badge" style="background: #10b981;">Gadget Baru</span>
+                                <h2>Upgrade Laptop Impianmu</h2>
+                                <p>Dapatkan Macbook Air terbaru dengan harga terbaik dan garansi resmi.</p>
+                                <button class="slide-btn" onclick="window.location.href='category.html?cat=Komputer'">Lihat Produk <i class="ph ph-arrow-right"></i></button>
+                            </div>
+                            <div class="slide-image">
+                                <img src="https://pegastore.id/media/product_image/1751533288-macbook-air-mw0w3id-(2).jpg" alt="Macbook">
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide modern-slide slide-bg-3">
+                            <div class="slide-content">
+                                <span class="slide-badge" style="background: #ef4444;">Eksklusif</span>
+                                <h2>Kertas Glossy & Tinta Original</h2>
+                                <p>Hasil cetak sempurna dengan perlengkapan percetakan berkualitas tinggi.</p>
+                                <button class="slide-btn" onclick="window.location.href='category.html?cat=Percetakan'">Cek Sekarang <i class="ph ph-arrow-right"></i></button>
+                            </div>
+                            <div class="slide-image">
+                                <img src="https://e-print.co.id/wp-content/uploads/2017/09/Glossy-Photo-Paper-A4-120gsm-c.jpg" alt="Percetakan">
+                            </div>
+                        </div>
                     </div>
                     <button class="carousel-btn prev-btn" id="prev-btn" aria-label="Previous"><i
                             class="ph ph-caret-left"></i></button>
@@ -85,11 +115,31 @@
                             class="ph ph-caret-right"></i></button>
                     <div class="carousel-indicators" id="carousel-indicators"></div>
                 </div>
+                
                 <div class="side-banners">
-                    <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?q=80&w=400&auto=format&fit=crop"
-                        alt="Voucher Belanja" class="side-banner-img">
-                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=400&auto=format&fit=crop"
-                        alt="Flash Sale Komputer" class="side-banner-img">
+                    <div class="side-promo-card voucher-card">
+                        <div class="promo-info">
+                            <div class="promo-icon"><i class="ph-fill ph-ticket"></i></div>
+                            <h3>Voucher Cashback</h3>
+                            <p>Klaim cashback s/d Rp50.000</p>
+                        </div>
+                        <button class="klaim-btn">Klaim</button>
+                        <!-- Background decoration -->
+                        <div class="card-decor decor-1"></div>
+                        <div class="card-decor decor-2"></div>
+                    </div>
+                    
+                    <div class="side-promo-card ongkir-card">
+                        <div class="promo-info">
+                            <span class="ongkir-badge">Spesial App</span>
+                            <h3>Bebas Ongkir</h3>
+                            <p>Belanja mulai Rp 50rb</p>
+                            <a href="#" class="promo-link">Cek S&K <i class="ph ph-caret-right"></i></a>
+                        </div>
+                        <div class="ongkir-image">
+                            <img src="https://images.unsplash.com/photo-1588693951717-b1660ebed089?q=80&w=400&auto=format&fit=crop" alt="Box">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
