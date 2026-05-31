@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesanan Saya & Lacak Barang | TokoYuka</title>
+    <meta name="description" content="Pantau dan lacak pesanan Anda di TokoYuka.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css?v=45">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="ph ph-device-mobile"></i> Download YukaApp</a>
+            <a href="tentang.html">Tentang Kami</a>
+            <a href="#">Mitra Yuka</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">Promo</a>
+            <a href="kontak.html">Pusat Bantuan</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <div class="logo" style="cursor:pointer;" onclick="window.location.href='index.html'">TokoYuka.</div>
+            
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Cari pesanan...">
+                    <button class="search-btn" aria-label="Cari"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </a>
+                <a href="notifications.html" class="icon-btn"><i class="ph ph-bell"></i></a>
+                <div class="divider"></div>
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <button class="nav-btn outline-btn" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="nav-btn primary-btn" onclick="window.location.href='register.html'">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="category-page-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Beranda</a> &gt; 
+            <span>Pesanan Saya</span>
+        </nav>
+
+        <h1 style="margin-bottom: 2rem; font-size: 2rem; text-align: center;">Pesanan Saya</h1>
+
+        <div style="max-width: 900px; margin: 0 auto; background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); min-height: 50vh; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <!-- Tabs -->
+            <div class="order-tabs">
+                <button class="order-tab active" data-target="tab-semua">Semua</button>
+                <button class="order-tab" data-target="tab-belum-bayar">Belum Bayar</button>
+                <button class="order-tab" data-target="tab-dikemas">Dikemas</button>
+                <button class="order-tab" data-target="tab-dikirim">Dikirim</button>
+                <button class="order-tab" data-target="tab-selesai">Selesai</button>
+            </div>
+
+            <div class="order-tab-contents" style="padding: 2rem;">
+                
+                <!-- Tab: Semua -->
+                <div class="order-list active" id="tab-semua">
+                    <div class="empty-order-state" id="empty-state-semua">
+                        <i class="ph ph-package"></i>
+                        <p>Belum ada pesanan</p>
+                    </div>
+                </div>
+
+                <!-- Tab: Belum Bayar -->
+                <div class="order-list" id="tab-belum-bayar" style="display: none;">
+                    <div class="empty-order-state">
+                        <i class="ph ph-receipt"></i>
+                        <p>Tidak ada pesanan yang belum dibayar</p>
+                    </div>
+                </div>
+                
+                <!-- Tab: Dikemas -->
+                <div class="order-list" id="tab-dikemas" style="display: none;">
+                    <div class="empty-order-state" id="empty-state-dikemas">
+                        <i class="ph ph-package"></i>
+                        <p>Tidak ada pesanan yang sedang dikemas</p>
+                    </div>
+                </div>
+
+                <!-- Tab: Dikirim -->
+                <div class="order-list" id="tab-dikirim" style="display: none;">
+                    <div class="empty-order-state" id="empty-state-dikirim">
+                        <i class="ph ph-truck"></i>
+                        <p>Tidak ada pesanan yang sedang dikirim</p>
+                    </div>
+                </div>
+
+                <!-- Tab: Selesai -->
+                <div class="order-list" id="tab-selesai" style="display: none;">
+                    <div class="empty-order-state" id="empty-state-selesai">
+                        <i class="ph ph-check-circle"></i>
+                        <p>Belum ada pesanan yang diselesaikan</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Tracking Modal -->
+    <div class="tracking-overlay" id="tracking-overlay" style="display: none;">
+        <div class="tracking-modal">
+            <div class="tracking-header">
+                <h2>Lacak Pesanan</h2>
+                <button class="close-tracking-btn"><i class="ph ph-x"></i></button>
+            </div>
+            <div class="tracking-body">
+                <div class="tracking-info">
+                    <p>No. Resi: <strong>JNE1234567890</strong></p>
+                    <p class="status-dikirim">Status: Dalam Perjalanan</p>
+                </div>
+                <div class="tracking-timeline">
+                    <div class="timeline-item active">
+                        <div class="timeline-icon"><i class="ph-fill ph-truck"></i></div>
+                        <div class="timeline-content">
+                            <h4>Pesanan Sedang Dikirim</h4>
+                            <p>Kurir sedang menuju ke alamat pengiriman Anda.</p>
+                            <span class="timeline-date">1 Juni 2026, 08:15</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="ph-fill ph-map-pin"></i></div>
+                        <div class="timeline-content">
+                            <h4>Pesanan Tiba di Hub Transit (Jakarta)</h4>
+                            <p>Pesanan Anda telah tiba di fasilitas logistik terdekat.</p>
+                            <span class="timeline-date">31 Mei 2026, 22:30</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="ph-fill ph-package"></i></div>
+                        <div class="timeline-content">
+                            <h4>Pesanan Diserahkan ke Kurir</h4>
+                            <p>TokoYuka telah menyerahkan pesanan Anda kepada pihak logistik (JNE).</p>
+                            <span class="timeline-date">31 Mei 2026, 15:00</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="ph-fill ph-check-circle"></i></div>
+                        <div class="timeline-content">
+                            <h4>Pesanan Dibuat</h4>
+                            <p>Pesanan berhasil dibuat dan pembayaran telah diverifikasi.</p>
+                            <span class="timeline-date">30 Mei 2026, 10:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>TokoYuka.</h3>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis, percetakan modern, dan elektronik.</p>
+            </div>
+            <div class="footer-links">
+                <a href="tentang.html">Tentang Kami</a>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <a href="kontak.html">Pusat Bantuan</a>
+                <a href="cara-pembelian.html">Cara Pembelian</a>
+                <a href="orders.html">Lacak Pesanan</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TokoYuka. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation for Mobile -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <i class="ph ph-house"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="category.html" class="bottom-nav-item">
+            <i class="ph ph-magnifying-glass"></i>
+            <span>Kategori</span>
+        </a>
+        <a href="cart.html" class="bottom-nav-item">
+            <div style="position: relative;"><i class="ph ph-shopping-cart"></i><span class="cart-badge" style="display: none;">0</span></div><span>Keranjang</span>
+        </a>
+        <a href="orders.html" class="bottom-nav-item active">
+            <i class="ph-fill ph-package"></i>
+            <span>Pesanan</span>
+        </a>
+        <a href="notifications.html" class="bottom-nav-item">
+            <i class="ph ph-bell"></i>
+            <span>Notifikasi</span>
+        </a>
+    </nav>
+
+    <script src="script.js?v=44"></script>
+    <script src="transition.js?v=45"></script>
+</body>
+</html>
+
+
+
+
+
+

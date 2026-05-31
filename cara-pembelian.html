@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara Pembelian | TokoYuka</title>
+    <meta name="description" content="Panduan mudah berbelanja alat tulis dan percetakan di TokoYuka.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css?v=45">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="#"><i class="ph ph-device-mobile"></i> Download YukaApp</a>
+            <a href="tentang.html">Tentang Kami</a>
+            <a href="#">Mitra Yuka</a>
+        </div>
+        <div class="top-bar-right">
+            <a href="#">Promo</a>
+            <a href="kontak.html">Pusat Bantuan</a>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <div class="logo" style="cursor:pointer;" onclick="window.location.href='index.html'">TokoYuka.</div>
+            
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Cari di sini...">
+                    <button class="search-btn" aria-label="Cari"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </a>
+                <a href="orders.html" class="icon-btn"><i class="ph ph-package"></i></a>
+                <a href="notifications.html" class="icon-btn"><i class="ph ph-bell"></i></a>
+                <div class="divider"></div>
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                    <i class="ph ph-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="category-page-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Beranda</a> &gt; 
+            <span>Cara Pembelian</span>
+        </nav>
+
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;"><span class="text-gradient">Panduan Berbelanja</span> di TokoYuka</h1>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Ikuti 4 langkah mudah di bawah ini untuk mendapatkan perlengkapan kantor dan layanan percetakan premium langsung ke pintu Anda.</p>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+            
+            <!-- Step 1 -->
+            <div style="background: var(--bg-surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="width: 40px; height: 40px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; position: absolute; top: -15px; left: -15px; box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);">1</div>
+                <div style="width: 80px; height: 80px; background: rgba(124, 58, 237, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: var(--primary-color);">
+                    <i class="ph-fill ph-magnifying-glass" style="font-size: 2.5rem;"></i>
+                </div>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Cari Produk</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Jelajahi kategori atau gunakan kolom pencarian untuk menemukan produk yang Anda butuhkan.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="background: var(--bg-surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="width: 40px; height: 40px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; position: absolute; top: -15px; left: -15px; box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);">2</div>
+                <div style="width: 80px; height: 80px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: #10b981;">
+                    <i class="ph-fill ph-shopping-cart" style="font-size: 2.5rem;"></i>
+                </div>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Keranjang</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Masukkan produk ke keranjang, atur kuantitas, dan klik tombol 'Checkout' saat Anda siap.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="background: var(--bg-surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="width: 40px; height: 40px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; position: absolute; top: -15px; left: -15px; box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);">3</div>
+                <div style="width: 80px; height: 80px; background: rgba(245, 158, 11, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: #f59e0b;">
+                    <i class="ph-fill ph-credit-card" style="font-size: 2.5rem;"></i>
+                </div>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Bayar Pesanan</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Isi alamat pengiriman dengan lengkap, lalu selesaikan pembayaran dengan metode pilihan Anda.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div style="background: var(--bg-surface); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="width: 40px; height: 40px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; position: absolute; top: -15px; left: -15px; box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);">4</div>
+                <div style="width: 80px; height: 80px; background: rgba(59, 130, 246, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; color: #3b82f6;">
+                    <i class="ph-fill ph-truck" style="font-size: 2.5rem;"></i>
+                </div>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Terima Barang</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Pantau resi Anda di halaman Pesanan. Tunggu kurir datang dan nikmati belanjaan Anda!</p>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+            <button class="primary-btn" style="font-size: 1.1rem; padding: 1rem 2.5rem; border-radius: 100px; box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);" onclick="window.location.href='index.html'">Mulai Berbelanja Sekarang</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>TokoYuka.</h3>
+                <p>Platform e-commerce terpercaya untuk kebutuhan alat tulis dan percetakan modern.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <a href="kontak.html">Pusat Bantuan</a>
+                <a href="cara-pembelian.html">Cara Pembelian</a>
+                <a href="orders.html">Lacak Pesanan</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TokoYuka. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <i class="ph ph-house"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="category.html" class="bottom-nav-item">
+            <i class="ph ph-magnifying-glass"></i>
+            <span>Kategori</span>
+        </a>
+        <a href="cart.html" class="bottom-nav-item">
+            <div style="position: relative;"><i class="ph ph-shopping-cart"></i><span class="cart-badge" style="display: none;">0</span></div><span>Keranjang</span>
+        </a>
+        <a href="orders.html" class="bottom-nav-item">
+            <i class="ph ph-package"></i>
+            <span>Pesanan</span>
+        </a>
+        <a href="notifications.html" class="bottom-nav-item">
+            <i class="ph ph-bell"></i>
+            <span>Notifikasi</span>
+        </a>
+    </nav>
+
+    <script src="script.js?v=44"></script>
+    <script src="transition.js?v=45"></script>
+</body>
+</html>
+
