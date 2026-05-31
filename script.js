@@ -1787,3 +1787,55 @@ if (window.location.pathname.includes('product.html') || window.location.href.in
         });
     }
 }
+
+// ==========================================
+// Flash Sale Countdown Logic
+// ==========================================
+const initFlashSaleCountdown = () => {
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    if (!hoursEl || !minutesEl || !secondsEl) return;
+
+    // Check localStorage for existing target date
+    let targetDateStr = localStorage.getItem('yuka_flashsale_target');
+    let targetDate;
+
+    if (targetDateStr) {
+        targetDate = new Date(targetDateStr).getTime();
+        // If the date has passed, reset it to 13 days from now
+        if (targetDate < new Date().getTime()) {
+            targetDate = new Date().getTime() + (13 * 24 * 60 * 60 * 1000);
+            localStorage.setItem('yuka_flashsale_target', new Date(targetDate).toISOString());
+        }
+    } else {
+        // Set to 13 days from now initially
+        targetDate = new Date().getTime() + (13 * 24 * 60 * 60 * 1000);
+        localStorage.setItem('yuka_flashsale_target', new Date(targetDate).toISOString());
+    }
+
+    const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) return;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (daysEl) daysEl.innerText = days.toString().padStart(2, '0');
+        hoursEl.innerText = hours.toString().padStart(2, '0');
+        minutesEl.innerText = minutes.toString().padStart(2, '0');
+        secondsEl.innerText = seconds.toString().padStart(2, '0');
+    };
+
+    updateCountdown(); // Initial call to avoid 1-sec delay
+    setInterval(updateCountdown, 1000);
+};
+
+// Run the countdown initialization
+initFlashSaleCountdown();
