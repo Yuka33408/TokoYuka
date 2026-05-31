@@ -745,7 +745,7 @@ const showAuthPopup = () => {
                 <p>Anda harus masuk (login) atau mendaftar akun terlebih dahulu untuk memproses pembayaran pesanan Anda.</p>
                 <div class="popup-actions">
                     <button class="popup-btn-cancel" onclick="document.getElementById('auth-popup').classList.remove('active')">Batal</button>
-                    <button class="popup-btn-primary" onclick="window.location.href='login.html'">Masuk / Daftar</button>
+                    <a href="login.html" class="popup-btn-primary" style="text-decoration:none; display:inline-block; text-align:center; box-sizing:border-box;">Masuk / Daftar</a>
                 </div>
             </div>
         `;
